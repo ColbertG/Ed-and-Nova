@@ -21,6 +21,8 @@ public class ControllerGame : MonoBehaviour
     SpawnBarrier SpawnBarriers;
     [SerializeField]
     List<ControllerMenu> ControllerMenus;
+    [SerializeField]
+    ControllerDialog ControllerDialogs;
     bool StartGameNow = false;
     bool LevelComplete = false;
     bool LevelSetUpDone = false;
@@ -38,6 +40,7 @@ public class ControllerGame : MonoBehaviour
     void Start()
     {
         ControllerMenus[0].OpenMenu();
+        ControllerDialogs.ShowDialog();
     }
 
     // Update is called once per frame
@@ -78,6 +81,11 @@ public class ControllerGame : MonoBehaviour
 
         //Player.AngleControll(SpawnMeteors.FaceingMeteor());
         //Player.AngleControll(SpawnEnemies.FaceingEnemy());
+    }
+    public void NextDialog() 
+    {
+        ControllerDialogs.ShowNextDialog();
+        ControllerDialogs.ShowDialog();
     }
     public void StartGame() 
     {
