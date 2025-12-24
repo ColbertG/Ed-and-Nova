@@ -46,8 +46,13 @@ public class ControllerDialog : MonoBehaviour
         ActiveImage.sprite = CharacterDialog[DialogOrders[DialogCount].ImageNumber].Myimage;
         ActiveDialogs.text = CharacterDialog[DialogOrders[DialogCount].ImageNumber].Dialogs[DialogOrders[DialogCount].DialogOrderNumber];
     }
-    public void ShowNextDialog() 
+    public int ShowNextDialog(int reset = -1) 
     {
-        DialogCount++;
+        if (reset >= 0) 
+        {
+            DialogCount = reset;
+            return DialogCount;
+        }
+        return DialogCount++;
     }
 }

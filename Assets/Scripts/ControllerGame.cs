@@ -24,6 +24,7 @@ public class ControllerGame : MonoBehaviour
     [SerializeField]
     ControllerDialog ControllerDialogs;
     bool StartGameNow = false;
+    bool DialogDone = false;
     bool LevelComplete = false;
     bool LevelSetUpDone = false;
     bool LevelSpawnMeteorsDone = false;
@@ -40,21 +41,24 @@ public class ControllerGame : MonoBehaviour
     void Start()
     {
         ControllerMenus[0].OpenMenu();
-        ControllerDialogs.ShowDialog();
+        //ControllerDialogs.ShowDialog();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (StartGameNow) 
+        if (DialogDone) 
         {
-            if (LevelCount == 1 && !LevelComplete) Level1();
-            if (LevelCount == 2 && !LevelComplete) Level2();
-            if (LevelCount == 3 && !LevelComplete) Level3();
-            if (LevelCount == 4 && !LevelComplete) Level4();
-            if (LevelCount == 5 && !LevelComplete) Level5();
-            CheckPlayerHealth();
-            if (PlayerHP <= 0) EndGame();
+            if (StartGameNow)
+            {
+                if (LevelCount == 1 && !LevelComplete) Level1();
+                if (LevelCount == 2 && !LevelComplete) Level2();
+                if (LevelCount == 3 && !LevelComplete) Level3();
+                if (LevelCount == 4 && !LevelComplete) Level4();
+                if (LevelCount == 5 && !LevelComplete) Level5();
+                CheckPlayerHealth();
+                if (PlayerHP <= 0) EndGame();
+            }
         }
 
         //Player.SetTarget(null);
@@ -84,12 +88,27 @@ public class ControllerGame : MonoBehaviour
     }
     public void NextDialog() 
     {
-        ControllerDialogs.ShowNextDialog();
+        int onCount = ControllerDialogs.ShowNextDialog();
+        if (onCount == 6) 
+        {
+            ControllerMenus[3].CloseMenu();
+            ControllerDialogs.ShowNextDialog(onCount--);
+            DialogDone = true;
+        }
+        ControllerDialogs.ShowDialog();
+    }
+    void DialogReset() 
+    {
+        if(LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
         ControllerDialogs.ShowDialog();
     }
     public void StartGame() 
     {
         ControllerMenus[0].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+        
         StartGameNow = true;
     }
     public void NextLevel()
@@ -102,10 +121,16 @@ public class ControllerGame : MonoBehaviour
     public void ResetLevel()
     {
         ControllerMenus[1].CloseMenu();
+        
+        DialogReset();
+        ControllerMenus[3].OpenMenu();
+        
         LevelCount = LevelCount;
         LevelSetUpDone = false;
         LevelComplete = false;
         StartGameNow = true;
+        
+        DialogDone = false;
     }
     void PlayerReset() 
     {
