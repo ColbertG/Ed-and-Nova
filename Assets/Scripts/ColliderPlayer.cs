@@ -15,15 +15,14 @@ public class ColliderPlayer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ColliderLaser>() != null)
-        {
             HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
-        }
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
             if (collision.gameObject.CompareTag("Enemy"))
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-
         if (collision.gameObject.GetComponent<ColliderMeteor>() != null)
             HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
+        if (collision.gameObject.GetComponent<ColliderBomb>() != null)
+            HP = HP - collision.gameObject.GetComponent<ColliderBomb>().DestructionPoints();
         if (HP <= 0) 
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;

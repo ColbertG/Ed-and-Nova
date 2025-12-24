@@ -92,6 +92,7 @@ public class ControllerGame : MonoBehaviour
         if (onCount == 6) 
         {
             ControllerMenus[3].CloseMenu();
+            //Rework When Dialog is done
             ControllerDialogs.ShowNextDialog(onCount--);
             DialogDone = true;
         }
@@ -224,6 +225,8 @@ public class ControllerGame : MonoBehaviour
             
             SpawnMeteors.SpawnCounter(true); 
             SpawnBombs.SpawnCounter(true);
+
+            SpawnBarriers.SpawnLevel(0, 1);
         }
         SpawnMeteors.SpawnLevel(1);
         SpawnBombs.SpawnLevel(1);
