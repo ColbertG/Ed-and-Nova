@@ -33,15 +33,18 @@ public class ControllerBoss : MonoBehaviour
     [SerializeField]
     float MoveRateMax = 0.5f;
     AnimatorStateInfo AnimStateInfo;
+    bool SpotsDone = false;
     bool laserDone = true;
     float MoveRate;
     float NextMoveTime = 0f;
     Vector3[] Spots = new Vector3 [5];
+    Vector3[] SpotsBF = new Vector3[3];
     int pick = 2;
     GameObject clone3;
     void Awake()
     {
         SpotBoss();
+        SpotBossBF();
     }
     // Start is called before the first frame update
     void Start()
@@ -66,11 +69,21 @@ public class ControllerBoss : MonoBehaviour
     {
         float width = Screen.width;
         float height = Screen.height;
-        Spots[0] = Camera.main.ScreenToWorldPoint(new Vector3(width-25, height / 2, transform.position.z - Camera.main.transform.position.z));
-        Spots[1] = Camera.main.ScreenToWorldPoint(new Vector3(width-25, height-25, transform.position.z - Camera.main.transform.position.z));
+        Spots[0] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height / 2, transform.position.z - Camera.main.transform.position.z));
+        Spots[1] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height - 25, transform.position.z - Camera.main.transform.position.z));
         Spots[2] = Camera.main.ScreenToWorldPoint(new Vector3(width / 2, height - 25, transform.position.z - Camera.main.transform.position.z));
-        Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3((width / width)+25, height - 25, transform.position.z - Camera.main.transform.position.z));
-        Spots[4] = Camera.main.ScreenToWorldPoint(new Vector3((width / width)+25, height / 2, transform.position.z - Camera.main.transform.position.z));
+        Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height - 25, transform.position.z - Camera.main.transform.position.z));
+        Spots[4] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height / 2, transform.position.z - Camera.main.transform.position.z));
+    }
+    void SpotBossBF()
+    {
+        float width = Screen.width;
+        float height = Screen.height;
+        Vector3 y = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, (height / height) + 25, transform.position.z - Camera.main.transform.position.z));
+        SpotsBF[0] = new Vector3(Spots[0].x, UnityEngine.Random.Range(y.y, Spots[1].y), 0);
+        SpotsBF[1] = new Vector3(UnityEngine.Random.Range(Spots[3].x, Spots[0].x), Spots[1].y, 0);
+        SpotsBF[2] = new Vector3(Spots[3].x, UnityEngine.Random.Range(y.y, Spots[1].y), 0);
+
     }
     void AnimatorControll() 
     {
@@ -131,7 +144,7 @@ public class ControllerBoss : MonoBehaviour
     }
     void MovementBoss() 
     {
-        if (string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", Spots[pick].magnitude))
+        if ((string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", Spots[pick].magnitude)) && !SpotsDone)
         {
             transform.position = Vector3.Lerp(transform.position, Spots[pick], Speed * Time.deltaTime);
             //Debug.Log("moving " + Mathf.Round(transform.position.magnitude) + " --> " + Mathf.Round(Spots[pick].magnitude));
@@ -143,6 +156,36 @@ public class ControllerBoss : MonoBehaviour
                 pick = UnityEngine.Random.Range(0, 5);
                 MoveRate = UnityEngine.Random.Range(MoveRateMin, MoveRateMax);
                 NextMoveTime = Time.time + MoveRate;
+                SpotsDone = false;
+            }
+            else 
+            {
+                SpotsDone = true;
+                if (pick == 0) 
+                {
+                    if (string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", SpotsBF[0].magnitude))
+                    {
+                        transform.position = Vector3.Lerp(transform.position, SpotsBF[0], Speed * Time.deltaTime);
+                    }
+                    else SpotBossBF();
+                }
+                if (pick == 2) 
+                {
+                    if (string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", SpotsBF[1].magnitude))
+                    {
+                        transform.position = Vector3.Lerp(transform.position, SpotsBF[1], Speed * Time.deltaTime);
+                    }
+                    else SpotBossBF();
+                }
+                if (pick == 4) 
+                {
+                    if (string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", SpotsBF[2].magnitude))
+                    {
+                        transform.position = Vector3.Lerp(transform.position, SpotsBF[2], Speed * Time.deltaTime);
+                    }
+                    else SpotBossBF();
+                }
+
             }
             //Debug.Log("pick");
         }
