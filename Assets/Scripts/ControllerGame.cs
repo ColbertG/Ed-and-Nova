@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerGame : MonoBehaviour
 {
+    [SerializeField]
+    Slider PlayerHPBar;
+    [SerializeField] 
+    Slider PlayerRPBar;
     [SerializeField]
     SpawnPlayer SpawnPlayers;
     ControllerPlayer Player;
@@ -32,6 +37,8 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnBombsDone = false;
     public int LevelCount { get; private set; } = 1;
     int PlayerHP = 0;
+    float PlayerRPStart = 0;
+    float PlayerHPStart = 0;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -41,7 +48,6 @@ public class ControllerGame : MonoBehaviour
     void Start()
     {
         ControllerMenus[0].OpenMenu();
-        //ControllerDialogs.ShowDialog();
     }
 
     // Update is called once per frame
@@ -140,7 +146,10 @@ public class ControllerGame : MonoBehaviour
             SpawnPlayers.SpawnLevel(0, 1);
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
             PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
+            PlayerHPStart = PlayerHP;
+            PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
         }
+        ControllerMenus[4].OpenMenu();
     }
     void MenuSetUp() 
     {
@@ -148,13 +157,20 @@ public class ControllerGame : MonoBehaviour
         if (PlayerHP > 0)
             ControllerMenus[2].OpenMenu();
         else ControllerMenus[1].OpenMenu();
+        ControllerMenus[4].CloseMenu();
     }
     void CheckPlayerHealth()
     {
         if (Player != null)
         {
-            if (Player.gameObject.GetComponent<ColliderPlayer>() != null)
+            if (Player.gameObject.GetComponent<ColliderPlayer>() != null) 
+            {
                 PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
+                PlayerHPBar.value = PlayerHP / PlayerHPStart;
+                if (Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() > PlayerRPStart)
+                    PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
+                PlayerRPBar.value = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() / PlayerRPStart;
+            }
         }
         else PlayerHP = 0;
     }
