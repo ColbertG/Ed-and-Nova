@@ -98,6 +98,16 @@ public class ControllerGame : MonoBehaviour
         if (onCount == 6) 
         {
             ControllerMenus[3].CloseMenu();
+            DialogDone = true;
+        }
+        if (onCount == 10) 
+        {
+            ControllerMenus[3].CloseMenu();
+            DialogDone = true;
+        }
+        if (onCount == 15)
+        {
+            ControllerMenus[3].CloseMenu();
             //Rework When Dialog is done
             ControllerDialogs.ShowNextDialog(onCount--);
             DialogDone = true;
@@ -106,7 +116,9 @@ public class ControllerGame : MonoBehaviour
     }
     void DialogReset() 
     {
-        if(LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
+        if (LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
+        if (LevelCount == 2) ControllerDialogs.ShowNextDialog(7);
+        if (LevelCount == 3) ControllerDialogs.ShowNextDialog(11);
         ControllerDialogs.ShowDialog();
     }
     public void StartGame() 
@@ -123,7 +135,12 @@ public class ControllerGame : MonoBehaviour
         LevelCount++;
         LevelSetUpDone = false;
         LevelComplete = false;
+
+        DialogDone = false;
+
         ControllerMenus[2].CloseMenu();
+        
+        ControllerMenus[3].OpenMenu();
     }
     public void ResetLevel()
     {
@@ -208,7 +225,7 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.SpawnLevel(1);
         SpawnMeteors.FaceingMeteor(2);
         Player.AngleControll(SpawnMeteors.FaceingMeteor());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 10 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
@@ -249,13 +266,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnBombs.FaceingBomb(2);
         Player.AngleControll(SpawnBombs.FaceingBomb());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 150 && !LevelSpawnBombsDone))
+        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 15 && !LevelSpawnBombsDone))
         {
             SpawnBombs.SpawnCounter(true);
             SpawnBombs.enabled = false;
@@ -297,13 +314,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(2);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 15 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -345,13 +362,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(3);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 20 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 20 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -393,13 +410,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(4);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 25 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 25 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;

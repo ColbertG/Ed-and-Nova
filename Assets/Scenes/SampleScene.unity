@@ -674,16 +674,34 @@ MonoBehaviour:
     - Good morning, Nova, another great day for mining asteroids.
     - What could be better than a honest living?
     - "This is our home where \u2026"
+    - 'That Doesn''t sound good, what could it be, Nothing naturally occurring could
+      get through this barrier. '
+    - Nova, what are we going to do? We're not equipped to take on an army!
   - Myimage: {fileID: 21300000, guid: 68ea093040ad9d34a8b5c24e25f218d7, type: 3}
     Dialogs:
     - Yeah, sure just turning big rocks into little rocks if you ask me.
     - Making real change in the world hell in the universe. There's a whole Galaxy
       to explore and every day we're stuck here defending the planet.
     - Finally, some action!
+    - "Will that wasn\u2019t anything out the norm. What\u2019s got the ship all
+      worked up."
+    - I don't know, but hurry, get back on the controls and give me a good angle
+      to take these things out.
+    - "Ed, we have Enough ammo here to buy us some time. Just keep us moving and
+      I\u2019ll Take out as many as I can."
   - Myimage: {fileID: 21300000, guid: 996f3558c7f3ed648ae73e19c20785b8, type: 3}
     Dialogs:
     - Beep, Beep, Beep An influx of asteroids emergencies, emergencies an influx
       of asteroids!
+    - unidentified objects incoming. Scans determine objects could calls Destabilization
+      of planet barrier.
+    - Ed, Nova. The Planet has been breached. Clusters of warships have been detected.
+  - Myimage: {fileID: 21300000, guid: 2fc000c4e72bed34e9c0d29f18858688, type: 3}
+    Dialogs:
+    - Lieutenant Kale 9, great work, move in and head directly for area 42.
+  - Myimage: {fileID: 21300000, guid: f6f3f6743e7b6d240a658b1d22721906, type: 3}
+    Dialogs:
+    - Colonel 01, the planet barriers are down, Troops are standing by to move in.
   DialogOrders:
   - DialogOrderNumber: 0
     ImageNumber: 0
@@ -698,6 +716,24 @@ MonoBehaviour:
   - DialogOrderNumber: 0
     ImageNumber: 2
   - DialogOrderNumber: 2
+    ImageNumber: 1
+  - DialogOrderNumber: 3
+    ImageNumber: 1
+  - DialogOrderNumber: 1
+    ImageNumber: 2
+  - DialogOrderNumber: 3
+    ImageNumber: 0
+  - DialogOrderNumber: 4
+    ImageNumber: 1
+  - DialogOrderNumber: 0
+    ImageNumber: 4
+  - DialogOrderNumber: 0
+    ImageNumber: 3
+  - DialogOrderNumber: 2
+    ImageNumber: 2
+  - DialogOrderNumber: 4
+    ImageNumber: 0
+  - DialogOrderNumber: 5
     ImageNumber: 1
   DialogPanle: {fileID: 1230051206}
   ActiveImage: {fileID: 504086603}
