@@ -39,6 +39,7 @@ public class ControllerGame : MonoBehaviour
     int PlayerHP = 0;
     float PlayerRPStart = 0;
     float PlayerHPStart = 0;
+    bool Pause = false;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -91,6 +92,12 @@ public class ControllerGame : MonoBehaviour
 
         //Player.AngleControll(SpawnMeteors.FaceingMeteor());
         //Player.AngleControll(SpawnEnemies.FaceingEnemy());
+    }
+    public void PauseResumeGame() 
+    {
+        Pause = !Pause;
+        if (Pause) Time.timeScale = 0.0f;
+        else Time.timeScale = 1.0f;
     }
     public void NextDialog() 
     {
