@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ public class ControllerGame : MonoBehaviour
     int PlayerHP = 0;
     float PlayerRPStart = 0;
     float PlayerHPStart = 0;
-    bool Pause = false;
+    bool Pause = false; 
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -92,6 +93,12 @@ public class ControllerGame : MonoBehaviour
 
         //Player.AngleControll(SpawnMeteors.FaceingMeteor());
         //Player.AngleControll(SpawnEnemies.FaceingEnemy());
+    }
+    public void UpgradeMenu() 
+    {
+        ControllerMenus[2].CloseMenu();
+
+        ControllerMenus[5].OpenMenu();
     }
     public void PauseResumeGame() 
     {
@@ -146,8 +153,10 @@ public class ControllerGame : MonoBehaviour
         DialogDone = false;
 
         ControllerMenus[2].CloseMenu();
-        
+
         ControllerMenus[3].OpenMenu();
+
+        ControllerMenus[5].CloseMenu();
     }
     public void ResetLevel()
     {
@@ -178,8 +187,7 @@ public class ControllerGame : MonoBehaviour
     void MenuSetUp() 
     {
         LevelComplete = true;
-        if (PlayerHP > 0)
-            ControllerMenus[2].OpenMenu();
+        if (PlayerHP > 0) ControllerMenus[2].OpenMenu();
         else ControllerMenus[1].OpenMenu();
         ControllerMenus[4].CloseMenu();
     }
