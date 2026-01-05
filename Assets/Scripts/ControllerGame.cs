@@ -38,14 +38,18 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnBombsDone = false;
     public int LevelCount { get; private set; } = 1;
     int PlayerHP = 0;
-    float PlayerRPStart = 0;
-    float PlayerHPStart = 0;
+    int PlayerRPStart = 0;
+    int PlayerHPStart = 0;
     bool Pause = false; 
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
         //PlayerPrefs.SetInt();
-        
+        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerDp", 0);
+        PlayerPrefs.SetInt("rocketHp", 0);
+        PlayerPrefs.SetInt("rocketDp", 0);
+        PlayerPrefs.SetInt("playerSpeed", 0);
     }
     void Start()
     {
@@ -93,6 +97,32 @@ public class ControllerGame : MonoBehaviour
 
         //Player.AngleControll(SpawnMeteors.FaceingMeteor());
         //Player.AngleControll(SpawnEnemies.FaceingEnemy());
+    }
+    public void HpUpgrade() 
+    {
+        int newHP = PlayerPrefs.GetInt("playerHp", 0) + 10;
+        PlayerPrefs.SetInt("playerHp", newHP);
+        Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(10);
+    }
+    public void DpUpgrade()
+    {
+        int newDP = PlayerPrefs.GetInt("playerDp", 0) + 1;
+        PlayerPrefs.SetInt("playerDp", newDP);
+        Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(1);
+    }
+    public void RocketUpgrade()
+    {
+        int newHP = PlayerPrefs.GetInt("rocketHp", 0) + 1;
+        int newDP = PlayerPrefs.GetInt("rocketDp", 0) + 1;
+
+        PlayerPrefs.SetInt("rocketHp", newHP);
+        PlayerPrefs.SetInt("rocketDp", newDP);
+    }
+    public void SpeedUpgrade()
+    {
+        int newSpeed = PlayerPrefs.GetInt("playerSpeed", 0) + 1;
+        PlayerPrefs.SetInt("playerSpeed", newSpeed);
+        Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
     }
     public void UpgradeMenu() 
     {
@@ -178,6 +208,11 @@ public class ControllerGame : MonoBehaviour
         {
             SpawnPlayers.SpawnLevel(0, 1);
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
+
+            Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(PlayerPrefs.GetInt("playerHp", 0));
+            Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(PlayerPrefs.GetInt("playerDp", 0));
+            Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(PlayerPrefs.GetInt("playerSpeed", 0));
+
             PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
             PlayerHPStart = PlayerHP;
             PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();

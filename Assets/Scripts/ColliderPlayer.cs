@@ -34,8 +34,9 @@ public class ColliderPlayer : MonoBehaviour
         HP = HP + changeHealth;
         return HP;
     }
-    public int DestructionPoints()
+    public int DestructionPoints(int dp = 0)
     {
+        DP = DP + dp;
         return DP;
     }
     public int RewardPoints(int reward = 0) 

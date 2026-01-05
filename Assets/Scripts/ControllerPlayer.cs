@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -53,11 +54,15 @@ public class ControllerPlayer : MonoBehaviour
             {
                 GameObject clone = Instantiate(Rocket[0].MainRocket, Rocket[0].SpawnPoint.position, Rocket[0].SpawnPoint.rotation) as GameObject;
                 Rocket[0].NextFireTime = Time.time + Rocket[0].FireRate;
+                clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
+                clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
             }
             if (Rocket.Count >= 2 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[1].NextFireTime)
             {
                 GameObject clone = Instantiate(Rocket[1].MainRocket, Rocket[1].SpawnPoint.position, Rocket[1].SpawnPoint.rotation) as GameObject;
                 Rocket[1].NextFireTime = Time.time + Rocket[1].FireRate;
+                clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
+                clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
             }
         }
 
@@ -69,5 +74,9 @@ public class ControllerPlayer : MonoBehaviour
     public void SetTarget(Transform Boss) 
     {
         Target = Boss;
+    }
+    public void SetSpeed(int speed) 
+    {
+        Speed = Speed + speed;
     }
 }

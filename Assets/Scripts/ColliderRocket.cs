@@ -53,8 +53,14 @@ public class ColliderRocket : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public int DestructionPoints() 
+    public int DestructionPoints(int dp = 0) 
     {
+        DP = DP + dp;
         return DP;
+    }
+    public int HealthPoints(int hp = 0) 
+    {
+        HP = HP + hp;
+        return HP;
     }
 }
