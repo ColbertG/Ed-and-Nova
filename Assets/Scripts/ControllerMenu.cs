@@ -13,10 +13,10 @@ public class ControllerMenu : MonoBehaviour
     }
     public void OpenMenu() 
     {
-        Animators.SetTrigger("Open");
+        Animators.SetBool("Close", false);
     }
     public void CloseMenu() 
     {
-        Animators.SetTrigger("Close");
+        Animators.SetBool("Close", true);
     }
 }

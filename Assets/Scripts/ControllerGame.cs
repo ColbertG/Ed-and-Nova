@@ -182,11 +182,12 @@ public class ControllerGame : MonoBehaviour
 
         DialogDone = false;
 
+        ControllerMenus[5].CloseMenu();
+
         ControllerMenus[2].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
 
-        ControllerMenus[5].CloseMenu();
     }
     public void ResetLevel()
     {
@@ -207,6 +208,7 @@ public class ControllerGame : MonoBehaviour
         if (PlayerHP <= 0) 
         {
             SpawnPlayers.SpawnLevel(0, 1);
+
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
 
             Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(PlayerPrefs.GetInt("playerHp", 0));
@@ -233,10 +235,11 @@ public class ControllerGame : MonoBehaviour
             if (Player.gameObject.GetComponent<ColliderPlayer>() != null) 
             {
                 PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
-                PlayerHPBar.value = PlayerHP / PlayerHPStart;
+                PlayerHPBar.value = (float)PlayerHP / PlayerHPStart;
+                Debug.Log((float)PlayerHP / PlayerHPStart);
                 if (Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() > PlayerRPStart)
                     PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
-                PlayerRPBar.value = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() / PlayerRPStart;
+                PlayerRPBar.value = (float)Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() / PlayerRPStart;
             }
         }
         else PlayerHP = 0;

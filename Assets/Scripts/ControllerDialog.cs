@@ -15,7 +15,6 @@ class DialogOrder
 {
     public int DialogOrderNumber;
     public int ImageNumber;
-
 }
 public class ControllerDialog : MonoBehaviour
 {
