@@ -38,9 +38,11 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnBombsDone = false;
     public int LevelCount { get; private set; } = 1;
     int PlayerHP = 0;
+    int PlayerRP = 0;
     int PlayerRPStart = 0;
     int PlayerHPStart = 0;
-    bool Pause = false; 
+    bool Pause = false;
+    int pickShipActive = 0;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -50,6 +52,12 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("rocketHp", 0);
         PlayerPrefs.SetInt("rocketDp", 0);
         PlayerPrefs.SetInt("playerSpeed", 0);
+
+
+        PlayerPrefs.SetInt("playerHpLevel", 0);
+        PlayerPrefs.SetInt("playerDpLevel", 0);
+        PlayerPrefs.SetInt("rocketLevel", 0);
+        PlayerPrefs.SetInt("playerSpeedLevel", 0);
     }
     void Start()
     {
@@ -100,26 +108,37 @@ public class ControllerGame : MonoBehaviour
     }
     public void HpUpgrade() 
     {
+        int level = PlayerPrefs.GetInt("playerHpLevel", 0) + 1;
+        PlayerPrefs.SetInt("playerHpLevel", level);
+
         int newHP = PlayerPrefs.GetInt("playerHp", 0) + 10;
         PlayerPrefs.SetInt("playerHp", newHP);
         Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(10);
     }
     public void DpUpgrade()
     {
+        int level = PlayerPrefs.GetInt("playerDpLevel", 0) + 1;
+        PlayerPrefs.SetInt("playerDpLevel", level);
+
         int newDP = PlayerPrefs.GetInt("playerDp", 0) + 1;
         PlayerPrefs.SetInt("playerDp", newDP);
         Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(1);
     }
     public void RocketUpgrade()
     {
+        int level = PlayerPrefs.GetInt("rocketLevel", 0) + 1;
+        PlayerPrefs.SetInt("rocketLevel", level);
+
         int newHP = PlayerPrefs.GetInt("rocketHp", 0) + 1;
         int newDP = PlayerPrefs.GetInt("rocketDp", 0) + 1;
-
         PlayerPrefs.SetInt("rocketHp", newHP);
         PlayerPrefs.SetInt("rocketDp", newDP);
     }
     public void SpeedUpgrade()
     {
+        int level = PlayerPrefs.GetInt("playerSpeedLevel", 0) + 1;
+        PlayerPrefs.SetInt("playerSpeedLevel", level);
+
         int newSpeed = PlayerPrefs.GetInt("playerSpeed", 0) + 1;
         PlayerPrefs.SetInt("playerSpeed", newSpeed);
         Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
@@ -205,9 +224,32 @@ public class ControllerGame : MonoBehaviour
     }
     void PlayerReset() 
     {
-        if (PlayerHP <= 0) 
+
+        int pickShip = 0;
+
+        int upgeade1 = PlayerPrefs.GetInt("playerHpLevel", 0);
+        int upgrade2 = PlayerPrefs.GetInt("playerDpLevel", 0);
+        int upgrade3 = PlayerPrefs.GetInt("rocketLevel", 0);
+        int upgrade4 = PlayerPrefs.GetInt("playerSpeedLevel", 0);
+
+        bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 20 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
+        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 40 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 20;
+        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 60 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 40;
+        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 80 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 60;
+        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 80;
+
+        if (ship1) pickShip = 0;
+        if (ship2) pickShip = 1;
+        if (ship3) pickShip = 2;
+        if (ship4) pickShip = 3;
+        if (ship5) pickShip = 4;
+
+        if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
-            SpawnPlayers.SpawnLevel(0, 1);
+            if (pickShipActive != pickShip) Destroy(Player.gameObject);
+            pickShipActive = pickShip;
+
+            SpawnPlayers.SpawnLevel(pickShip, 1);
 
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
 
@@ -234,11 +276,14 @@ public class ControllerGame : MonoBehaviour
         {
             if (Player.gameObject.GetComponent<ColliderPlayer>() != null) 
             {
+                if (Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints() > PlayerHPStart)
+                    PlayerHPStart = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
                 PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
                 PlayerHPBar.value = (float)PlayerHP / PlayerHPStart;
-                Debug.Log((float)PlayerHP / PlayerHPStart);
+
                 if (Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() > PlayerRPStart)
                     PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
+                PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
                 PlayerRPBar.value = (float)Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() / PlayerRPStart;
             }
         }
