@@ -46,18 +46,16 @@ public class ControllerGame : MonoBehaviour
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt();
-        PlayerPrefs.SetInt("playerHp", 0);
-        PlayerPrefs.SetInt("playerDp", 0);
-        PlayerPrefs.SetInt("rocketHp", 0);
-        PlayerPrefs.SetInt("rocketDp", 0);
-        PlayerPrefs.SetInt("playerSpeed", 0);
+        //PlayerPrefs.SetInt("playerHp", 0);
+        //PlayerPrefs.SetInt("playerDp", 0);
+        //PlayerPrefs.SetInt("rocketHp", 0);
+        //PlayerPrefs.SetInt("rocketDp", 0);
+        //PlayerPrefs.SetInt("playerSpeed", 0);
 
-
-        PlayerPrefs.SetInt("playerHpLevel", 0);
-        PlayerPrefs.SetInt("playerDpLevel", 0);
-        PlayerPrefs.SetInt("rocketLevel", 0);
-        PlayerPrefs.SetInt("playerSpeedLevel", 0);
+        //PlayerPrefs.SetInt("playerHpLevel", 0);
+        //PlayerPrefs.SetInt("playerDpLevel", 0);
+        //PlayerPrefs.SetInt("rocketLevel", 0);
+        //PlayerPrefs.SetInt("playerSpeedLevel", 0);
     }
     void Start()
     {
@@ -246,7 +244,7 @@ public class ControllerGame : MonoBehaviour
 
         if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
-            if (pickShipActive != pickShip) Destroy(Player.gameObject);
+            if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
 
             SpawnPlayers.SpawnLevel(pickShip, 1);

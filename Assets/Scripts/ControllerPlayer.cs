@@ -50,20 +50,30 @@ public class ControllerPlayer : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if (Rocket.Count >= 1 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[0].NextFireTime)
+            for (int i = 0; i < Rocket.Count; i++)
             {
-                GameObject clone = Instantiate(Rocket[0].MainRocket, Rocket[0].SpawnPoint.position, Rocket[0].SpawnPoint.rotation) as GameObject;
-                Rocket[0].NextFireTime = Time.time + Rocket[0].FireRate;
-                clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
-                clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+                if (touch.phase == TouchPhase.Moved && Time.time >= Rocket[i].NextFireTime)
+                {
+                    GameObject clone = Instantiate(Rocket[i].MainRocket, Rocket[i].SpawnPoint.position, Rocket[i].SpawnPoint.rotation) as GameObject;
+                    Rocket[i].NextFireTime = Time.time + Rocket[i].FireRate;
+                    clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
+                    clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+                }
             }
-            if (Rocket.Count >= 2 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[1].NextFireTime)
-            {
-                GameObject clone = Instantiate(Rocket[1].MainRocket, Rocket[1].SpawnPoint.position, Rocket[1].SpawnPoint.rotation) as GameObject;
-                Rocket[1].NextFireTime = Time.time + Rocket[1].FireRate;
-                clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
-                clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
-            }
+            //if (Rocket.Count >= 1 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[0].NextFireTime)
+            //{
+            //    GameObject clone = Instantiate(Rocket[0].MainRocket, Rocket[0].SpawnPoint.position, Rocket[0].SpawnPoint.rotation) as GameObject;
+            //    Rocket[0].NextFireTime = Time.time + Rocket[0].FireRate;
+            //    clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
+            //    clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+            //}
+            //if (Rocket.Count >= 2 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[1].NextFireTime)
+            //{
+            //    GameObject clone = Instantiate(Rocket[1].MainRocket, Rocket[1].SpawnPoint.position, Rocket[1].SpawnPoint.rotation) as GameObject;
+            //    Rocket[1].NextFireTime = Time.time + Rocket[1].FireRate;
+            //    clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
+            //    clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+            //}
         }
 
     }
