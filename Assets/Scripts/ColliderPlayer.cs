@@ -9,7 +9,7 @@ public class ColliderPlayer : MonoBehaviour
     [SerializeField]
     int DP = 1;
     [SerializeField]
-    int Rewards = 10;
+    int Rewards = 0;
     [SerializeField]
     GameObject Explosion;
     private void OnTriggerEnter2D(Collider2D collision)

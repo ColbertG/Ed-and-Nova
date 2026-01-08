@@ -39,23 +39,25 @@ public class ControllerGame : MonoBehaviour
     public int LevelCount { get; private set; } = 1;
     int PlayerHP = 0;
     int PlayerRP = 0;
-    int PlayerRPStart = 0;
+    int PlayerRPStart = 100000;
     int PlayerHPStart = 0;
     bool Pause = false;
     int pickShipActive = 0;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt("playerHp", 0);
-        //PlayerPrefs.SetInt("playerDp", 0);
-        //PlayerPrefs.SetInt("rocketHp", 0);
-        //PlayerPrefs.SetInt("rocketDp", 0);
-        //PlayerPrefs.SetInt("playerSpeed", 0);
+        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerDp", 0);
+        PlayerPrefs.SetInt("rocketHp", 0);
+        PlayerPrefs.SetInt("rocketDp", 0);
+        PlayerPrefs.SetInt("playerSpeed", 0);
 
-        //PlayerPrefs.SetInt("playerHpLevel", 0);
-        //PlayerPrefs.SetInt("playerDpLevel", 0);
-        //PlayerPrefs.SetInt("rocketLevel", 0);
-        //PlayerPrefs.SetInt("playerSpeedLevel", 0);
+        PlayerPrefs.SetInt("playerHpLevel", 0);
+        PlayerPrefs.SetInt("playerDpLevel", 0);
+        PlayerPrefs.SetInt("rocketLevel", 0);
+        PlayerPrefs.SetInt("playerSpeedLevel", 0);
+
+        PlayerPrefs.SetInt("playerRp", 0);
     }
     void Start()
     {
@@ -106,6 +108,13 @@ public class ControllerGame : MonoBehaviour
     }
     public void HpUpgrade() 
     {
+        if (PlayerRP < 20000) return;
+        else 
+        {
+            PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-20000);
+            PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+
         int level = PlayerPrefs.GetInt("playerHpLevel", 0) + 1;
         PlayerPrefs.SetInt("playerHpLevel", level);
 
@@ -115,6 +124,13 @@ public class ControllerGame : MonoBehaviour
     }
     public void DpUpgrade()
     {
+        if (PlayerRP < 10000) return;
+        else
+        {
+            PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-10000);
+            PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+
         int level = PlayerPrefs.GetInt("playerDpLevel", 0) + 1;
         PlayerPrefs.SetInt("playerDpLevel", level);
 
@@ -124,6 +140,13 @@ public class ControllerGame : MonoBehaviour
     }
     public void RocketUpgrade()
     {
+        if (PlayerRP < 15000) return;
+        else
+        {
+            PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-15000);
+            PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+
         int level = PlayerPrefs.GetInt("rocketLevel", 0) + 1;
         PlayerPrefs.SetInt("rocketLevel", level);
 
@@ -134,6 +157,13 @@ public class ControllerGame : MonoBehaviour
     }
     public void SpeedUpgrade()
     {
+        if (PlayerRP < 5000) return;
+        else
+        {
+            PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-5000);
+            PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+
         int level = PlayerPrefs.GetInt("playerSpeedLevel", 0) + 1;
         PlayerPrefs.SetInt("playerSpeedLevel", level);
 
@@ -253,11 +283,13 @@ public class ControllerGame : MonoBehaviour
 
             Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(PlayerPrefs.GetInt("playerHp", 0));
             Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(PlayerPrefs.GetInt("playerDp", 0));
+            Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(PlayerPrefs.GetInt("playerRp", 0));
             Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(PlayerPrefs.GetInt("playerSpeed", 0));
 
             PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
             PlayerHPStart = PlayerHP;
-            PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
+
+
         }
         ControllerMenus[4].OpenMenu();
     }
@@ -282,6 +314,7 @@ public class ControllerGame : MonoBehaviour
                 if (Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() > PlayerRPStart)
                     PlayerRPStart = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
                 PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints();
+                PlayerPrefs.SetInt("playerRp", PlayerRP);
                 PlayerRPBar.value = (float)Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints() / PlayerRPStart;
             }
         }
@@ -321,7 +354,7 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.SpawnLevel(1);
         SpawnMeteors.FaceingMeteor(2);
         Player.AngleControll(SpawnMeteors.FaceingMeteor());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 10 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
@@ -362,13 +395,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnBombs.FaceingBomb(2);
         Player.AngleControll(SpawnBombs.FaceingBomb());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 15 && !LevelSpawnBombsDone))
+        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 150 && !LevelSpawnBombsDone))
         {
             SpawnBombs.SpawnCounter(true);
             SpawnBombs.enabled = false;
@@ -410,13 +443,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(2);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 15 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -458,13 +491,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(3);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 20 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 20 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -506,13 +539,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(4);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 25 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 25 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
