@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class ControllerGame : MonoBehaviour
 {
     [SerializeField]
+    Text ScoreCount; 
+    [SerializeField]
+    Text CrystalCount;
+    [SerializeField]
     Slider PlayerHPBar;
     [SerializeField] 
     Slider PlayerRPBar;
@@ -27,6 +31,8 @@ public class ControllerGame : MonoBehaviour
     SpawnBarrier SpawnBarriers;
     [SerializeField]
     List<ControllerMenu> ControllerMenus;
+    [SerializeField]
+    List<Button> ActiveButton;
     [SerializeField]
     ControllerDialog ControllerDialogs;
     bool StartGameNow = false;
@@ -58,6 +64,8 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("playerSpeedLevel", 0);
 
         PlayerPrefs.SetInt("playerRp", 0);
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
     }
     void Start()
     {
@@ -67,6 +75,9 @@ public class ControllerGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ScoreCount.text = PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000");
+        CrystalCount.text = PlayerPrefs.GetInt("playerRp", 0).ToString("00000000000");
+
         if (DialogDone) 
         {
             if (StartGameNow)
@@ -109,26 +120,35 @@ public class ControllerGame : MonoBehaviour
     public void HpUpgrade() 
     {
         if (PlayerRP < 20000) return;
-        else 
+        else if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-20000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 20000);
         }
 
         int level = PlayerPrefs.GetInt("playerHpLevel", 0) + 1;
         PlayerPrefs.SetInt("playerHpLevel", level);
 
         int newHP = PlayerPrefs.GetInt("playerHp", 0) + 10;
-        PlayerPrefs.SetInt("playerHp", newHP);
-        Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(10);
+        PlayerPrefs.SetInt("playerHp", newHP); 
+        if (PlayerHP > 0)
+            Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(10);
     }
     public void DpUpgrade()
     {
         if (PlayerRP < 10000) return;
-        else
+        else if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-10000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+        else 
+        {
+            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 10000);
         }
 
         int level = PlayerPrefs.GetInt("playerDpLevel", 0) + 1;
@@ -136,15 +156,20 @@ public class ControllerGame : MonoBehaviour
 
         int newDP = PlayerPrefs.GetInt("playerDp", 0) + 1;
         PlayerPrefs.SetInt("playerDp", newDP);
-        Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(1);
+        if (PlayerHP > 0)
+            Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(1);
     }
     public void RocketUpgrade()
     {
         if (PlayerRP < 15000) return;
-        else
+        else if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-15000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 15000);
         }
 
         int level = PlayerPrefs.GetInt("rocketLevel", 0) + 1;
@@ -158,10 +183,14 @@ public class ControllerGame : MonoBehaviour
     public void SpeedUpgrade()
     {
         if (PlayerRP < 5000) return;
-        else
+        else if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-5000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 5000);
         }
 
         int level = PlayerPrefs.GetInt("playerSpeedLevel", 0) + 1;
@@ -169,10 +198,13 @@ public class ControllerGame : MonoBehaviour
 
         int newSpeed = PlayerPrefs.GetInt("playerSpeed", 0) + 1;
         PlayerPrefs.SetInt("playerSpeed", newSpeed);
-        Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
+        if (PlayerHP > 0)
+            Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
     }
     public void UpgradeMenu() 
     {
+        ControllerMenus[1].CloseMenu();
+
         ControllerMenus[2].CloseMenu();
 
         ControllerMenus[5].OpenMenu();
@@ -220,6 +252,8 @@ public class ControllerGame : MonoBehaviour
         ControllerDialogs.ShowDialog();
         
         StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
     }
     public void NextLevel()
     {
@@ -228,6 +262,8 @@ public class ControllerGame : MonoBehaviour
         LevelComplete = false;
 
         DialogDone = false;
+
+        ActiveButton[0].gameObject.SetActive(false);
 
         ControllerMenus[5].CloseMenu();
 
@@ -238,8 +274,12 @@ public class ControllerGame : MonoBehaviour
     }
     public void ResetLevel()
     {
+        ActiveButton[1].gameObject.SetActive(false);
+
         ControllerMenus[1].CloseMenu();
-        
+
+        ControllerMenus[5].CloseMenu();
+
         DialogReset();
         ControllerMenus[3].OpenMenu();
         
@@ -249,6 +289,8 @@ public class ControllerGame : MonoBehaviour
         StartGameNow = true;
         
         DialogDone = false;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
     }
     void PlayerReset() 
     {
@@ -288,16 +330,24 @@ public class ControllerGame : MonoBehaviour
 
             PlayerHP = Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints();
             PlayerHPStart = PlayerHP;
-
-
         }
         ControllerMenus[4].OpenMenu();
     }
     void MenuSetUp() 
     {
         LevelComplete = true;
-        if (PlayerHP > 0) ControllerMenus[2].OpenMenu();
-        else ControllerMenus[1].OpenMenu();
+        if (PlayerHP > 0)
+        {
+            ActiveButton[1].gameObject.SetActive(false);
+            ActiveButton[0].gameObject.SetActive(true);
+            ControllerMenus[2].OpenMenu();
+        }
+        else 
+        {
+            ActiveButton[0].gameObject.SetActive(false);
+            ActiveButton[1].gameObject.SetActive(true);
+            ControllerMenus[1].OpenMenu();
+        } 
         ControllerMenus[4].CloseMenu();
     }
     void CheckPlayerHealth()

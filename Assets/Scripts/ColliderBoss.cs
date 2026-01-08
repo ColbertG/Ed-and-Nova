@@ -5,6 +5,8 @@ using UnityEngine;
 public class ColliderBoss : MonoBehaviour
 {
     [SerializeField]
+    int Score = 1;
+    [SerializeField]
     int HP = 100;
     [SerializeField]
     int DP = 1;
@@ -26,5 +28,9 @@ public class ColliderBoss : MonoBehaviour
     public int DestructionPoints()
     {
         return DP;
+    }
+    public int ScorePoints()
+    {
+        return Score;
     }
 }

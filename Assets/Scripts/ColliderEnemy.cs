@@ -5,6 +5,8 @@ using UnityEngine;
 public class ColliderEnemy : MonoBehaviour
 {
     [SerializeField]
+    int Score = 1;
+    [SerializeField]
     int DP = 1;
     [SerializeField]
     int HP = 1;
@@ -37,6 +39,8 @@ public class ColliderEnemy : MonoBehaviour
             if (collision.gameObject.CompareTag("Player")) 
             {
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
+
+                PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
                 if (HP <= 0) Exploed = true;
             }
         }
@@ -50,5 +54,9 @@ public class ColliderEnemy : MonoBehaviour
     public int DestructionPoints()
     {
         return DP;
+    }
+    public int ScorePoints()
+    {
+        return Score;
     }
 }

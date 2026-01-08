@@ -5,6 +5,8 @@ using UnityEngine;
 public class ColliderMeteor : MonoBehaviour
 {
     [SerializeField]
+    int Score = 1;
+    [SerializeField]
     int DP = 1;
     [SerializeField]
     int HP = 1;
@@ -48,5 +50,9 @@ public class ColliderMeteor : MonoBehaviour
     public int DestructionPoints()
     {
         return DP;
+    }
+    public int ScorePoints() 
+    {
+        return Score;
     }
 }
