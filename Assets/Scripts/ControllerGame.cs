@@ -9,9 +9,7 @@ using UnityEngine.UI;
 public class ControllerGame : MonoBehaviour
 {
     [SerializeField]
-    Text ScoreCount; 
-    [SerializeField]
-    Text CrystalCount;
+    List<Text> PointCount;
     [SerializeField]
     Slider PlayerHPBar;
     [SerializeField] 
@@ -75,8 +73,13 @@ public class ControllerGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreCount.text = PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000");
-        CrystalCount.text = PlayerPrefs.GetInt("playerRp", 0).ToString("00000000000");
+        PointCount[0].text = PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000");
+        PointCount[1].text = PlayerPrefs.GetInt("playerRp", 0).ToString("00000000000");
+
+        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000"); 
+        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
+        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
+        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
 
         if (DialogDone) 
         {
