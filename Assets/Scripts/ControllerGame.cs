@@ -47,6 +47,7 @@ public class ControllerGame : MonoBehaviour
     int PlayerHPStart = 0;
     bool Pause = false;
     int pickShipActive = 0;
+    public static bool PlayerBarrierActive = false;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -64,8 +65,6 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("playerRp", 0);
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
-
-        PlayerPrefs.SetInt("playerBarrier",0);
     }
     void Start()
     {

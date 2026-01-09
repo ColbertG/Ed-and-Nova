@@ -14,7 +14,7 @@ public class ColliderEnemy : MonoBehaviour
     [SerializeField]
     GameObject Explosion;
     [SerializeField]
-    List<GameObject> PowerUps;
+    List<GameObject> RandomDrops;
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,13 +54,13 @@ public class ColliderEnemy : MonoBehaviour
         if (Exploed)
         {
             GameObject clone2 = null;
-            int randomSpawn = Random.Range(0, 10);
-            bool spawn = randomSpawn == 0 || randomSpawn == 3 || randomSpawn == 6 || randomSpawn == 9;
+            int randomSpawn = Random.Range(0, 20);
+            bool spawn = randomSpawn == 0 || randomSpawn == 5 || randomSpawn == 10 || randomSpawn == 15;
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             if (spawn) 
             {
-                int pick = Random.Range(0, PowerUps.Count);
-                clone2 = Instantiate(PowerUps[pick], transform.position, transform.rotation) as GameObject;
+                int pick = Random.Range(0, RandomDrops.Count);
+                clone2 = Instantiate(RandomDrops[pick], transform.position, transform.rotation) as GameObject;
             }
             Exploed = false;
             Destroy(gameObject);

@@ -21,7 +21,7 @@ public class ControllerPlayerBarrier : MonoBehaviour
     IEnumerator ExplosionNow()
     {
         yield return new WaitForSeconds(RemoveInSec);
-        PlayerPrefs.SetInt("playerBarrier", 0);
+        ControllerGame.PlayerBarrierActive = false;
         Destroy(gameObject);
     }
     public void MovingTarget(Transform target)
