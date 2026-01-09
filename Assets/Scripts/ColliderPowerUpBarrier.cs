@@ -10,9 +10,13 @@ public class ColliderPowerUpBarrier : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
-            GameObject clone = Instantiate(PlayerBarrier, transform.position, transform.rotation) as GameObject;
-            if (clone.GetComponent<ControllerPlayerBarrier>() != null)
-                clone.GetComponent<ControllerPlayerBarrier>().MovingTarget(collision.gameObject.transform);
+            if (PlayerPrefs.GetInt("playerBarrier", 0) == 0) 
+            {
+                PlayerPrefs.SetInt("playerBarrier", 1);
+                GameObject clone = Instantiate(PlayerBarrier, transform.position, transform.rotation) as GameObject;
+                if (clone.GetComponent<ControllerPlayerBarrier>() != null)
+                    clone.GetComponent<ControllerPlayerBarrier>().MovingTarget(collision.gameObject.transform);
+            }
             Destroy(gameObject);
         }
     }

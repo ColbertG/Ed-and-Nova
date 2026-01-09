@@ -64,6 +64,8 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("playerRp", 0);
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        PlayerPrefs.SetInt("playerBarrier",0);
     }
     void Start()
     {

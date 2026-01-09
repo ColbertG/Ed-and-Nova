@@ -13,6 +13,11 @@ public class ColliderRocket : MonoBehaviour
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
+        {
+            if (gameObject.CompareTag("Enemy"))
+                Exploed = true;
+        }
         if (collision.gameObject.GetComponent<ColliderBarrier>() != null)
         {
             if (gameObject.CompareTag("Enemy"))
@@ -35,7 +40,6 @@ public class ColliderRocket : MonoBehaviour
                 PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderBoss>().ScorePoints());
                 Exploed = true;
             }
-                
         }
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
         {
@@ -54,7 +58,7 @@ public class ColliderRocket : MonoBehaviour
             HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
             if (HP <= 0) Exploed = true;
         }
-        if (Exploed)
+        if (Exploed || HP <= 0)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             Exploed = false;

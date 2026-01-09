@@ -418,10 +418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb25a55360a2994f9232cbecf48f9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 1
   DP: 2
   HP: 1
   Explosion: {fileID: 3007529795401598584, guid: 7d0a3875dbaea594dabc2dd71b17ffbc,
     type: 3}
+  PowerUps:
+  - {fileID: 4508101694679297006, guid: 56926aaf91c5300469096a9c6af214fc, type: 3}
+  - {fileID: 2106799606413924780, guid: 31c2410d8944c17419a006524423beb2, type: 3}
+  - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
 --- !u!95 &8464355537799119026
 Animator:
   serializedVersion: 3

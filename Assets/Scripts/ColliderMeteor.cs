@@ -18,6 +18,10 @@ public class ColliderMeteor : MonoBehaviour
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
+        {
+            Exploed = true;
+        }
         if (collision.gameObject.GetComponent<ColliderBarrier>() != null)
         {
             Exploed = true;
