@@ -14,6 +14,7 @@ public class ColliderMeteor : MonoBehaviour
     GameObject Explosion;
     [SerializeField]
     GameObject Crystal;
+    Transform Target;
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,6 +44,7 @@ public class ColliderMeteor : MonoBehaviour
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             GameObject clone2 = Instantiate(Crystal, transform.position, transform.rotation) as GameObject;
+            clone2.GetComponent<ControllerCrystal>().CrystalTarget(Target);
             Exploed = false;
             Destroy(gameObject);
         }
@@ -54,5 +56,9 @@ public class ColliderMeteor : MonoBehaviour
     public int ScorePoints() 
     {
         return Score;
+    }
+    public void MeteorTarget(Transform target) 
+    {
+        Target = target;
     }
 }

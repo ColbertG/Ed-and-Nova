@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class ColliderEnemy : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ColliderEnemy : MonoBehaviour
     int HP = 1;
     [SerializeField]
     GameObject Explosion;
+    [SerializeField]
+    List<GameObject> PowerUps;
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,7 +49,15 @@ public class ColliderEnemy : MonoBehaviour
         }
         if (Exploed)
         {
+            GameObject clone2 = null;
+            int randomSpawn = Random.Range(0, 10);
+            bool spawn = randomSpawn == 0 || randomSpawn == 3 || randomSpawn == 6 || randomSpawn == 9;
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
+            if (spawn) 
+            {
+                int pick = Random.Range(0, PowerUps.Count);
+                clone2 = Instantiate(PowerUps[pick], transform.position, transform.rotation) as GameObject;
+            }
             Exploed = false;
             Destroy(gameObject);
         }

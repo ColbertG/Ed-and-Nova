@@ -92,6 +92,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 5 && !LevelComplete) Level5();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
+                if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
             }
         }
 
