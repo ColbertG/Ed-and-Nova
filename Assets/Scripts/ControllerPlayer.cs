@@ -14,6 +14,8 @@ public class ControllerPlayer : MonoBehaviour
     [SerializeField]
     List<Rockets> Rocket;
     float Angle;
+    public static bool SlowDownActive = false;
+    public static float SpeedBackUp = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,22 +62,19 @@ public class ControllerPlayer : MonoBehaviour
                     clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
                 }
             }
-            //if (Rocket.Count >= 1 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[0].NextFireTime)
-            //{
-            //    GameObject clone = Instantiate(Rocket[0].MainRocket, Rocket[0].SpawnPoint.position, Rocket[0].SpawnPoint.rotation) as GameObject;
-            //    Rocket[0].NextFireTime = Time.time + Rocket[0].FireRate;
-            //    clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
-            //    clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
-            //}
-            //if (Rocket.Count >= 2 && touch.phase == TouchPhase.Moved && Time.time >= Rocket[1].NextFireTime)
-            //{
-            //    GameObject clone = Instantiate(Rocket[1].MainRocket, Rocket[1].SpawnPoint.position, Rocket[1].SpawnPoint.rotation) as GameObject;
-            //    Rocket[1].NextFireTime = Time.time + Rocket[1].FireRate;
-            //    clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
-            //    clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
-            //}
         }
 
+        if (SlowDownActive && SpeedBackUp != 0) 
+        {
+            StartCoroutine(SlowDownNow());
+        }
+    }
+    IEnumerator SlowDownNow()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SetSpeed((int)SpeedBackUp);
+        SlowDownActive = false;
+        SpeedBackUp = 0;
     }
     public void AngleControll(float angle) 
     {
@@ -85,8 +84,9 @@ public class ControllerPlayer : MonoBehaviour
     {
         Target = Boss;
     }
-    public void SetSpeed(int speed) 
+    public float SetSpeed(int speed) 
     {
         Speed = Speed + speed;
+        return Speed;
     }
 }
