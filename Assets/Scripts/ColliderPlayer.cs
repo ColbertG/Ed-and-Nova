@@ -29,7 +29,6 @@ public class ColliderPlayer : MonoBehaviour
             HP = HP - collision.gameObject.GetComponent<ColliderBomb>().DestructionPoints();
             PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderBomb>().ScorePoints());
         }
-            
         if (HP <= 0) 
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;

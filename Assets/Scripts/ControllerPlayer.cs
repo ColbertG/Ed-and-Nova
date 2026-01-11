@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -13,40 +14,48 @@ public class ControllerPlayer : MonoBehaviour
     Transform Target;
     [SerializeField]
     List<Rockets> Rocket;
+    [SerializeField]
+    List<GameObject> ShipCpu;
     float Angle;
+    bool Cpu1 = false; 
+    bool Cpu2 = false;
     public static bool SlowDownActive = false;
     public static float SpeedBackUp = 0;
     // Start is called before the first frame update
     void Start()
     {
-
+        ShipCpu[0].SetActive(false);
+        ShipCpu[1].SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        if (!ShipCpu[0].activeSelf) Cpu1 = false;
+        if (!ShipCpu[1].activeSelf) Cpu2 = false;
+
         if (Input.touchCount > 0) 
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved) 
             {
-                Vector2 pos = touch.position;
-                Vector3 position = Camera.main.ScreenToWorldPoint( new Vector3(pos.x, pos.y, transform.position.z - Camera.main.transform.position.z) );
+                UnityEngine.Vector2 pos = touch.position;
+                UnityEngine.Vector3 position = Camera.main.ScreenToWorldPoint( new UnityEngine.Vector3(pos.x, pos.y, transform.position.z - Camera.main.transform.position.z) );
 
                 //position the player
                 if(transform.position != position)
-                    transform.position = Vector3.Lerp(transform.position, position, Speed * Time.deltaTime);
+                    transform.position = UnityEngine.Vector3.Lerp(transform.position, position, Speed * Time.deltaTime);
             }
         }
 
         if (Target != null)
         {
-            Vector2 dir = Target.position - transform.position;
+            UnityEngine.Vector2 dir = Target.position - transform.position;
             float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle * -1)), Speed * Time.deltaTime);
+            transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, angle * -1)), Speed * Time.deltaTime);
         }
         else  
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, Angle)), Speed * Time.deltaTime);
+            transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, Angle)), Speed * Time.deltaTime);
         }
 
         if (Input.touchCount > 0)
@@ -75,6 +84,21 @@ public class ControllerPlayer : MonoBehaviour
         SetSpeed((int)SpeedBackUp);
         SlowDownActive = false;
         SpeedBackUp = 0;
+    }
+    public void ActiveCpu() 
+    {
+        if (!Cpu1)
+        {
+            Cpu1 = true;
+            ShipCpu[0].SetActive(true);
+            ShipCpu[0].GetComponent<ColliderPlayerCpu>().DestructionPoints(PlayerPrefs.GetInt("playerDp", 0));
+        }
+        else if (!Cpu2) 
+        {
+            Cpu2 = true;
+            ShipCpu[1].SetActive(true);
+            ShipCpu[1].GetComponent<ColliderPlayerCpu>().DestructionPoints(PlayerPrefs.GetInt("playerDp", 0));
+        }
     }
     public void AngleControll(float angle) 
     {

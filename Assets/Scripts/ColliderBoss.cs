@@ -14,6 +14,10 @@ public class ColliderBoss : MonoBehaviour
     GameObject Explosion;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<ColliderPlayerCpu>() != null)
+            HP = HP - collision.gameObject.GetComponent<ColliderPlayerCpu>().DestructionPoints();
+        if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
+            HP = HP - collision.gameObject.GetComponent<ColliderPlayer>().DestructionPoints();
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
             HP = HP - collision.gameObject.GetComponent<ControllerPlayerBarrier>().DestructionPoints();
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)

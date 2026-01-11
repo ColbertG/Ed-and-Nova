@@ -18,6 +18,11 @@ public class ColliderEnemy : MonoBehaviour
     bool Exploed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<ColliderPlayerCpu>() != null)
+        {
+            HP = HP - collision.gameObject.GetComponent<ColliderPlayerCpu>().DestructionPoints();
+            if (HP <= 0) Exploed = true;
+        }
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
         {
             Exploed = true;

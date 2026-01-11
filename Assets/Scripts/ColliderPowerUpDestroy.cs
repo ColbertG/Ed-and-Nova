@@ -6,8 +6,9 @@ public class ColliderPowerUpDestroy : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
+        if (collision.gameObject.GetComponent<ControllerPlayer>() != null)
         {
+            collision.gameObject.GetComponent<ControllerPlayer>().ActiveCpu();
             Destroy(gameObject);
         }
     }

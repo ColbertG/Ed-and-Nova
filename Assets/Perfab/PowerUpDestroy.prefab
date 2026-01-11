@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1118682704045327067}
   - component: {fileID: 6376818405785999962}
   - component: {fileID: 6911042246996397426}
+  - component: {fileID: 493274858}
   m_Layer: 0
   m_Name: PowerUpDestroy
   m_TagString: Untagged
@@ -195,3 +196,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 1528360172630689587}
   Speed: 3
+--- !u!114 &493274858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106799606413924780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a5bf296cef7ad469f491eb988463c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
