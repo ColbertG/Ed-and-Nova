@@ -217,12 +217,14 @@ public class ControllerGame : MonoBehaviour
 
         ControllerMenus[5].OpenMenu();
     }
+
     public void PauseResumeGame() 
     {
         Pause = !Pause;
         if (Pause) Time.timeScale = 0.0f;
         else Time.timeScale = 1.0f;
     }
+
     public void NextDialog() 
     {
         int onCount = ControllerDialogs.ShowNextDialog();
@@ -252,6 +254,7 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 3) ControllerDialogs.ShowNextDialog(11);
         ControllerDialogs.ShowDialog();
     }
+
     public void StartGame() 
     {
         ControllerMenus[0].CloseMenu();
@@ -300,6 +303,13 @@ public class ControllerGame : MonoBehaviour
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
     }
+    public void PickLevel() 
+    {
+        ControllerMenus[0].CloseMenu();
+
+        ControllerMenus[6].OpenMenu();
+    }
+
     void PlayerReset() 
     {
 
@@ -385,6 +395,25 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.SpawnRemover();
         SpawnBarriers.SpawnRemover();
     }
+    public void Start1()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 1;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
     void Level1() 
     {
         if (!LevelSetUpDone)
@@ -422,6 +451,25 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 1 Done");
         }
+    }
+    public void Start2()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 2;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
     }
     void Level2() 
     {
@@ -471,6 +519,25 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 2 Done");
         }
     }
+    public void Start3() 
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 3;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
     void Level3()
     {
         if (!LevelSetUpDone)
@@ -518,6 +585,25 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 3 Done");
         }
+    }
+    public void Start4()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 4;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
     }
     void Level4()
     {
@@ -567,6 +653,25 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 4 Done");
         }
     }
+    public void Start5()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 5;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
     void Level5()
     {
         if (!LevelSetUpDone)
@@ -615,6 +720,25 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 5 Done");
         }
     }
+    public void Start6()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 6;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
     void Level6()
     {
         if (!LevelSetUpDone)
@@ -662,6 +786,25 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 6 Done");
         }
+    }
+    public void Start7()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 7;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
     }
     void Level7()
     {
@@ -719,6 +862,25 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 7 Done");
         }
+    }
+    public void Start8()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 8;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
     }
     void Level8()
     {
