@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203610206467dc043afec771e634e1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DP: 1
   Explosion: {fileID: 6182300570178345827, guid: a81073fa4c1135e488f2754afa3ea0ff,
     type: 3}
 --- !u!114 &1586967310
@@ -26,6 +27,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203610206467dc043afec771e634e1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DP: 1
   Explosion: {fileID: 6182300570178345827, guid: a81073fa4c1135e488f2754afa3ea0ff,
     type: 3}
 --- !u!1 &6675790929851464741
@@ -369,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff4df1c12ca50f4a9d7b6777c5a49f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 100
   DP: 1
   Rewards: 10
   Explosion: {fileID: 6182300570178345827, guid: a81073fa4c1135e488f2754afa3ea0ff,

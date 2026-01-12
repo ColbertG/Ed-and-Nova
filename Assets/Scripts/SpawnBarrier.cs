@@ -40,7 +40,7 @@ public class SpawnBarrier : MonoBehaviour
             if (RightSpawnSet)
             {
                 RightSpawnSet = false;
-                Vector3 RightSpawn = new Vector3(0, 0, 0);
+                Vector3 RightSpawn = new Vector3(3, 0, 0);
                 clone = Instantiate(Barrier[LevelSpawn], RightSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
             BarrierCount.Add(clone);

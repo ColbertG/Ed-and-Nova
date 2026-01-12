@@ -91,6 +91,9 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 3 && !LevelComplete) Level3();
                 if (LevelCount == 4 && !LevelComplete) Level4();
                 if (LevelCount == 5 && !LevelComplete) Level5();
+                if (LevelCount == 6 && !LevelComplete) Level6();
+                if (LevelCount == 7 && !LevelComplete) Level7();
+                if (LevelCount == 8 && !LevelComplete) Level8();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
@@ -409,7 +412,7 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.SpawnLevel(1);
         SpawnMeteors.FaceingMeteor(2);
         Player.AngleControll(SpawnMeteors.FaceingMeteor());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 10 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
@@ -450,13 +453,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnBombs.FaceingBomb(2);
         Player.AngleControll(SpawnBombs.FaceingBomb());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 150 && !LevelSpawnBombsDone))
+        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 15 && !LevelSpawnBombsDone))
         {
             SpawnBombs.SpawnCounter(true);
             SpawnBombs.enabled = false;
@@ -498,13 +501,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(2);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 15 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 15 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -546,13 +549,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(3);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 20 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 20 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -594,13 +597,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(4);
         Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 25 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 25 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -610,6 +613,159 @@ public class ControllerGame : MonoBehaviour
         {
             MenuSetUp();
             Debug.Log("Level 5 Done");
+        }
+    }
+    void Level6()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 6 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(2);
+        SpawnEnemies.SpawnLevel(2, 1);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(4);
+        Player.AngleControll(SpawnEnemies.FaceingEnemy());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 30 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 30 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 6 Done");
+        }
+    }
+    void Level7()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 7 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = true;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+            SpawnBombs.SpawnCounter(true);
+
+            SpawnBarriers.SpawnLevel(0, 3);
+        }
+        SpawnMeteors.SpawnLevel(2);
+        SpawnEnemies.SpawnLevel(2, 1);
+        SpawnBombs.SpawnLevel(1);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(4);
+        SpawnBombs.FaceingBomb(4);
+        Player.AngleControll(SpawnEnemies.FaceingEnemy());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 35 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 35 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnBombs.SpawnCounter() >= 35 && !LevelSpawnBombsDone))
+        {
+            SpawnBombs.SpawnCounter(true);
+            SpawnBombs.enabled = false;
+            LevelSpawnBombsDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && SpawnBombs.BombDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone && LevelSpawnBombsDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 7 Done");
+        }
+    }
+    void Level8()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 8 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(3);
+        SpawnEnemies.SpawnLevel(3, 2);
+        SpawnMeteors.FaceingMeteor(0);
+        SpawnEnemies.FaceingEnemy(0);
+        Player.AngleControll(90);
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 40 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 40 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 8 Done");
         }
     }
 }
