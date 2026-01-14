@@ -33,6 +33,10 @@ public class ControllerGame : MonoBehaviour
     List<Button> ActiveButton;
     [SerializeField]
     ControllerDialog ControllerDialogs;
+    [SerializeField]
+    List<Button> LevelIcons;
+    [SerializeField]
+    Sprite LevelIconsPass;
     bool StartGameNow = false;
     bool DialogDone = false;
     bool LevelComplete = false;
@@ -65,6 +69,8 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("playerRp", 0);
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        PlayerPrefs.SetInt("levelCountOn", 1);
     }
     void Start()
     {
@@ -274,7 +280,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void NextLevel()
     {
-        LevelCount++;
         LevelSetUpDone = false;
         LevelComplete = false;
 
@@ -314,6 +319,12 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[0].CloseMenu();
 
         ControllerMenus[6].OpenMenu();
+
+        for (int i = 0; i < LevelIcons.Count; i++) 
+        {
+            if (i < PlayerPrefs.GetInt("levelCountOn", 1))
+                LevelIcons[i].image.sprite = LevelIconsPass;
+        }
     }
     public void MainMenu() 
     {
@@ -373,6 +384,9 @@ public class ControllerGame : MonoBehaviour
             ActiveButton[1].gameObject.SetActive(false);
             ActiveButton[0].gameObject.SetActive(true);
             ControllerMenus[2].OpenMenu();
+            LevelCount++;
+            if (PlayerPrefs.GetInt("levelCountOn", 1) < LevelCount)
+                PlayerPrefs.SetInt("levelCountOn", LevelCount);
         }
         else 
         {
@@ -926,13 +940,13 @@ public class ControllerGame : MonoBehaviour
         SpawnMeteors.FaceingMeteor(0);
         SpawnEnemies.FaceingEnemy(0);
         Player.AngleControll(90);
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 60 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 125 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 50 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;

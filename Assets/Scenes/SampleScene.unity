@@ -1255,6 +1255,16 @@ MonoBehaviour:
   - {fileID: 696268286}
   - {fileID: 1485203676}
   ControllerDialogs: {fileID: 175415086}
+  LevelIcons:
+  - {fileID: 1515491941}
+  - {fileID: 1156843741}
+  - {fileID: 2092446296}
+  - {fileID: 1333151128}
+  - {fileID: 921784542}
+  - {fileID: 686260247}
+  - {fileID: 995162473}
+  - {fileID: 1654178252}
+  LevelIconsPass: {fileID: 21300000, guid: e577035ecde860a408172f5f20a80610, type: 3}
 --- !u!114 &175415083
 MonoBehaviour:
   m_ObjectHideFlags: 0
