@@ -149,4 +149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ad187de254c0543b2c541b246d1308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rewards: 200
+  Rewards: 600

@@ -175,13 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb25a55360a2994f9232cbecf48f9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 1
+  Score: 850
   DP: 3
   HP: 1
   Explosion: {fileID: 2875013583054232843, guid: 6bb7aa1d9488d2849a2453cbc6d8987b,
     type: 3}
   RandomDrops:
-  - {fileID: 4091295975208854742, guid: 3763dd358066bc942ad5521314350695, type: 3}
   - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
 --- !u!95 &587518466618722955
 Animator:

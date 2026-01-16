@@ -175,16 +175,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb25a55360a2994f9232cbecf48f9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 1
+  Score: 700
   DP: 4
   HP: 1
   Explosion: {fileID: 7390518029054402494, guid: d9611866b01bd844fa198a7997226739,
     type: 3}
   RandomDrops:
   - {fileID: 4091295975208854742, guid: 3763dd358066bc942ad5521314350695, type: 3}
-  - {fileID: 4508101694679297006, guid: 56926aaf91c5300469096a9c6af214fc, type: 3}
   - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
-  - {fileID: 2106799606413924780, guid: 31c2410d8944c17419a006524423beb2, type: 3}
 --- !u!95 &8580371978518097993
 Animator:
   serializedVersion: 3

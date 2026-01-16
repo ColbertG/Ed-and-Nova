@@ -44,6 +44,7 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnMeteorsDone = false;
     bool LevelSpawnEnemiesDone = false;
     bool LevelSpawnBombsDone = false;
+    bool LookingAtHold = false;
     public int LevelCount { get; private set; } = 1;
     int PlayerHP = 0;
     int PlayerRP = 0;
@@ -100,6 +101,8 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 6 && !LevelComplete) Level6();
                 if (LevelCount == 7 && !LevelComplete) Level7();
                 if (LevelCount == 8 && !LevelComplete) Level8();
+                if (LevelCount == 9 && !LevelComplete) Level9();
+                if (LevelCount == 10 && !LevelComplete) Level10();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
@@ -423,6 +426,7 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.SpawnRemover();
         SpawnBarriers.SpawnRemover();
     }
+
     public void Start1()
     {
         ControllerMenus[6].CloseMenu();
@@ -956,6 +960,154 @@ public class ControllerGame : MonoBehaviour
         {
             MenuSetUp();
             Debug.Log("Level 8 Done");
+        }
+    }
+    IEnumerator PlayerLookHold()
+    {
+        Player.AngleControll(SpawnEnemies.FaceingEnemy());
+        yield return new WaitForSeconds(1.0f);
+        LookingAtHold = false;
+    }
+    public void Start9()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 9;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level9()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 9 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(3, 2);
+        SpawnEnemies.SpawnLevel(4, 2);
+        SpawnMeteors.FaceingMeteor(0);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 3)); 
+        if (!LookingAtHold)
+        {
+            StartCoroutine(PlayerLookHold());
+            LookingAtHold = true;
+        }
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 125 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 9 Done");
+        }
+    }
+    public void Start10()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 10;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level10()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 10 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(4, 2);
+        SpawnEnemies.SpawnLevel(5, 3);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(Random.Range(2, 5));
+        if (!LookingAtHold)
+        {
+            StartCoroutine(PlayerLookHold());
+            LookingAtHold = true;
+        }
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 175 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 10 Done");
         }
     }
 }
