@@ -858,7 +858,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
             SpawnBombs.SpawnCounter(true);
 
-            SpawnBarriers.SpawnLevel(0, 3);
+            SpawnBarriers.SpawnLevel(1, 3);
         }
         SpawnMeteors.SpawnLevel(2);
         SpawnEnemies.SpawnLevel(2, 1);

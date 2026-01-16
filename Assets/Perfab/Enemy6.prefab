@@ -154,12 +154,12 @@ MonoBehaviour:
   Speed: 2
   Rocket:
   - FireRate: 2
-    MainRocket: {fileID: 8220389822759696124, guid: 321fc342964a35f428b0d4eafed1a574,
+    MainRocket: {fileID: 4868763366581244309, guid: 8abd61977503a1a4ab602302e7c7377d,
       type: 3}
     SpawnPoint: {fileID: 4103638834086746192}
     NextFireTime: 0
   - FireRate: 2
-    MainRocket: {fileID: 8220389822759696124, guid: 321fc342964a35f428b0d4eafed1a574,
+    MainRocket: {fileID: 4868763366581244309, guid: 8abd61977503a1a4ab602302e7c7377d,
       type: 3}
     SpawnPoint: {fileID: 1077419708402344939}
     NextFireTime: 0

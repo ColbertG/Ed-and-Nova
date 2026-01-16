@@ -1295,6 +1295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Barrier:
   - {fileID: 6551033936559079566, guid: fd19369ec0f2c7040a0d49b7f2300daf, type: 3}
+  - {fileID: 5337243653463491324, guid: 97f3c20b6cdf4124fa875b627cbc750d, type: 3}
+  - {fileID: 7868020758907901446, guid: e10bf3c618eeda545878dc74d4fb0bd8, type: 3}
 --- !u!114 &175415085
 MonoBehaviour:
   m_ObjectHideFlags: 0
