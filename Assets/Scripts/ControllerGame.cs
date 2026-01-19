@@ -326,11 +326,11 @@ public class ControllerGame : MonoBehaviour
         int upgrade3 = PlayerPrefs.GetInt("rocketLevel", 0);
         int upgrade4 = PlayerPrefs.GetInt("playerSpeedLevel", 0);
 
-        bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 20 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
-        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 40 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 20;
-        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 60 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 40;
-        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 80 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 60;
-        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 80;
+        bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 5 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
+        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 10 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
+        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 20 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 10;
+        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 20;
+        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
 
         if (ship1) pickShip = 0;
         if (ship2) pickShip = 1;
@@ -1252,7 +1252,7 @@ public class ControllerGame : MonoBehaviour
         //    MenuSetUp();
         //    Debug.Log("Level 12  Done");
         //}
-        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && bossHp <= 0)
         {
             Destroy(BossClone);
             MenuSetUp();

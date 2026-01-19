@@ -33,7 +33,7 @@ public class ColliderPlayerCpu : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderEnemy>() != null)
         {
             Exploed = true;
-            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderBomb>().ScorePoints());
+            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderEnemy>().ScorePoints());
         }
 
         if (Exploed)
