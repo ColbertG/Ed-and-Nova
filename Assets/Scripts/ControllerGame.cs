@@ -53,6 +53,7 @@ public class ControllerGame : MonoBehaviour
     bool Pause = false;
     int pickShipActive = 0;
     public static bool PlayerBarrierActive = false;
+    GameObject BossClone = null;
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
@@ -103,36 +104,13 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 8 && !LevelComplete) Level8();
                 if (LevelCount == 9 && !LevelComplete) Level9();
                 if (LevelCount == 10 && !LevelComplete) Level10();
+                if (LevelCount == 11 && !LevelComplete) Level11();
+                if (LevelCount == 12 && !LevelComplete) Level12();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
             }
         }
-
-        //Player.SetTarget(null);
-
-        //SpawnMeteors.FaceingMeteor(1);
-        //SpawnEnemies.FaceingEnemy(1);
-
-        //if(clone == null)
-        //    clone = Instantiate(Bosses[0].gameObject, transform.position, transform.rotation) as GameObject;
-        //if (clone != null) 
-        //{
-        //    Player.SetTarget(clone.transform);
-        //    clone.GetComponent<ControllerBoss>().SetTarget(Player.gameObject.transform);
-        //    SpawnMeteors.FaceingMeteor(clone.GetComponent<ControllerBoss>().PickSpot());
-        //    SpawnEnemies.FaceingEnemy(clone.GetComponent<ControllerBoss>().PickSpot());
-        //    clone.GetComponent<SpriteRenderer>().color = Color.black;
-        //    if(clone.GetComponent<SpriteRenderer>().color == Color.black)
-        //     Player.SetTarget(null);
-        //    else if(clone.GetComponent<SpriteRenderer>().color == Color.white)
-        //        Player.SetTarget(clone.transform);
-        //    //clone.GetComponent<SpriteRenderer>().color = Color.white;
-        //}
-
-
-        //Player.AngleControll(SpawnMeteors.FaceingMeteor());
-        //Player.AngleControll(SpawnEnemies.FaceingEnemy());
     }
     public void HpUpgrade() 
     {
@@ -425,6 +403,25 @@ public class ControllerGame : MonoBehaviour
         SpawnBombs.SpawnRemover();
         SpawnEnemies.SpawnRemover();
         SpawnBarriers.SpawnRemover();
+    }
+
+    void BossSpawn() 
+    {
+        if (BossClone == null)
+            BossClone = Instantiate(Bosses[0].gameObject, transform.position, transform.rotation) as GameObject;
+        if (BossClone != null  && Player != null)
+        {
+            Player.SetTarget(BossClone.transform);
+            BossClone.GetComponent<ControllerBoss>().SetTarget(Player.gameObject.transform);
+            //SpawnMeteors.FaceingMeteor(clone.GetComponent<ControllerBoss>().PickSpot());
+            //SpawnEnemies.FaceingEnemy(clone.GetComponent<ControllerBoss>().PickSpot());
+            //clone.GetComponent<SpriteRenderer>().color = Color.black;
+            //if(clone.GetComponent<SpriteRenderer>().color == Color.black)
+            //Player.SetTarget(null);
+            //else if(clone.GetComponent<SpriteRenderer>().color == Color.white)
+            //Player.SetTarget(clone.transform);
+            //clone.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     public void Start1()
@@ -1108,6 +1105,158 @@ public class ControllerGame : MonoBehaviour
         {
             MenuSetUp();
             Debug.Log("Level 10 Done");
+        }
+    }
+    public void Start11()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 11;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level11()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 11 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(4, 2);
+        SpawnEnemies.SpawnLevel(5, 3);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (!LookingAtHold)
+        {
+            StartCoroutine(PlayerLookHold());
+            LookingAtHold = true;
+        }
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 11 Done");
+        }
+    }
+    public void Start12()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 12;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level12()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 12 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            //SpawnMeteors.enabled = true;
+
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.75f);
+
+        }
+        BossSpawn();
+        //SpawnMeteors.SpawnLevel(4, 2);
+        SpawnEnemies.SpawnLevel(6, 4);
+        //SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
+        //SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        float bossHp = BossClone.GetComponent<ColliderBoss>().HealthPoints();
+        //if (PlayerHP <= 0 || bossHp <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
+        //{
+        //    SpawnMeteors.SpawnCounter(true);
+        //    SpawnMeteors.enabled = false;
+        //    LevelSpawnMeteorsDone = true;
+        //}
+        if (PlayerHP <= 0 || bossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        //if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        //{
+        //    Destroy(BossClone);
+        //    MenuSetUp();
+        //    Debug.Log("Level 12  Done");
+        //}
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            Destroy(BossClone);
+            MenuSetUp();
+            Debug.Log("Level 12  Done");
         }
     }
 }

@@ -182,6 +182,7 @@ MonoBehaviour:
     type: 3}
   RandomDrops:
   - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
+  - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
 --- !u!95 &587518466618722955
 Animator:
   serializedVersion: 3
