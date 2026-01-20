@@ -420,7 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 250
   DP: 2
-  HP: 1
+  HP: 2
   Explosion: {fileID: 3007529795401598584, guid: 7d0a3875dbaea594dabc2dd71b17ffbc,
     type: 3}
   RandomDrops:

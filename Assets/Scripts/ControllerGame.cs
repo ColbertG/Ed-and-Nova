@@ -213,26 +213,24 @@ public class ControllerGame : MonoBehaviour
         else Time.timeScale = 1.0f;
     }
 
-    public void NextDialog() 
+    void DialogEnd(int onCount,int end)
     {
-        int onCount = ControllerDialogs.ShowNextDialog();
-        if (onCount == 6) 
+        if (onCount == end)
         {
             ControllerMenus[3].CloseMenu();
             DialogDone = true;
         }
-        if (onCount == 10) 
-        {
-            ControllerMenus[3].CloseMenu();
-            DialogDone = true;
-        }
-        if (onCount == 15)
-        {
-            ControllerMenus[3].CloseMenu();
-            //Rework When Dialog is done
+        //remove wheen done with all Dialog
+        if(onCount == 25)
             ControllerDialogs.ShowNextDialog(onCount--);
-            DialogDone = true;
-        }
+    }
+    public void NextDialog() 
+    {   int onCount = ControllerDialogs.ShowNextDialog();
+        DialogEnd(onCount,6);
+        DialogEnd(onCount,10);
+        DialogEnd(onCount,15);
+        DialogEnd(onCount,20);
+        DialogEnd(onCount,25);
         ControllerDialogs.ShowDialog();
     }
     void DialogReset() 
@@ -240,6 +238,8 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
         if (LevelCount == 2) ControllerDialogs.ShowNextDialog(7);
         if (LevelCount == 3) ControllerDialogs.ShowNextDialog(11);
+        if (LevelCount == 4) ControllerDialogs.ShowNextDialog(16);
+        if (LevelCount == 5) ControllerDialogs.ShowNextDialog(21);
         ControllerDialogs.ShowDialog();
     }
 
