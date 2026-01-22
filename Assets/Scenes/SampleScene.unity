@@ -1447,7 +1447,7 @@ MonoBehaviour:
       of planet barrier.
     - Ed, Nova. The Planet has been breached. Clusters of warships have been detected.
     - Crystals absorbed! Ship is 100% more resistant.
-    - Scanners Detect incoming clusters of warships are more durable with our current
+    - Scanners Detect incoming clusters of warships are more durable. With our current
       System diagnostics two missiles are required to penetrate hull.
   - Myimage: {fileID: 21300000, guid: 2fc000c4e72bed34e9c0d29f18858688, type: 3}
     Dialogs:

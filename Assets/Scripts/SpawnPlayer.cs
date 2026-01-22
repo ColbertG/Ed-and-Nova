@@ -71,13 +71,13 @@ public class SpawnPlayer : MonoBehaviour
             if (LeftSpawnSet)
             {
                 LeftSpawnSet = false;
-                Vector3 LeftSpawn = new Vector3(0, 0, 0);
+                Vector3 LeftSpawn = new Vector3(-4, 0, 0);
                 clone = Instantiate(PlayerShips[LevelSpawn], LeftSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
             if (RightSpawnSet)
             {
                 RightSpawnSet = false;
-                Vector3 RightSpawn = new Vector3(0, 0, 0);
+                Vector3 RightSpawn = new Vector3(4, 0, 0);
                 clone = Instantiate(PlayerShips[LevelSpawn], RightSpawn, Quaternion.Euler(0, 0, -90f)) as GameObject;
             }
             PlayerCount.Add(clone);

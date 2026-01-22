@@ -316,7 +316,7 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[6].CloseMenu();
     }
 
-    void PlayerReset() 
+    void PlayerReset(int pos = 1) 
     {
 
         int pickShip = 0;
@@ -343,7 +343,7 @@ public class ControllerGame : MonoBehaviour
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
 
-            SpawnPlayers.SpawnLevel(pickShip, 1);
+            SpawnPlayers.SpawnLevel(pickShip, pos);
 
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
 
@@ -707,7 +707,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 5 start");
 
-            PlayerReset();
+            PlayerReset(3);
 
             Player.SetTarget(null);
 
@@ -774,7 +774,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 6 start");
 
-            PlayerReset();
+            PlayerReset(3);
 
             Player.SetTarget(null);
 
@@ -841,7 +841,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 7 start");
 
-            PlayerReset();
+            PlayerReset(3);
 
             Player.SetTarget(null);
 
@@ -917,7 +917,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 8 start");
 
-            PlayerReset();
+            PlayerReset(2);
 
             Player.SetTarget(null);
 
@@ -935,19 +935,21 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.75f);
         }
         SpawnMeteors.SpawnLevel(3);
         SpawnEnemies.SpawnLevel(3, 2);
-        SpawnMeteors.FaceingMeteor(0);
+        SpawnMeteors.FaceingMeteor(4);
         SpawnEnemies.FaceingEnemy(0);
         Player.AngleControll(90);
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 60 && !LevelSpawnMeteorsDone))
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 125 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 50 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -990,7 +992,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 9 start");
 
-            PlayerReset();
+            PlayerReset(2);
 
             Player.SetTarget(null);
 
@@ -1008,6 +1010,8 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.4f);
         }
         SpawnMeteors.SpawnLevel(3, 2);
         SpawnEnemies.SpawnLevel(4, 2);
