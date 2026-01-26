@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class ControllerGame : MonoBehaviour
 {
     [SerializeField]
+    Slider BossHPBar;
+    [SerializeField]
     List<Text> PointCount;
     [SerializeField]
     Slider PlayerHPBar;
@@ -44,12 +46,15 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnMeteorsDone = false;
     bool LevelSpawnEnemiesDone = false;
     bool LevelSpawnBombsDone = false;
+    bool LevelBossDone = false;
     bool LookingAtHold = false;
     public int LevelCount { get; private set; } = 1;
+    int BossHp = 0;
     int PlayerHP = 0;
     int PlayerRP = 0;
     int PlayerRPStart = 100000;
     int PlayerHPStart = 0;
+    int BossHPStart = 0;
     bool Pause = false;
     int pickShipActive = 0;
     public static bool PlayerBarrierActive = false;
@@ -57,22 +62,22 @@ public class ControllerGame : MonoBehaviour
     // Start is called before the first frame update
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt("playerHp", 0);
-        PlayerPrefs.SetInt("playerDp", 0);
-        PlayerPrefs.SetInt("rocketHp", 0);
-        PlayerPrefs.SetInt("rocketDp", 0);
-        PlayerPrefs.SetInt("playerSpeed", 0);
+        //PlayerPrefs.SetInt("playerHp", 0);
+        //PlayerPrefs.SetInt("playerDp", 0);
+        //PlayerPrefs.SetInt("rocketHp", 0);
+        //PlayerPrefs.SetInt("rocketDp", 0);
+        //PlayerPrefs.SetInt("playerSpeed", 0);
 
-        PlayerPrefs.SetInt("playerHpLevel", 0);
-        PlayerPrefs.SetInt("playerDpLevel", 0);
-        PlayerPrefs.SetInt("rocketLevel", 0);
-        PlayerPrefs.SetInt("playerSpeedLevel", 0);
+        //PlayerPrefs.SetInt("playerHpLevel", 0);
+        //PlayerPrefs.SetInt("playerDpLevel", 0);
+        //PlayerPrefs.SetInt("rocketLevel", 0);
+        //PlayerPrefs.SetInt("playerSpeedLevel", 0);
 
-        PlayerPrefs.SetInt("playerRp", 0);
+        //PlayerPrefs.SetInt("playerRp", 0);
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        //PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        PlayerPrefs.SetInt("levelCountOn", 1);
+        //PlayerPrefs.SetInt("levelCountOn", 1);
     }
     void Start()
     {
@@ -221,7 +226,7 @@ public class ControllerGame : MonoBehaviour
             DialogDone = true;
         }
         //remove wheen done with all Dialog
-        if(onCount == 25)
+        if(onCount == 55)
             ControllerDialogs.ShowNextDialog(onCount--);
     }
     public void NextDialog() 
@@ -231,6 +236,13 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount,15);
         DialogEnd(onCount,20);
         DialogEnd(onCount,25);
+        DialogEnd(onCount, 30);
+        DialogEnd(onCount, 34);
+        DialogEnd(onCount, 41);
+        DialogEnd(onCount, 45);
+        DialogEnd(onCount, 47);
+        DialogEnd(onCount, 51);
+        DialogEnd(onCount, 55);
         ControllerDialogs.ShowDialog();
     }
     void DialogReset() 
@@ -240,6 +252,13 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 3) ControllerDialogs.ShowNextDialog(11);
         if (LevelCount == 4) ControllerDialogs.ShowNextDialog(16);
         if (LevelCount == 5) ControllerDialogs.ShowNextDialog(21);
+        if (LevelCount == 6) ControllerDialogs.ShowNextDialog(26);
+        if (LevelCount == 7) ControllerDialogs.ShowNextDialog(31);
+        if (LevelCount == 8) ControllerDialogs.ShowNextDialog(35);
+        if (LevelCount == 9) ControllerDialogs.ShowNextDialog(42);
+        if (LevelCount == 10) ControllerDialogs.ShowNextDialog(46);
+        if (LevelCount == 11) ControllerDialogs.ShowNextDialog(48);
+        if (LevelCount == 12) ControllerDialogs.ShowNextDialog(52);
         ControllerDialogs.ShowDialog();
     }
 
@@ -396,6 +415,14 @@ public class ControllerGame : MonoBehaviour
             }
         }
         else PlayerHP = 0;
+        if (BossClone != null) 
+        {
+            if (BossClone.GetComponent<ColliderBoss>() != null) 
+            {
+                BossHPBar.value = (float)BossClone.GetComponent<ColliderBoss>().HealthPoints() / BossHPStart;
+            }
+        }
+        else BossHp = 0;
     }
     void EndGame() 
     {
@@ -405,14 +432,23 @@ public class ControllerGame : MonoBehaviour
         SpawnBarriers.SpawnRemover();
     }
 
-    void BossSpawn() 
+    void BossSpawn(int level) 
     {
-        if (BossClone == null)
-            BossClone = Instantiate(Bosses[0].gameObject, transform.position, transform.rotation) as GameObject;
-        if (BossClone != null  && Player != null)
+        if (BossClone == null) 
+        {
+            BossClone = Instantiate(Bosses[level].gameObject, transform.position, transform.rotation) as GameObject;
+            BossHPStart = BossClone.GetComponent<ColliderBoss>().HealthPoints();
+            ControllerMenus[7].OpenMenu();
+        }
+    }
+    void CheckBossTarget() 
+    {
+        if (BossClone != null && Player != null)
         {
             Player.SetTarget(BossClone.transform);
+            BossHp = BossClone.GetComponent<ColliderBoss>().HealthPoints();
             BossClone.GetComponent<ControllerBoss>().SetTarget(Player.gameObject.transform);
+            BossHPBar.transform.position = Camera.main.WorldToScreenPoint(BossClone.transform.position);
             //SpawnMeteors.FaceingMeteor(clone.GetComponent<ControllerBoss>().PickSpot());
             //SpawnEnemies.FaceingEnemy(clone.GetComponent<ControllerBoss>().PickSpot());
             //clone.GetComponent<SpriteRenderer>().color = Color.black;
@@ -1210,6 +1246,8 @@ public class ControllerGame : MonoBehaviour
             PlayerReset();
 
             Player.SetTarget(null);
+            
+            BossSpawn(0);
 
             LevelSetUpDone = true;
 
@@ -1220,6 +1258,7 @@ public class ControllerGame : MonoBehaviour
             LevelSpawnMeteorsDone = false;
             LevelSpawnEnemiesDone = false;
             LevelSpawnBombsDone = false;
+            LevelBossDone = false;
 
             SpawnMeteors.SpawnCounter(true);
             SpawnEnemies.SpawnCounter(true);
@@ -1229,19 +1268,29 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnRate(0.75f);
 
         }
-        BossSpawn();
+
+        CheckBossTarget();
+
         SpawnEnemies.SpawnLevel(6, 4);
-        SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
-        float bossHp = BossClone.GetComponent<ColliderBoss>().HealthPoints();
-        if (PlayerHP <= 0 || bossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
+        if (BossClone != null) 
+        {
+            SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
+        }
+        if (PlayerHP <= 0 || BossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
             LevelSpawnEnemiesDone = true;
         }
-        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && (bossHp <= 0 || PlayerHP <= 0) )
+        if (BossHp <= 0 || PlayerHP <= 0) 
+        {
+            LevelBossDone = true;
+            SpawnEnemies.SpawnRemover();
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && LevelBossDone)
         {
             Destroy(BossClone);
+            ControllerMenus[7].CloseMenu();
             MenuSetUp();
             Debug.Log("Level 12  Done");
         }
