@@ -1214,8 +1214,6 @@ public class ControllerGame : MonoBehaviour
             LevelSetUpDone = true;
 
             SpawnMeteors.enabled = false;
-            //SpawnMeteors.enabled = true;
-
             SpawnEnemies.enabled = true;
             SpawnBombs.enabled = false;
 
@@ -1232,31 +1230,16 @@ public class ControllerGame : MonoBehaviour
 
         }
         BossSpawn();
-        //SpawnMeteors.SpawnLevel(4, 2);
         SpawnEnemies.SpawnLevel(6, 4);
-        //SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
-        //SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
         float bossHp = BossClone.GetComponent<ColliderBoss>().HealthPoints();
-        //if (PlayerHP <= 0 || bossHp <= 0 || (SpawnMeteors.SpawnCounter() >= 100 && !LevelSpawnMeteorsDone))
-        //{
-        //    SpawnMeteors.SpawnCounter(true);
-        //    SpawnMeteors.enabled = false;
-        //    LevelSpawnMeteorsDone = true;
-        //}
         if (PlayerHP <= 0 || bossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
             LevelSpawnEnemiesDone = true;
         }
-        //if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
-        //{
-        //    Destroy(BossClone);
-        //    MenuSetUp();
-        //    Debug.Log("Level 12  Done");
-        //}
-        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && bossHp <= 0)
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && (bossHp <= 0 || PlayerHP <= 0) )
         {
             Destroy(BossClone);
             MenuSetUp();
