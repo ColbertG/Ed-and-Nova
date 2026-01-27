@@ -87,9 +87,24 @@ public class SpawnEnemy : MonoBehaviour
 
         Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3(width, height / height, transform.position.z - Camera.main.transform.position.z));
     }
+    public Transform LookAtCloset(Transform target) 
+    {
+        float closet = 1000;
+        Transform closetEnemy = null; 
+        for(int i = EnemyCount.Count - 1; i >= 0; i--)
+        {
+            if (EnemyCount[i] == null) continue;
+            float dis = (EnemyCount[i].transform.position - target.position).magnitude;
+            if (dis <= closet && dis > 0)
+            {
+                closetEnemy = EnemyCount[i].transform;
+            }
+        }
+        return closetEnemy;
+    }
     public void LookAtPlayer(Transform target) 
     {
-        foreach (GameObject enemy in EnemyCount) 
+        foreach (GameObject enemy  in EnemyCount) 
         {
             if(enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target);
         }

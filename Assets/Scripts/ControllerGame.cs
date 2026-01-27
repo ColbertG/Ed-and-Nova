@@ -998,12 +998,6 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 8 Done");
         }
     }
-    IEnumerator PlayerLookHold()
-    {
-        Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        yield return new WaitForSeconds(1.0f);
-        LookingAtHold = false;
-    }
     public void Start9()
     {
         ControllerMenus[6].CloseMenu();
@@ -1054,11 +1048,10 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.SpawnLevel(4, 2);
         SpawnMeteors.FaceingMeteor(0);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 3)); 
-        if (!LookingAtHold)
-        {
-            StartCoroutine(PlayerLookHold());
-            LookingAtHold = true;
-        }
+
+        if(Player != null)
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        
         if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
@@ -1125,11 +1118,10 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.SpawnLevel(5, 3);
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(Random.Range(2, 5));
-        if (!LookingAtHold)
-        {
-            StartCoroutine(PlayerLookHold());
-            LookingAtHold = true;
-        }
+
+        if (Player != null)
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        
         if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 175 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
@@ -1196,11 +1188,10 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.SpawnLevel(5, 3);
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
-        if (!LookingAtHold)
-        {
-            StartCoroutine(PlayerLookHold());
-            LookingAtHold = true;
-        }
+        
+        if (Player != null)
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        
         if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
@@ -1360,13 +1351,12 @@ public class ControllerGame : MonoBehaviour
         //SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
 
-        if(Player != null) SpawnEnemies.LookAtPlayer(Player.transform);
-
-        if (!LookingAtHold)
+        if (Player != null)
         {
-            StartCoroutine(PlayerLookHold());
-            LookingAtHold = true;
+            SpawnEnemies.LookAtPlayer(Player.transform);
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
+
         //if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
         //{
         //    SpawnMeteors.SpawnCounter(true);

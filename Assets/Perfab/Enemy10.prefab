@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 549001564400666551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.97, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.15}
   m_Children:
   - {fileID: 2981159924321907149}
   - {fileID: 2260801975525886582}
@@ -190,7 +190,7 @@ MonoBehaviour:
   Score: 1450
   DP: 3
   HP: 1
-  Explosion: {fileID: 2875013583054232843, guid: 6bb7aa1d9488d2849a2453cbc6d8987b,
+  Explosion: {fileID: 4212577716725870765, guid: 5636fe3420ba03246b3d5a8ba92445f0,
     type: 3}
   RandomDrops:
   - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}

@@ -352,7 +352,7 @@ MonoBehaviour:
   Score: 1000
   DP: 3
   HP: 1
-  Explosion: {fileID: 2875013583054232843, guid: 6bb7aa1d9488d2849a2453cbc6d8987b,
+  Explosion: {fileID: 3344521742751280814, guid: ab6cc091b3934fa4d8f4f895863f64e3,
     type: 3}
   RandomDrops:
   - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
