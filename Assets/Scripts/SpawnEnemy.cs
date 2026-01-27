@@ -87,6 +87,13 @@ public class SpawnEnemy : MonoBehaviour
 
         Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3(width, height / height, transform.position.z - Camera.main.transform.position.z));
     }
+    public void LookAtPlayer(Transform target) 
+    {
+        foreach (GameObject enemy in EnemyCount) 
+        {
+            if(enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target);
+        }
+    }
     public void SpawnRate(float sec) 
     {
         FireRate = sec;

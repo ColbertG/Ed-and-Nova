@@ -111,6 +111,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 10 && !LevelComplete) Level10();
                 if (LevelCount == 11 && !LevelComplete) Level11();
                 if (LevelCount == 12 && !LevelComplete) Level12();
+                if (LevelCount == 13 && !LevelComplete) Level13();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
@@ -1309,5 +1310,84 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 12  Done");
         }
+    }
+    public void Start13()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 13;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level13()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 13 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        //SpawnMeteors.SpawnLevel(4, 2);
+        SpawnEnemies.SpawnLevel(7, 6);
+        //SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+
+        if(Player != null) SpawnEnemies.LookAtPlayer(Player.transform);
+
+        if (!LookingAtHold)
+        {
+            StartCoroutine(PlayerLookHold());
+            LookingAtHold = true;
+        }
+        //if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
+        //{
+        //    SpawnMeteors.SpawnCounter(true);
+        //    SpawnMeteors.enabled = false;
+        //    LevelSpawnMeteorsDone = true;
+        //}
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 13 Done");
+        }
+        //if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        //{
+        //    MenuSetUp();
+        //    Debug.Log("Level 13 Done");
+        //}
     }
 }
