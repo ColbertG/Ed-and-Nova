@@ -10985,7 +10985,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130463418}
   m_CullTransparentMesh: 0
---- !u!1001 &5666848383846634041
+--- !u!1001 &6485259526164342424
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11000,12 +11000,12 @@ PrefabInstance:
     - target: {fileID: 2817963915746662395, guid: 5cc87d5160e375e44a58f9f110c9d154,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 2817963915746662395, guid: 5cc87d5160e375e44a58f9f110c9d154,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 2817963915746662395, guid: 5cc87d5160e375e44a58f9f110c9d154,
         type: 3}

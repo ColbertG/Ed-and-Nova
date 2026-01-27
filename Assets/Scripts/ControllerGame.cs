@@ -346,10 +346,10 @@ public class ControllerGame : MonoBehaviour
         int upgrade4 = PlayerPrefs.GetInt("playerSpeedLevel", 0);
 
         bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 5 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
-        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 10 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
-        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 20 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 10;
-        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 20;
-        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
+        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 15 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
+        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 15;
+        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 50 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
+        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 75;
 
         if (ship1) pickShip = 0;
         if (ship2) pickShip = 1;
@@ -1271,7 +1271,11 @@ public class ControllerGame : MonoBehaviour
 
         CheckBossTarget();
 
-        SpawnEnemies.SpawnLevel(6, 4);
+        if (BossHp > BossHPStart / 3)
+            SpawnEnemies.SpawnLevel(6, 4);
+        else 
+            SpawnEnemies.SpawnLevel(6, 0);
+
         if (BossClone != null) 
         {
             SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
@@ -1282,6 +1286,17 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.enabled = false;
             LevelSpawnEnemiesDone = true;
         }
+
+        if (BossHp <= BossHPStart / 3 && BossHp > 10)
+        {
+            SpawnEnemies.SpawnRate(0.5f);
+            SpawnEnemies.enabled = true;
+        }
+        else if (LevelSpawnEnemiesDone)
+        {
+            SpawnEnemies.enabled = false;
+        }
+
         if (BossHp <= 0 || PlayerHP <= 0) 
         {
             LevelBossDone = true;
