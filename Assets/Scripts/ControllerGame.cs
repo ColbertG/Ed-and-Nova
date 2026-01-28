@@ -39,6 +39,8 @@ public class ControllerGame : MonoBehaviour
     List<Button> LevelIcons;
     [SerializeField]
     Sprite LevelIconsPass;
+    [SerializeField]
+    Sprite LevelIconsOn;
     bool StartGameNow = false;
     bool DialogDone = false;
     bool LevelComplete = false;
@@ -47,7 +49,6 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnEnemiesDone = false;
     bool LevelSpawnBombsDone = false;
     bool LevelBossDone = false;
-    bool LookingAtHold = false;
     public int LevelCount { get; private set; } = 1;
     int BossHp = 0;
     int PlayerHP = 0;
@@ -59,7 +60,6 @@ public class ControllerGame : MonoBehaviour
     int pickShipActive = 0;
     public static bool PlayerBarrierActive = false;
     GameObject BossClone = null;
-    // Start is called before the first frame update
     private void OnApplicationQuit()
     {
         //PlayerPrefs.SetInt("playerHp", 0);
@@ -79,11 +79,11 @@ public class ControllerGame : MonoBehaviour
 
         //PlayerPrefs.SetInt("levelCountOn", 1);
     }
+    // Start is called before the first frame update
     void Start()
     {
         ControllerMenus[0].OpenMenu();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -112,6 +112,8 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 11 && !LevelComplete) Level11();
                 if (LevelCount == 12 && !LevelComplete) Level12();
                 if (LevelCount == 13 && !LevelComplete) Level13();
+                if (LevelCount == 14 && !LevelComplete) Level14();
+                if (LevelCount == 15 && !LevelComplete) Level15();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
@@ -321,10 +323,12 @@ public class ControllerGame : MonoBehaviour
 
         ControllerMenus[6].OpenMenu();
 
-        for (int i = 0; i < LevelIcons.Count; i++) 
+        for (int i = 0; i <= LevelIcons.Count - 1; i++) 
         {
-            if (i < PlayerPrefs.GetInt("levelCountOn", 1))
+            if (i < PlayerPrefs.GetInt("levelCountOn", 1) - 1)
                 LevelIcons[i].image.sprite = LevelIconsPass;
+            if (i == PlayerPrefs.GetInt("levelCountOn", 1) - 1)
+                LevelIcons[i].image.sprite = LevelIconsOn;
         }
     }
     public void MainMenu() 
@@ -1327,6 +1331,198 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 13 start");
 
+            PlayerReset(2);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = false;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(4, 4);
+        SpawnEnemies.SpawnLevel(2);
+        SpawnMeteors.FaceingMeteor(0);
+        SpawnEnemies.FaceingEnemy(4);
+        Player.AngleControll(SpawnMeteors.FaceingMeteor());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 13 Done");
+        }
+    }
+    public void Start14()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 14;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level14()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 14 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = false;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(6, 4);
+        SpawnEnemies.SpawnLevel(2);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(4);
+        Player.AngleControll(SpawnMeteors.FaceingMeteor());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 300 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 14 Done");
+        }
+    }
+    public void Start15()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 15;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level15()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 15 start");
+
+            PlayerReset(3);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.75f);
+        }
+        SpawnMeteors.SpawnLevel(6, 4);
+        SpawnEnemies.SpawnLevel(7, 6);
+        SpawnMeteors.FaceingMeteor(2);
+        SpawnEnemies.FaceingEnemy(2);
+        if (Player != null) SpawnEnemies.LookAtPlayer(Player.transform);
+        Player.AngleControll(SpawnEnemies.FaceingEnemy());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 350 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 325 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 15 Done");
+        }
+    }
+    public void Start16()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 16;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level16()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 16 start");
+
             PlayerReset();
 
             Player.SetTarget(null);
@@ -1372,7 +1568,7 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 13 Done");
+            Debug.Log("Level 16 Done");
         }
         //if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         //{

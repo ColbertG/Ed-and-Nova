@@ -94,10 +94,11 @@ public class SpawnEnemy : MonoBehaviour
         for(int i = EnemyCount.Count - 1; i >= 0; i--)
         {
             if (EnemyCount[i] == null) continue;
-            float dis = (EnemyCount[i].transform.position - target.position).magnitude;
+            float dis = Vector3.Distance(target.position, EnemyCount[i].transform.position);
             if (dis <= closet && dis > 0)
             {
                 closetEnemy = EnemyCount[i].transform;
+                closet = dis;
             }
         }
         return closetEnemy;
