@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using static UnityEngine.GraphicsBuffer;
 
 public class ColliderEnemy : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ColliderEnemy : MonoBehaviour
     [SerializeField]
     List<GameObject> RandomDrops;
     bool Exploed = false;
+    Transform Target;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ColliderPlayerCpu>() != null)
@@ -66,6 +68,8 @@ public class ColliderEnemy : MonoBehaviour
             {
                 int pick = Random.Range(0, RandomDrops.Count);
                 clone2 = Instantiate(RandomDrops[pick], transform.position, transform.rotation) as GameObject;
+                if(clone2.GetComponent<ControllerCrystal>() != null)
+                    clone2.GetComponent<ControllerCrystal>().CrystalTarget(Target);
             }
             Exploed = false;
             Destroy(gameObject);
@@ -78,5 +82,9 @@ public class ColliderEnemy : MonoBehaviour
     public int ScorePoints()
     {
         return Score;
+    }
+    public void CrystalTarget(Transform target)
+    {
+        Target = target;
     }
 }

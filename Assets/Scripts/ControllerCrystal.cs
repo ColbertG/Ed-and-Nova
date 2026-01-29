@@ -9,6 +9,8 @@ public class ControllerCrystal : MonoBehaviour
     GameObject Explosion;
     [SerializeField]
     float ExploedInSec = 3.0f;
+    [SerializeField]
+    float MoveSpeed = 3.0f;
     Transform MoveTarget;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class ControllerCrystal : MonoBehaviour
     }
     void Update()
     {
-        if (MoveTarget != null) transform.position = Vector3.MoveTowards(transform.position, MoveTarget.position, 1.0f * Time.deltaTime);
+        if (MoveTarget != null) transform.position = Vector3.MoveTowards(transform.position, MoveTarget.position, MoveSpeed * Time.deltaTime);
     }
     IEnumerator ExplosionNow() 
     {

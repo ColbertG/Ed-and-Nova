@@ -49,6 +49,7 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnEnemiesDone = false;
     bool LevelSpawnBombsDone = false;
     bool LevelBossDone = false;
+    bool FAB = false;
     public int LevelCount { get; private set; } = 1;
     int BossHp = 0;
     int PlayerHP = 0;
@@ -114,9 +115,15 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 13 && !LevelComplete) Level13();
                 if (LevelCount == 14 && !LevelComplete) Level14();
                 if (LevelCount == 15 && !LevelComplete) Level15();
+                if (LevelCount == 16 && !LevelComplete) Level16();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
-                if (PlayerHP > 0) SpawnMeteors.CrystalTarget(Player.gameObject.transform);
+                if (PlayerHP > 0) 
+                {
+                    SpawnMeteors.CrystalTarget(Player.gameObject.transform);
+                    SpawnEnemies.CrystalTarget(Player.gameObject.transform);
+                }
+                
             }
         }
     }
@@ -1526,7 +1533,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 16 start");
 
-            PlayerReset();
+            PlayerReset(3);
 
             Player.SetTarget(null);
 
@@ -1544,25 +1551,26 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
+            SpawnEnemies.SpawnRate(0.5f);
         }
-        //SpawnMeteors.SpawnLevel(4, 2);
-        SpawnEnemies.SpawnLevel(7, 6);
-        //SpawnMeteors.FaceingMeteor(2);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
-
+        if (!FAB)
+        {
+            FAB = true;
+            SpawnEnemies.SpawnLevel(7, 6);
+            SpawnEnemies.FaceingEnemy(0);
+        }
+        else 
+        {
+            FAB = false;
+            SpawnEnemies.SpawnLevel(8, 7);
+            SpawnEnemies.FaceingEnemy(4);
+        }
         if (Player != null)
         {
-            SpawnEnemies.LookAtPlayer(Player.transform);
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(1.0f, 2.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-
-        //if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 200 && !LevelSpawnMeteorsDone))
-        //{
-        //    SpawnMeteors.SpawnCounter(true);
-        //    SpawnMeteors.enabled = false;
-        //    LevelSpawnMeteorsDone = true;
-        //}
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -1573,10 +1581,5 @@ public class ControllerGame : MonoBehaviour
             MenuSetUp();
             Debug.Log("Level 16 Done");
         }
-        //if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
-        //{
-        //    MenuSetUp();
-        //    Debug.Log("Level 13 Done");
-        //}
     }
 }

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 1177866307544859764}
-  Speed: 2
+  Speed: 3
   Rocket:
   - FireRate: 2
     MainRocket: {fileID: 4868763366581244309, guid: 8abd61977503a1a4ab602302e7c7377d,
@@ -426,11 +426,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 1150
   DP: 3
-  HP: 1
+  HP: 2
   Explosion: {fileID: 7500829000098430459, guid: 6fa0d793c83da514cb6c6ee350566751,
     type: 3}
   RandomDrops:
   - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
+  - {fileID: 3532332857401986973, guid: fe5391d532330a4438c66580d3f0e579, type: 3}
   - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
 --- !u!95 &2841304706440669604
 Animator:

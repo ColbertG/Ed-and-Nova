@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SpawnEnemy : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SpawnEnemy : MonoBehaviour
     int LevelSpawnMin = 0;
     int LevelSpawn = 1;
     int SpawnCount = 0;
+    Transform Target;
     void Awake()
     {
         float width = Screen.width;
@@ -69,6 +71,11 @@ public class SpawnEnemy : MonoBehaviour
                 Vector3 RightSpawn = new Vector3(Spots[3].x, Random.Range(Spots[3].y, Spots[1].y), 0);
                 clone = Instantiate(Enemy[pickEnemy], RightSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
+            if (clone != null)
+                if (clone.GetComponent<ColliderEnemy>() != null)
+                {
+                    clone.GetComponent<ColliderEnemy>().CrystalTarget(Target);
+                }
             NextFireTime = Time.time + FireRate;
             EnemyCount.Add(clone);
             SpawnCount++;
@@ -86,6 +93,10 @@ public class SpawnEnemy : MonoBehaviour
         Spots[2] = Camera.main.ScreenToWorldPoint(new Vector3(width / width, height / height, transform.position.z - Camera.main.transform.position.z));
 
         Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3(width, height / height, transform.position.z - Camera.main.transform.position.z));
+    }
+    public void CrystalTarget(Transform target)
+    {
+        Target = target;
     }
     public Transform LookAtCloset(Transform target) 
     {

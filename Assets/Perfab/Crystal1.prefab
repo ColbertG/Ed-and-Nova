@@ -137,6 +137,7 @@ MonoBehaviour:
   Explosion: {fileID: 7911909006610551755, guid: 196121a858cd53044b117ea8d539db14,
     type: 3}
   ExploedInSec: 3
+  MoveSpeed: 2
 --- !u!114 &713473323
 MonoBehaviour:
   m_ObjectHideFlags: 0

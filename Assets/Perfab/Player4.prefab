@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10
   DP: 1
-  Rewards: 10
+  Rewards: 0
   Explosion: {fileID: 2007939574826409330, guid: 2471f195a877b2848b95146dba813cc3,
     type: 3}
 --- !u!95 &1091581506350957657
