@@ -315,24 +315,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 7592155569495211465}
-  Speed: 2
+  Speed: 3
   Rocket:
-  - FireRate: 2
+  - FireRate: 1
     MainRocket: {fileID: 4868763366581244309, guid: 8abd61977503a1a4ab602302e7c7377d,
       type: 3}
     SpawnPoint: {fileID: 7392944926526847373}
     NextFireTime: 0
-  - FireRate: 2
+  - FireRate: 1
     MainRocket: {fileID: 4868763366581244309, guid: 8abd61977503a1a4ab602302e7c7377d,
       type: 3}
     SpawnPoint: {fileID: 5807895839615877686}
     NextFireTime: 0
-  - FireRate: 2
+  - FireRate: 1.5
     MainRocket: {fileID: 4332335848949515190, guid: 6bf7cc656c152554cab2e35b8566b3d3,
       type: 3}
     SpawnPoint: {fileID: 8779805040118689219}
     NextFireTime: 0
-  - FireRate: 2
+  - FireRate: 1.5
     MainRocket: {fileID: 4332335848949515190, guid: 6bf7cc656c152554cab2e35b8566b3d3,
       type: 3}
     SpawnPoint: {fileID: 6316466683756179504}
@@ -351,12 +351,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 1000
   DP: 3
-  HP: 1
+  HP: 4
   Explosion: {fileID: 3344521742751280814, guid: ab6cc091b3934fa4d8f4f895863f64e3,
     type: 3}
   RandomDrops:
-  - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
-  - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
+  - {fileID: 2106799606413924780, guid: 31c2410d8944c17419a006524423beb2, type: 3}
+  - {fileID: 4091295975208854742, guid: 3763dd358066bc942ad5521314350695, type: 3}
 --- !u!95 &2532499864700991859
 Animator:
   serializedVersion: 3

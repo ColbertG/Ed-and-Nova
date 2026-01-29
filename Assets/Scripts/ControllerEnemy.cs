@@ -15,6 +15,7 @@ public class ControllerEnemy : MonoBehaviour
     List<Rockets> Rocket; 
     Transform Target;
     bool TargetDone = false;
+    float HoldLookforSec = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,14 +60,18 @@ public class ControllerEnemy : MonoBehaviour
             transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, angle * -1)), Speed * Time.deltaTime);
         }
     }
-    public void SetTarget(Transform target)
+    public void SetTarget(Transform target, float forSec)
     {
-        if (!TargetDone) Target = target;
+        if (!TargetDone) 
+        {
+            Target = target;
+            HoldLookforSec = forSec;
+        }
         else Target = null;
     }
     IEnumerator PlayerLookHold()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(HoldLookforSec);
         TargetDone = true;
     }
 }

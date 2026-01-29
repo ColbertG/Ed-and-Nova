@@ -62,22 +62,22 @@ public class ControllerGame : MonoBehaviour
     GameObject BossClone = null;
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt("playerHp", 0);
-        //PlayerPrefs.SetInt("playerDp", 0);
-        //PlayerPrefs.SetInt("rocketHp", 0);
-        //PlayerPrefs.SetInt("rocketDp", 0);
-        //PlayerPrefs.SetInt("playerSpeed", 0);
+        PlayerPrefs.SetInt("playerHp", 30);
+        PlayerPrefs.SetInt("playerDp", 4);
+        PlayerPrefs.SetInt("rocketHp", 1);
+        PlayerPrefs.SetInt("rocketDp", 1);
+        PlayerPrefs.SetInt("playerSpeed", 3);
 
-        //PlayerPrefs.SetInt("playerHpLevel", 0);
-        //PlayerPrefs.SetInt("playerDpLevel", 0);
-        //PlayerPrefs.SetInt("rocketLevel", 0);
-        //PlayerPrefs.SetInt("playerSpeedLevel", 0);
+        PlayerPrefs.SetInt("playerHpLevel", 3);
+        PlayerPrefs.SetInt("playerDpLevel", 4);
+        PlayerPrefs.SetInt("rocketLevel", 1);
+        PlayerPrefs.SetInt("playerSpeedLevel", 3);
 
-        //PlayerPrefs.SetInt("playerRp", 0);
+        PlayerPrefs.SetInt("playerRp", 0);
 
-        //PlayerPrefs.SetInt("scoreKeeper", 0);
+        PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        //PlayerPrefs.SetInt("levelCountOn", 1);
+        PlayerPrefs.SetInt("levelCountOn", 1);
     }
     // Start is called before the first frame update
     void Start()
@@ -1453,7 +1453,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 15 start");
 
-            PlayerReset(3);
+            PlayerReset(1);
 
             Player.SetTarget(null);
 
@@ -1472,21 +1472,24 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.75f);
+            SpawnEnemies.SpawnRate(0.5f);
         }
         SpawnMeteors.SpawnLevel(6, 4);
         SpawnEnemies.SpawnLevel(7, 6);
         SpawnMeteors.FaceingMeteor(2);
         SpawnEnemies.FaceingEnemy(2);
-        if (Player != null) SpawnEnemies.LookAtPlayer(Player.transform);
-        Player.AngleControll(SpawnEnemies.FaceingEnemy());
-        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 350 && !LevelSpawnMeteorsDone))
+        if (Player != null) 
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(0.0f, 2.0f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }  
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 150 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
             SpawnMeteors.enabled = false;
             LevelSpawnMeteorsDone = true;
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 325 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 125 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;

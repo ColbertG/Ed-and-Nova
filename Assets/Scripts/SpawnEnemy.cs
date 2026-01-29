@@ -103,11 +103,11 @@ public class SpawnEnemy : MonoBehaviour
         }
         return closetEnemy;
     }
-    public void LookAtPlayer(Transform target) 
+    public void LookAtPlayer(Transform target, float forSec = 1.0f) 
     {
         foreach (GameObject enemy  in EnemyCount) 
         {
-            if(enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target);
+            if(enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target, forSec);
         }
     }
     public void SpawnRate(float sec) 
