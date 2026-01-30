@@ -62,12 +62,15 @@ public class ControllerEnemy : MonoBehaviour
     }
     public void SetTarget(Transform target, float forSec)
     {
-        if (!TargetDone) 
+        if (!TargetDone)
         {
             Target = target;
             HoldLookforSec = forSec;
         }
-        else Target = null;
+        else 
+        {
+            Target = null;
+        }
     }
     IEnumerator PlayerLookHold()
     {

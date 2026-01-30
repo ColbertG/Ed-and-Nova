@@ -71,11 +71,13 @@ public class SpawnEnemy : MonoBehaviour
                 Vector3 RightSpawn = new Vector3(Spots[3].x, Random.Range(Spots[3].y, Spots[1].y), 0);
                 clone = Instantiate(Enemy[pickEnemy], RightSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
-            if (clone != null)
+            if (clone != null) 
+            {
                 if (clone.GetComponent<ColliderEnemy>() != null)
                 {
                     clone.GetComponent<ColliderEnemy>().CrystalTarget(Target);
                 }
+            }
             NextFireTime = Time.time + FireRate;
             EnemyCount.Add(clone);
             SpawnCount++;
@@ -116,9 +118,9 @@ public class SpawnEnemy : MonoBehaviour
     }
     public void LookAtPlayer(Transform target, float forSec = 1.0f) 
     {
-        foreach (GameObject enemy  in EnemyCount) 
+        foreach (GameObject enemy in EnemyCount)
         {
-            if(enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target, forSec);
+            if (enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target, forSec);
         }
     }
     public void SpawnRate(float sec) 
