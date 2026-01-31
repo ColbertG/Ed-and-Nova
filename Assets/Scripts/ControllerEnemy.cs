@@ -19,7 +19,6 @@ public class ControllerEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(PlayerLookHold());
     }
 
     // Update is called once per frame
@@ -28,6 +27,11 @@ public class ControllerEnemy : MonoBehaviour
         OffScreen();
         RocketShot();
         LookAt();
+        if (TargetDone) 
+        {
+            StartCoroutine(PlayerLookHold());
+            TargetDone = false;
+        }
     }
     void OffScreen() 
     {
@@ -62,19 +66,13 @@ public class ControllerEnemy : MonoBehaviour
     }
     public void SetTarget(Transform target, float forSec)
     {
-        if (!TargetDone)
-        {
-            Target = target;
-            HoldLookforSec = forSec;
-        }
-        else 
-        {
-            Target = null;
-        }
+        HoldLookforSec = forSec;
+        TargetDone = true;
+        Target = target;
     }
     IEnumerator PlayerLookHold()
     {
         yield return new WaitForSeconds(HoldLookforSec);
-        TargetDone = true;
+        Target = null;
     }
 }

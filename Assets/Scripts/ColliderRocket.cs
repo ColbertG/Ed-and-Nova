@@ -58,6 +58,14 @@ public class ColliderRocket : MonoBehaviour
             HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
             if (HP <= 0) Exploed = true;
         }
+        if (collision.gameObject.GetComponent<ColliderEnemy>() != null)
+        {
+            if (gameObject.CompareTag("Player")) 
+            {
+                HP = HP - collision.gameObject.GetComponent<ColliderEnemy>().DestructionPoints();
+                if (HP <= 0) Exploed = true;
+            }
+        }
         if (Exploed || HP <= 0)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;

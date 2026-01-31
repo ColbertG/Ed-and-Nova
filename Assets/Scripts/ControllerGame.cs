@@ -121,6 +121,8 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 16 && !LevelComplete) Level16();
                 if (LevelCount == 17 && !LevelComplete) Level17();
                 if (LevelCount == 18 && !LevelComplete) Level18();
+                if (LevelCount == 19 && !LevelComplete) Level19();
+                if (LevelCount == 20 && !LevelComplete) Level20();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -1538,6 +1540,8 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 16 start");
 
+            XCount = 0;
+
             PlayerReset();
 
             Player.SetTarget(null);
@@ -1560,13 +1564,21 @@ public class ControllerGame : MonoBehaviour
         }
         if (!FAB)
         {
-            FAB = true;
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = true;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
             SpawnEnemies.SpawnLevel(7, 6);
             SpawnEnemies.FaceingEnemy(1);
         }
         else
         {
-            FAB = false;
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = false;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
             SpawnEnemies.SpawnLevel(8, 7);
             SpawnEnemies.FaceingEnemy(3);
         }
@@ -1612,7 +1624,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 17 start");
 
-            PlayerReset(3);
+            PlayerReset();
 
             Player.SetTarget(null);
 
@@ -1684,7 +1696,9 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 17 start");
+            Debug.Log("Level 18 start");
+
+            XCount = 0;
 
             PlayerReset(2);
 
@@ -1704,8 +1718,9 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
-            SpawnEnemies.SpawnRate(0.5f);
+            SpawnEnemies.SpawnRate(0.75f);
         }
+        SpawnEnemies.FaceingEnemy(0);
         if (!FAB)
         {
             if (XCount < SpawnEnemies.SpawnCounter()) 
@@ -1713,12 +1728,11 @@ public class ControllerGame : MonoBehaviour
                 FAB = true;
                 XCount = SpawnEnemies.SpawnCounter();
             }
-            SpawnEnemies.SpawnLevel(9, 8);
-            SpawnEnemies.FaceingEnemy(0); 
+            SpawnEnemies.SpawnLevel(9, 8); 
             if (Player != null)
-                SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(2.25f, 3.0f));
+                SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(2.25f, 3.00f));
         }
-        else
+        if (FAB)
         {
             if (XCount < SpawnEnemies.SpawnCounter())
             {
@@ -1726,15 +1740,12 @@ public class ControllerGame : MonoBehaviour
                 XCount = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(10, 9);
-            SpawnEnemies.FaceingEnemy(0);
             if (Player != null)
                 SpawnEnemies.LookAtPlayer(null, 0.0f);
         }
         if (Player != null)
         {
-            //Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
-
-            Player.AngleControll(SpawnEnemies.FaceingEnemy());
+            Player.AngleControll(90);
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
         {
@@ -1745,7 +1756,178 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 17 Done");
+            Debug.Log("Level 18 Done");
         }
     }
+    public void Start19()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 19;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level19()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 19 start");
+
+            XCount = 0;
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+            SpawnEnemies.SpawnRate(0.75f);
+        }
+        if (!FAB)
+        {
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = true;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
+            SpawnEnemies.SpawnLevel(10, 9);
+            SpawnEnemies.FaceingEnemy(2);
+            if (Player != null)
+                SpawnEnemies.LookAtPlayer(null, 0.0f);
+        }
+        else
+        {
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = false;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
+            SpawnEnemies.SpawnLevel(11, 10);
+            SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
+            if (Player != null)
+                SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(2.25f, 3.00f));
+        }
+        if (Player != null)
+        {
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 19 Done");
+        }
+    }
+    public void Start20()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 20;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level20()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 20 start");
+
+            XCount = 0;
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+            SpawnEnemies.SpawnRate(0.66f);
+        }
+        SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
+        if (!FAB)
+        {
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = true;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
+            SpawnEnemies.SpawnLevel(11, 10);
+        }
+        else
+        {
+            if (XCount < SpawnEnemies.SpawnCounter())
+            {
+                FAB = false;
+                XCount = SpawnEnemies.SpawnCounter();
+            }
+            SpawnEnemies.SpawnLevel(12, 11);
+        }
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(2.25f, 3.00f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 20 Done");
+        }
+    }
+
 }

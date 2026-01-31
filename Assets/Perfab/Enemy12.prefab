@@ -257,13 +257,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 1750
-  DP: 3
-  HP: 1
+  DP: 1
+  HP: 6
   Explosion: {fileID: 3260495649408127507, guid: 0555bbe01f7b2a44c8c9b4a9a710d8dd,
     type: 3}
   RandomDrops:
-  - {fileID: 8698118026901936165, guid: 96c0ef90ff4dadc4188866498c7e80a7, type: 3}
+  - {fileID: 4508101694679297006, guid: 56926aaf91c5300469096a9c6af214fc, type: 3}
+  - {fileID: 2106799606413924780, guid: 31c2410d8944c17419a006524423beb2, type: 3}
   - {fileID: 538667770366666229, guid: eacf5e80bf845ca41ba4e7d26943062c, type: 3}
+  - {fileID: 4091295975208854742, guid: 3763dd358066bc942ad5521314350695, type: 3}
 --- !u!95 &6993801249055588069
 Animator:
   serializedVersion: 3

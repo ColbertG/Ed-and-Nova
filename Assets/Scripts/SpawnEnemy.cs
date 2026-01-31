@@ -20,6 +20,8 @@ public class SpawnEnemy : MonoBehaviour
     int LevelSpawn = 1;
     int SpawnCount = 0;
     Transform Target;
+    Transform TargetLock;
+    float ForSec = 0.0f;
     void Awake()
     {
         float width = Screen.width;
@@ -77,6 +79,7 @@ public class SpawnEnemy : MonoBehaviour
                 {
                     clone.GetComponent<ColliderEnemy>().CrystalTarget(Target);
                 }
+                clone.GetComponent<ControllerEnemy>().SetTarget(TargetLock, ForSec);
             }
             NextFireTime = Time.time + FireRate;
             EnemyCount.Add(clone);
@@ -118,10 +121,12 @@ public class SpawnEnemy : MonoBehaviour
     }
     public void LookAtPlayer(Transform target, float forSec = 1.0f) 
     {
-        foreach (GameObject enemy in EnemyCount)
-        {
-            if (enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target, forSec);
-        }
+        TargetLock = target;
+        ForSec = forSec;
+        //foreach (GameObject enemy in EnemyCount)
+        //{
+        //    if (enemy != null) enemy.GetComponent<ControllerEnemy>().SetTarget(target, forSec);
+        //}
     }
     public void SpawnRate(float sec) 
     {
