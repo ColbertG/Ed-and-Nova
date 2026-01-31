@@ -106,12 +106,12 @@ MonoBehaviour:
   Target: {fileID: 0}
   Rocket:
   - FireRate: 0.5
-    MainRocket: {fileID: 8220389822759696124, guid: 321fc342964a35f428b0d4eafed1a574,
+    MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 8785932895726773051}
     NextFireTime: 0
   - FireRate: 0.5
-    MainRocket: {fileID: 8220389822759696124, guid: 321fc342964a35f428b0d4eafed1a574,
+    MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 8785932896414633742}
     NextFireTime: 0
@@ -128,8 +128,8 @@ MonoBehaviour:
     - LaserAttackHold
     - Boss2Attack2Hold
     - LaserAttackEnd
-  MoveRateMin: 1
-  MoveRateMax: 2
+  MoveRateMin: 3
+  MoveRateMax: 5
 --- !u!50 &8785932895108894797
 Rigidbody2D:
   serializedVersion: 4
@@ -163,8 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3a26d989a15142aea1f829a85dca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  DP: 1
+  Score: 2000
+  HP: 1250
+  DP: 10
+  Explosion: {fileID: 7909817640242931865, guid: 99f4c26c7f84fac48a46df87031f6d03,
+    type: 3}
 --- !u!95 &8785932895108894795
 Animator:
   serializedVersion: 3

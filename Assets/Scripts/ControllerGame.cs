@@ -66,22 +66,22 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt("playerHp", 30);
-        PlayerPrefs.SetInt("playerDp", 4);
-        PlayerPrefs.SetInt("rocketHp", 1);
-        PlayerPrefs.SetInt("rocketDp", 1);
-        PlayerPrefs.SetInt("playerSpeed", 3);
+        //PlayerPrefs.SetInt("playerHp", 30);
+        //PlayerPrefs.SetInt("playerDp", 4);
+        //PlayerPrefs.SetInt("rocketHp", 1);
+        //PlayerPrefs.SetInt("rocketDp", 1);
+        //PlayerPrefs.SetInt("playerSpeed", 3);
 
-        PlayerPrefs.SetInt("playerHpLevel", 3);
-        PlayerPrefs.SetInt("playerDpLevel", 4);
-        PlayerPrefs.SetInt("rocketLevel", 1);
-        PlayerPrefs.SetInt("playerSpeedLevel", 3);
+        //PlayerPrefs.SetInt("playerHpLevel", 3);
+        //PlayerPrefs.SetInt("playerDpLevel", 4);
+        //PlayerPrefs.SetInt("rocketLevel", 1);
+        //PlayerPrefs.SetInt("playerSpeedLevel", 3);
 
-        PlayerPrefs.SetInt("playerRp", 0);
+        //PlayerPrefs.SetInt("playerRp", 0);
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        //PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        PlayerPrefs.SetInt("levelCountOn", 1);
+        //PlayerPrefs.SetInt("levelCountOn", 1);
     }
     // Start is called before the first frame update
     void Start()
@@ -123,6 +123,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 18 && !LevelComplete) Level18();
                 if (LevelCount == 19 && !LevelComplete) Level19();
                 if (LevelCount == 20 && !LevelComplete) Level20();
+                if (LevelCount == 21 && !LevelComplete) Level21();
                 CheckPlayerHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -356,7 +357,6 @@ public class ControllerGame : MonoBehaviour
 
     void PlayerReset(int pos = 1) 
     {
-
         int pickShip = 0;
 
         int upgeade1 = PlayerPrefs.GetInt("playerHpLevel", 0);
@@ -1929,5 +1929,128 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 20 Done");
         }
     }
+    public void Start21()
+    {
+        ControllerMenus[6].CloseMenu();
 
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 21;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level21()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 21 start");
+            
+            XCount = 0;
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            BossSpawn(1);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+            LevelBossDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(1.00f);
+
+        }
+
+        CheckBossTarget();
+
+        SpawnMeteors.SpawnLevel(6, 4);
+
+        if (BossHp > BossHPStart / 2)
+            SpawnEnemies.SpawnLevel(12, 11);
+        else
+            SpawnEnemies.SpawnLevel(12, 6);
+
+        if (BossClone != null)
+        {
+            SpawnEnemies.FaceingEnemy(BossClone.GetComponent<ControllerBoss>().PickSpot());
+        }
+
+        if (!FAB)
+        {
+            if (XCount < SpawnMeteors.SpawnCounter())
+            {
+                FAB = true;
+                XCount = SpawnMeteors.SpawnCounter();
+            }
+            SpawnMeteors.FaceingMeteor(0);
+        }
+        else
+        {
+            if (XCount < SpawnMeteors.SpawnCounter())
+            {
+                FAB = false;
+                XCount = SpawnMeteors.SpawnCounter();
+            }
+            SpawnMeteors.FaceingMeteor(4);
+        }
+
+        if (PlayerHP <= 0 || BossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+
+        if (PlayerHP <= 0 || BossHp <= 0 ||(SpawnMeteors.SpawnCounter() >= 1000 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+
+        if (BossHp <= BossHPStart / 2 && BossHp > 150)
+        {
+            SpawnEnemies.SpawnRate(0.5f);
+            SpawnEnemies.enabled = true;
+        }
+        else if (LevelSpawnEnemiesDone)
+        {
+            SpawnEnemies.enabled = false;
+        }
+
+        if (BossHp <= 0 || PlayerHP <= 0)
+        {
+            LevelBossDone = true;
+            SpawnEnemies.SpawnRemover();
+            SpawnMeteors.SpawnRemover();
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && LevelBossDone && SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
+        {
+            Destroy(BossClone);
+            ControllerMenus[7].CloseMenu();
+            MenuSetUp();
+            Debug.Log("Level 21 Done");
+        }
+    }
 }
