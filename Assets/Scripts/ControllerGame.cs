@@ -366,9 +366,9 @@ public class ControllerGame : MonoBehaviour
 
         bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 5 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
         bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
-        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 60 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
-        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 90 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 60;
-        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 90;
+        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 80 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
+        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 180 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 80;
+        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 180;
 
         if (ship1) pickShip = 0;
         if (ship2) pickShip = 1;
