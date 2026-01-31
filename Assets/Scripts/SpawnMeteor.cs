@@ -85,6 +85,10 @@ public class SpawnMeteor : MonoBehaviour
     {
         Target = target;
     }
+    public void SpawnRate(float sec)
+    {
+        FireRate = sec;
+    }
     public void SpawnRemover() 
     {
         for (int i = 0; i < MeteorCount.Count; i++) 

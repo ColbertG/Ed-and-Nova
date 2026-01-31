@@ -66,22 +66,22 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt("playerHp", 30);
-        //PlayerPrefs.SetInt("playerDp", 4);
-        //PlayerPrefs.SetInt("rocketHp", 1);
-        //PlayerPrefs.SetInt("rocketDp", 1);
-        //PlayerPrefs.SetInt("playerSpeed", 3);
+    //    PlayerPrefs.SetInt("playerHp", 30);
+    //    PlayerPrefs.SetInt("playerDp", 4);
+    //    PlayerPrefs.SetInt("rocketHp", 1);
+    //    PlayerPrefs.SetInt("rocketDp", 1);
+    //    PlayerPrefs.SetInt("playerSpeed", 3);
 
-        //PlayerPrefs.SetInt("playerHpLevel", 3);
-        //PlayerPrefs.SetInt("playerDpLevel", 4);
-        //PlayerPrefs.SetInt("rocketLevel", 1);
-        //PlayerPrefs.SetInt("playerSpeedLevel", 3);
+    //    PlayerPrefs.SetInt("playerHpLevel", 3);
+    //    PlayerPrefs.SetInt("playerDpLevel", 4);
+    //    PlayerPrefs.SetInt("rocketLevel", 1);
+    //    PlayerPrefs.SetInt("playerSpeedLevel", 3);
 
-        //PlayerPrefs.SetInt("playerRp", 0);
+    //    PlayerPrefs.SetInt("playerRp", 0);
 
-        //PlayerPrefs.SetInt("scoreKeeper", 0);
+    //    PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        //PlayerPrefs.SetInt("levelCountOn", 1);
+    //    PlayerPrefs.SetInt("levelCountOn", 1);
     }
     // Start is called before the first frame update
     void Start()
@@ -365,10 +365,10 @@ public class ControllerGame : MonoBehaviour
         int upgrade4 = PlayerPrefs.GetInt("playerSpeedLevel", 0);
 
         bool ship1 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 5 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 0;
-        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 15 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
-        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 15;
-        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 50 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
-        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 75;
+        bool ship2 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 30 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 5;
+        bool ship3 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 60 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 30;
+        bool ship4 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) < 90 && (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 60;
+        bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 90;
 
         if (ship1) pickShip = 0;
         if (ship2) pickShip = 1;
@@ -1745,9 +1745,9 @@ public class ControllerGame : MonoBehaviour
         }
         if (Player != null)
         {
-            Player.AngleControll(90);
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -1834,7 +1834,7 @@ public class ControllerGame : MonoBehaviour
         {
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -1979,17 +1979,20 @@ public class ControllerGame : MonoBehaviour
             SpawnBarriers.SpawnRemover();
 
             SpawnEnemies.SpawnRate(1.00f);
+            SpawnMeteors.SpawnRate(0.6f);
 
         }
 
         CheckBossTarget();
 
         SpawnMeteors.SpawnLevel(6, 4);
+        
+        SpawnEnemies.SpawnLevel(9, 6);
 
-        if (BossHp > BossHPStart / 2)
-            SpawnEnemies.SpawnLevel(12, 11);
-        else
-            SpawnEnemies.SpawnLevel(12, 6);
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(2.25f, 3.00f));
+        }
 
         if (BossClone != null)
         {
@@ -2029,9 +2032,8 @@ public class ControllerGame : MonoBehaviour
             LevelSpawnMeteorsDone = true;
         }
 
-        if (BossHp <= BossHPStart / 2 && BossHp > 150)
+        if (BossHp <= BossHPStart / 2 && BossHp > 1000)
         {
-            SpawnEnemies.SpawnRate(0.5f);
             SpawnEnemies.enabled = true;
         }
         else if (LevelSpawnEnemiesDone)
