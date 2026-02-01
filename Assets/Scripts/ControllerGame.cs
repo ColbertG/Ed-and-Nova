@@ -1570,7 +1570,7 @@ public class ControllerGame : MonoBehaviour
                 XCount = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(7, 6);
-            SpawnEnemies.FaceingEnemy(1);
+            SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
         }
         else
         {
@@ -1580,7 +1580,7 @@ public class ControllerGame : MonoBehaviour
                 XCount = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(8, 7);
-            SpawnEnemies.FaceingEnemy(3);
+            SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
         }
         if (Player != null)
         {
