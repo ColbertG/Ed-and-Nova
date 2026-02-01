@@ -1745,9 +1745,9 @@ public class ControllerGame : MonoBehaviour
         }
         if (Player != null)
         {
-            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+            Player.AngleControll(SpawnEnemies.FaceingEnemy());
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 100 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
