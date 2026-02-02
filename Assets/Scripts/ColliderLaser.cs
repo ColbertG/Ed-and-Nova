@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColliderLaser : MonoBehaviour
 {   [SerializeField]
-    int DP = 1;
+    int DP = 10;
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

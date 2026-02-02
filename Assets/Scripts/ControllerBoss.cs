@@ -108,10 +108,10 @@ public class ControllerBoss : MonoBehaviour
                     laserDone = false;
                     ControllAnima.Animators.SetBool(ControllAnima.AniamName[0], false);
                     ControllAnima.Animators.SetBool(ControllAnima.AniamName[2], true);
-                    clone3 = Instantiate(Rocket[2].MainRocket, Rocket[2].SpawnPoint.position, Rocket[2].SpawnPoint.rotation) as GameObject;
+                    clone3 = Instantiate(Rocket[2].MainRocket, Rocket[2].SpawnPoint.position, Rocket[2].SpawnPoint.rotation, transform) as GameObject;
                 }
             }
-            if (AnimStateInfo.normalizedTime >= 15.0f && AnimStateInfo.IsName(ControllAnima.AniamName[3]) && laserDone == false)
+            if (AnimStateInfo.normalizedTime >= 150.0f && AnimStateInfo.IsName(ControllAnima.AniamName[3]) && laserDone == false)
             {
                 Destroy(clone3);
                 laserDone = true;
