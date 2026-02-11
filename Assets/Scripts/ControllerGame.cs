@@ -66,22 +66,22 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-    //    PlayerPrefs.SetInt("playerHp", 30);
-    //    PlayerPrefs.SetInt("playerDp", 4);
-    //    PlayerPrefs.SetInt("rocketHp", 1);
-    //    PlayerPrefs.SetInt("rocketDp", 1);
-    //    PlayerPrefs.SetInt("playerSpeed", 3);
+        //PlayerPrefs.SetInt("playerHp", 90);
+        //PlayerPrefs.SetInt("playerDp", 8);
+        //PlayerPrefs.SetInt("rocketHp", 16);
+        //PlayerPrefs.SetInt("rocketDp", 16);
+        //PlayerPrefs.SetInt("playerSpeed", 13);
 
-    //    PlayerPrefs.SetInt("playerHpLevel", 3);
-    //    PlayerPrefs.SetInt("playerDpLevel", 4);
-    //    PlayerPrefs.SetInt("rocketLevel", 1);
-    //    PlayerPrefs.SetInt("playerSpeedLevel", 3);
+        //PlayerPrefs.SetInt("playerHpLevel", 9);
+        //PlayerPrefs.SetInt("playerDpLevel", 8);
+        //PlayerPrefs.SetInt("rocketLevel", 16);
+        //PlayerPrefs.SetInt("playerSpeedLevel", 13);
 
-    //    PlayerPrefs.SetInt("playerRp", 0);
+        //PlayerPrefs.SetInt("playerRp", 0);
 
-    //    PlayerPrefs.SetInt("scoreKeeper", 0);
+        //PlayerPrefs.SetInt("scoreKeeper", 0);
 
-    //    PlayerPrefs.SetInt("levelCountOn", 1);
+        //PlayerPrefs.SetInt("levelCountOn", 1);
     }
     // Start is called before the first frame update
     void Start()
