@@ -99,6 +99,11 @@ public class ControllerGame : MonoBehaviour
         PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
         PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
 
+
+        PointCount[6].text = PlayerHP + " / " + PlayerHPStart;
+        PointCount[7].text = PlayerRP + " / " + PlayerRPStart;
+        PointCount[8].text = BossHp + " / " + BossHPStart;
+
         if (DialogDone) 
         {
             if (StartGameNow)
@@ -1943,7 +1948,7 @@ public class ControllerGame : MonoBehaviour
             SpawnBarriers.SpawnRemover();
             SpawnEnemies.SpawnRate(0.66f);
         }
-        SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
         if (!FAB)
         {
             if (XCount < SpawnEnemies.SpawnCounter())
