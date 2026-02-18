@@ -2042,7 +2042,7 @@ public class ControllerGame : MonoBehaviour
 
         SpawnMeteors.SpawnLevel(6, 4);
         
-        SpawnEnemies.SpawnLevel(9, 6);
+        SpawnEnemies.SpawnLevel(9, 7);
 
         if (Player != null)
         {
