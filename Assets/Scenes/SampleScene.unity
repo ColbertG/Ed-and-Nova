@@ -1872,13 +1872,28 @@ MonoBehaviour:
     - "Nova, we\u2019re almost surrounded!! What do we do!!!?"
     - Ship breakdown 20% of crystals and directed to the main hull. Use the remaining
       15% for rocket dexterity.
+    - Nova, we did it!! The mothership is down, jumping to hyper speed, but what
+      planet are we heading for!!?
+    - So, Nova You really think this friend of yours will know anything about our
+      planet being attacked.
+    - Nova, do you think we should try to make contact?
+    - That was close! The ship's projecting will arrive at T-Well in under an hour.
+    - Copy that.
+    - We've been spotted!! Nova, hang on I'll try to lose them.
+    - If these ships only operate in the upper atmosphere we should be able to lose
+      them the closer we get to the planet.
+    - "Nova, we lost them! We should try to find, your friend, before we\u2019re
+      detected by another ship."
+    - Nice to meet you, Sergeant Kanise.
+    - "\u2026Boom! Boom! Boom! Nova Our engine has been hit!! I can't make the jump
+      to hyper speed!! "
   - Myimage: {fileID: 21300000, guid: 68ea093040ad9d34a8b5c24e25f218d7, type: 3}
     Dialogs:
     - Yeah, sure just turning big rocks into little rocks if you ask me.
     - Making real change in the world hell in the universe. There's a whole Galaxy
       to explore and every day we're stuck here defending the planet.
     - Finally, some action!
-    - "Will that wasn\u2019t anything out the norm. What\u2019s got the ship all
+    - "Well, that wasn\u2019t anything out the norm. What\u2019s got the ship all
       worked up."
     - I don't know, but hurry, get back on the controls and give me a good angle
       to take these things out.
@@ -1899,10 +1914,36 @@ MonoBehaviour:
       rockets dexterity."
     - This is it Ed, if we can make it past the mothership there'll be nothing to
       stop us from jumping into hyper speed and out running the blast!
+    - Planet T-Well in the MHV system. I have an old friend that may be able to tell
+      us what's going on with our planet being destroyed!!!
+    - Well, I can't be sure, but they were in a Secret Intel unit sent to T-Well
+      To uncover information about A newly established rebel group out of the North\Central
+      Galaxy.
+    - No, let's use these meteors as cover and get past them as fast as possible.
+    - Ed will have to move fast we can't afford to get into a dog fight with these
+      many warships.
+    - Scans show We're surrounded, there's too many of them, will have to fight our
+      way through if we want to get past.
+    - Ed, Radar shows large incoming spacecraft. Try maneuvering through them to
+      lose our tail.
+    - "Right\u2026. I'm going to try the emergency Contact channel."
+    - Sergeant Kanise, come in! Sergeant Kanise, come in, emergency code 105-05!
+      Over!  Sergeant Kanise, come in, emergency code 105-05! Over!...
+    - This is Nova Ryder of Planet Yrag! I must meet with you. Our home planet has
+      been destroyed! Over!
+    - I'm headed there now. Over and out.
+    - This is my pilot, Ed Shooter.
+    - Kanise, I must ask, do you know anything about the attack on Yrag? From what
+      I can tell it was an organized strike by an army.
+    - "But\u2026 that doesn't make any sense!! If there after a high concentration
+      of edge crystals, why would they destroy Yrag. "
+    - Copy that, Sergeant Kanise, coordinates received. Over and out.
+    - Ed, Jump to hyper speed now!
+    - "That's just great\u2026we'll have to fend them off till we can come up with
+      a new plan. Prepare to engage!"
   - Myimage: {fileID: 21300000, guid: 996f3558c7f3ed648ae73e19c20785b8, type: 3}
     Dialogs:
-    - Beep, Beep, Beep An influx of asteroids emergencies, emergencies an influx
-      of asteroids!
+    - Beep, Beep, Beep An influx of asteroids emergency, emergency an influx of asteroids!
     - unidentified objects incoming. Scans determine objects could calls Destabilization
       of planet barrier.
     - Ed, Nova. The Planet has been breached. Clusters of warships have been detected.
@@ -1914,6 +1955,10 @@ MonoBehaviour:
     - Crystals absorbed! Ship is 50% more resistant. Rockets Penetration 100% increase,
       Explosion yield increased by 100%
     - Beep, Beep, Beep Scans indicate the mothership is preparing to engage.
+    - Beep, Beep scans indicate a cluster of ships are incoming.
+    - "\u2026\u2026 Approaching T-Well. Scans indicate planet atmosphere is Swarming
+      with warships."
+    - Scans determine upper atmosphere spacecraft Have locked on to our location.
   - Myimage: {fileID: 21300000, guid: 2fc000c4e72bed34e9c0d29f18858688, type: 3}
     Dialogs:
     - Lieutenant Kale 9, great work, move in and head directly for area 42.
@@ -1945,6 +1990,48 @@ MonoBehaviour:
       Titan unit to engage.
     - Colonel 01, The rogue Starship has not yet been eliminated and is currently
       reaching the outer ring of the blockade.
+  - Myimage: {fileID: 21300000, guid: f67c584019f42104a8bdd4637f3ae69e, type: 3}
+    Dialogs:
+    - 'General Aszland, Planet Yrag has been destroyed, and Communications with Colonel
+      01 has been lost. '
+    - General Aszland, Reports from infantry units all sectors of T-Well are under
+      our control.
+    - General Aszland, Scouts have reached Yrag. Units inform me that Colonel 01
+      Was destroyed by a Single spacecraft using edge crystals to enhance their abilities.
+    - After defeating Colonel 01, The lone ship Jump to hyper speed. The surviving
+      units lost track of their location.
+    - General Aszland, Units have located the rogue spacecraft that took out Colonel
+      01, along with a Rebellion Group in sector 69.
+    - As you wish General Aszland
+  - Myimage: {fileID: 21300000, guid: f85ae493b81ee3e4d85b75f309fbbbd9, type: 3}
+    Dialogs:
+    - "I will inform GrandMaster of planet Yrag\u2019s Destruction. Meanwhile, send
+      Scouter units to Yrag to Determine the fate of Colonel 01."
+    - "Spectacular, now we can begin Phase two of GrandMaster\u2019s plan for T-Well.
+      Instruct the units to absorb the edge crystals and upgrade all ships."
+    - I can't imagine a single ship could disrupt our plans. Yet, to air on the side
+      of caution have all units on high alert for any ship falling out of hyperspace.
+    - It would seem this rogue Starship is a bigger problem than I thought. Have
+      Wasp and Cobra units meet us over sector 69. We will have to handle this matter
+      personally.
+    - General Iris, instruct all units to aim for their hyper speed engines. We don't
+      want them slipping away again.
+  - Myimage: {fileID: 21300000, guid: 115a0fd4cdcdf5d478b0150b8e6f9f17, type: 3}
+    Dialogs:
+    - This is Sergeant Kanise, Verification code 202212. Who is this!!? Over!
+    - Oh No! Not Yrag! Meet me in sector 69 zone 52 area 3. Over!
+    - Nova, nice to see you again. Who is this?
+    - "Will as you can see, T-well has been taken over\u2026 an organization named
+      YALE moved in a couple months ago. They disabled all long-range communication
+      systems, that's why we were unable to communicate with Yrag."
+    - The Organization is run by a person who calls themselves GrandMaster. The organization
+      is after the edge crystals; there have been rumors that the edge crystals can
+      do more than just upgrade technology at the right concentration.
+    - "That I don't know\u2026. Boom! Boom! Boom! Oh no they found us! Quick everyone
+      to their ship."
+    - "Nova I'm sending coordinates to your ship now! When we reach the upper atmosphere,
+      we\u2019ll use hyper speed to reach Planet Scrapper. Over."
+    - "All units prepare to jump to hyper speed in three\u2026two\u2026one."
   DialogOrders:
   - DialogOrderNumber: 0
     ImageNumber: 0
@@ -2057,6 +2144,102 @@ MonoBehaviour:
   - DialogOrderNumber: 7
     ImageNumber: 2
   - DialogOrderNumber: 16
+    ImageNumber: 1
+  - DialogOrderNumber: 15
+    ImageNumber: 0
+  - DialogOrderNumber: 17
+    ImageNumber: 1
+  - DialogOrderNumber: 0
+    ImageNumber: 5
+  - DialogOrderNumber: 0
+    ImageNumber: 6
+  - DialogOrderNumber: 16
+    ImageNumber: 0
+  - DialogOrderNumber: 18
+    ImageNumber: 1
+  - DialogOrderNumber: 1
+    ImageNumber: 5
+  - DialogOrderNumber: 1
+    ImageNumber: 6
+  - DialogOrderNumber: 8
+    ImageNumber: 2
+  - DialogOrderNumber: 17
+    ImageNumber: 0
+  - DialogOrderNumber: 19
+    ImageNumber: 1
+  - DialogOrderNumber: 18
+    ImageNumber: 0
+  - DialogOrderNumber: 9
+    ImageNumber: 2
+  - DialogOrderNumber: 20
+    ImageNumber: 1
+  - DialogOrderNumber: 19
+    ImageNumber: 0
+  - DialogOrderNumber: 10
+    ImageNumber: 2
+  - DialogOrderNumber: 20
+    ImageNumber: 0
+  - DialogOrderNumber: 21
+    ImageNumber: 1
+  - DialogOrderNumber: 21
+    ImageNumber: 0
+  - DialogOrderNumber: 22
+    ImageNumber: 1
+  - DialogOrderNumber: 2
+    ImageNumber: 5
+  - DialogOrderNumber: 3
+    ImageNumber: 5
+  - DialogOrderNumber: 2
+    ImageNumber: 6
+  - DialogOrderNumber: 22
+    ImageNumber: 0
+  - DialogOrderNumber: 23
+    ImageNumber: 1
+  - DialogOrderNumber: 24
+    ImageNumber: 1
+  - DialogOrderNumber: 0
+    ImageNumber: 7
+  - DialogOrderNumber: 25
+    ImageNumber: 1
+  - DialogOrderNumber: 1
+    ImageNumber: 7
+  - DialogOrderNumber: 26
+    ImageNumber: 1
+  - DialogOrderNumber: 2
+    ImageNumber: 7
+  - DialogOrderNumber: 27
+    ImageNumber: 1
+  - DialogOrderNumber: 23
+    ImageNumber: 0
+  - DialogOrderNumber: 28
+    ImageNumber: 1
+  - DialogOrderNumber: 3
+    ImageNumber: 7
+  - DialogOrderNumber: 4
+    ImageNumber: 7
+  - DialogOrderNumber: 29
+    ImageNumber: 1
+  - DialogOrderNumber: 5
+    ImageNumber: 7
+  - DialogOrderNumber: 4
+    ImageNumber: 5
+  - DialogOrderNumber: 3
+    ImageNumber: 6
+  - DialogOrderNumber: 6
+    ImageNumber: 7
+  - DialogOrderNumber: 30
+    ImageNumber: 1
+  - DialogOrderNumber: 4
+    ImageNumber: 6
+  - DialogOrderNumber: 5
+    ImageNumber: 5
+  - DialogOrderNumber: 7
+    ImageNumber: 7
+  - DialogOrderNumber: 31
+    ImageNumber: 1
+  - DialogOrderNumber: 24
+    ImageNumber: 0
+  - DialogOrderNumber: 32
     ImageNumber: 1
   DialogPanle: {fileID: 1230051206}
   ActiveImage: {fileID: 504086603}
@@ -7222,10 +7405,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6478bf5889425904e9bf4b27da2ae62a, type: 3}
-    m_FontSize: 175
+    m_FontSize: 170
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 100
+    m_MinSize: 17
     m_MaxSize: 175
     m_Alignment: 4
     m_AlignByGeometry: 0

@@ -250,7 +250,7 @@ public class ControllerGame : MonoBehaviour
             DialogDone = true;
         }
         //remove wheen done with all Dialog
-        if(onCount == 55)
+        if(onCount == 103)
             ControllerDialogs.ShowNextDialog(onCount--);
     }
     public void NextDialog() 
@@ -267,6 +267,17 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount, 47);
         DialogEnd(onCount, 51);
         DialogEnd(onCount, 55);
+
+        DialogEnd(onCount, 59);
+        DialogEnd(onCount, 63);
+        DialogEnd(onCount, 66);
+        DialogEnd(onCount, 70);
+        DialogEnd(onCount, 74);
+        DialogEnd(onCount, 78);
+        DialogEnd(onCount, 85);
+        DialogEnd(onCount, 93);
+        DialogEnd(onCount, 97);
+        DialogEnd(onCount, 103);
         ControllerDialogs.ShowDialog();
     }
     void DialogReset() 
@@ -283,6 +294,17 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 10) ControllerDialogs.ShowNextDialog(46);
         if (LevelCount == 11) ControllerDialogs.ShowNextDialog(48);
         if (LevelCount == 12) ControllerDialogs.ShowNextDialog(52);
+
+        if (LevelCount == 13) ControllerDialogs.ShowNextDialog(56);
+        if (LevelCount == 14) ControllerDialogs.ShowNextDialog(60);
+        if (LevelCount == 15) ControllerDialogs.ShowNextDialog(64);
+        if (LevelCount == 16) ControllerDialogs.ShowNextDialog(67);
+        if (LevelCount == 17) ControllerDialogs.ShowNextDialog(71);
+        if (LevelCount == 18) ControllerDialogs.ShowNextDialog(75);
+        if (LevelCount == 19) ControllerDialogs.ShowNextDialog(79);
+        if (LevelCount == 20) ControllerDialogs.ShowNextDialog(86);
+        if (LevelCount == 21) ControllerDialogs.ShowNextDialog(94);
+        if (LevelCount == 22) ControllerDialogs.ShowNextDialog(98);
         ControllerDialogs.ShowDialog();
     }
 
