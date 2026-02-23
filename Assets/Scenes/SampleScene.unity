@@ -1714,6 +1714,12 @@ MonoBehaviour:
   - {fileID: 549001564400666551, guid: b7a9e0dd78efbe54eb1e6b6f65b8a11f, type: 3}
   - {fileID: 3455614870211696981, guid: 5bc86a5d427971f40b928e0aa5dc92ac, type: 3}
   - {fileID: 6523221346287455106, guid: 9b0733e680679f64c947250466152412, type: 3}
+  - {fileID: 434249526137279978, guid: f0a8a2d2a4126ae4489e35d5cb0ac5c2, type: 3}
+  - {fileID: 2596560346354446520, guid: d478695c6f561034d81281e382776419, type: 3}
+  - {fileID: 8204302020570147235, guid: 076ca10b4022d45459f72b7f3063d61a, type: 3}
+  - {fileID: 9170895292036656721, guid: 679011e1ce5aa27479b330f8d6cd6576, type: 3}
+  - {fileID: 3912125562881571671, guid: c7393ed873483e64ebc7988dc3f7c68c, type: 3}
+  - {fileID: 3792945165617514606, guid: e97dc89d7876a3b44b125472a341484e, type: 3}
   FireRate: 0.4
 --- !u!114 &175415082
 MonoBehaviour:
@@ -1837,6 +1843,7 @@ MonoBehaviour:
   - {fileID: 905864654267988988, guid: 07afcf53f9403e947904f574f63a0cc1, type: 3}
   - {fileID: 266931196739618415, guid: cebb2995180c8804aa9e6a566fa2116a, type: 3}
   - {fileID: 6401034200276844208, guid: 5e52f228c03a284489641f357f8e9817, type: 3}
+  - {fileID: 0}
 --- !u!114 &175415086
 MonoBehaviour:
   m_ObjectHideFlags: 0

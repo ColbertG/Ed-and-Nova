@@ -18,6 +18,16 @@ public class ControllerPlayer : MonoBehaviour
     List<Rockets> Rocket;
     [SerializeField]
     List<GameObject> ShipCpu;
+
+    [SerializeField]
+    ControllAnimator ControllAnima;
+    [SerializeField]
+    int LaserIndex = 0;
+    GameObject clone3;
+    bool laserDone = true;
+    AnimatorStateInfo AnimStateInfo;
+
+
     float Angle;
     bool Cpu1 = false; 
     bool Cpu2 = false;
@@ -127,12 +137,45 @@ public class ControllerPlayer : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             for (int i = 0; i < Rocket.Count; i++)
             {
+                if (i == LaserIndex) continue;
                 if (touch.phase == TouchPhase.Moved && Time.time >= Rocket[i].NextFireTime)
                 {
                     GameObject clone = Instantiate(Rocket[i].MainRocket, Rocket[i].SpawnPoint.position, Rocket[i].SpawnPoint.rotation) as GameObject;
                     Rocket[i].NextFireTime = Time.time + Rocket[i].FireRate;
                     clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
                     clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+                }
+            }
+        }
+        AnimStateInfo = ControllAnima.Animators.GetCurrentAnimatorStateInfo(0);
+        if (ControllAnima.Animators != null)
+        {
+            if (Rocket.Count >= 3 && Time.time >= (Rocket[LaserIndex].NextFireTime + Rocket[LaserIndex].FireRate) && laserDone)
+            {
+                ControllAnima.Animators.SetBool(ControllAnima.AniamName[4], false);
+                ControllAnima.Animators.SetBool(ControllAnima.AniamName[0], true);
+                if (AnimStateInfo.normalizedTime >= 1.0f && AnimStateInfo.IsName(ControllAnima.AniamName[1]))
+                {
+                    laserDone = false;
+                    ControllAnima.Animators.SetBool(ControllAnima.AniamName[0], false);
+                    ControllAnima.Animators.SetBool(ControllAnima.AniamName[2], true);
+                    clone3 = Instantiate(Rocket[LaserIndex].MainRocket, Rocket[LaserIndex].SpawnPoint.position, Rocket[LaserIndex].SpawnPoint.rotation, transform) as GameObject;
+                }
+            }
+            if (AnimStateInfo.normalizedTime >= 15.0f && AnimStateInfo.IsName(ControllAnima.AniamName[3]) && laserDone == false)
+            {
+                Destroy(clone3);
+                laserDone = true;
+                ControllAnima.Animators.SetBool(ControllAnima.AniamName[2], false);
+                ControllAnima.Animators.SetBool(ControllAnima.AniamName[4], true);
+                Rocket[LaserIndex].NextFireTime = Time.time + Rocket[LaserIndex].FireRate;
+            }
+            else
+            {
+                if (clone3 != null)
+                {
+                    clone3.transform.position = Rocket[LaserIndex].SpawnPoint.position;
+                    clone3.transform.rotation = transform.rotation;
                 }
             }
         }

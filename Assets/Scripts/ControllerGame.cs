@@ -267,7 +267,6 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount, 47);
         DialogEnd(onCount, 51);
         DialogEnd(onCount, 55);
-
         DialogEnd(onCount, 59);
         DialogEnd(onCount, 63);
         DialogEnd(onCount, 66);
@@ -294,7 +293,6 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 10) ControllerDialogs.ShowNextDialog(46);
         if (LevelCount == 11) ControllerDialogs.ShowNextDialog(48);
         if (LevelCount == 12) ControllerDialogs.ShowNextDialog(52);
-
         if (LevelCount == 13) ControllerDialogs.ShowNextDialog(56);
         if (LevelCount == 14) ControllerDialogs.ShowNextDialog(60);
         if (LevelCount == 15) ControllerDialogs.ShowNextDialog(64);
@@ -403,6 +401,8 @@ public class ControllerGame : MonoBehaviour
         if (ship3) pickShip = 2;
         if (ship4) pickShip = 3;
         if (ship5) pickShip = 4;
+
+        if(LevelCount == 22 || LevelCount == 23) pickShip = 5;
 
         if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
