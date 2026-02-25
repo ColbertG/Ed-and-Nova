@@ -377,7 +377,7 @@ MonoBehaviour:
   HP: 10
   DP: 1
   Rewards: 0
-  Explosion: {fileID: 5122423325501309189, guid: a82de14bc13a0374d894aa267957e0dc,
+  Explosion: {fileID: 9128188223613443230, guid: 9cbd81807c92ffa4394818ed0c91071d,
     type: 3}
 --- !u!95 &8890216151629343305
 Animator:
@@ -789,6 +789,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8166623199105568466, guid: d2accb3e6c031a54eab861c1d7829473,
+        type: 3}
+      propertyPath: Explosion
+      value: 
+      objectReference: {fileID: 9128188223613443230, guid: 9cbd81807c92ffa4394818ed0c91071d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2accb3e6c031a54eab861c1d7829473, type: 3}
 --- !u!1 &1244627474948751059 stripped
@@ -870,6 +876,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8166623199105568466, guid: d2accb3e6c031a54eab861c1d7829473,
+        type: 3}
+      propertyPath: Explosion
+      value: 
+      objectReference: {fileID: 9128188223613443230, guid: 9cbd81807c92ffa4394818ed0c91071d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2accb3e6c031a54eab861c1d7829473, type: 3}
 --- !u!1 &6940309810656742734 stripped

@@ -199,6 +199,10 @@ MonoBehaviour:
   ShipCpu:
   - {fileID: 2631355678464195149}
   - {fileID: 6144222509127733069}
+  ControllAnima:
+    Animators: {fileID: 0}
+    AniamName: []
+  LaserIndex: -1
 --- !u!60 &6034838361564893536
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ public class ControllerGame : MonoBehaviour
     public static bool PlayerBarrierActive = false;
     GameObject BossClone = null;
 
-    int XCount = 0;
+    int CountLevelSpawn = 0;
 
     private void OnApplicationQuit()
     {
@@ -130,7 +130,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 20 && !LevelComplete) Level20();
                 if (LevelCount == 21 && !LevelComplete) Level21();
                 if (LevelCount == 22 && !LevelComplete) Level22();
-                CheckPlayerHealth();
+                CheckHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
                 {
@@ -401,9 +401,8 @@ public class ControllerGame : MonoBehaviour
         if (ship3) pickShip = 2;
         if (ship4) pickShip = 3;
         if (ship5) pickShip = 4;
-
-        if(LevelCount == 22 || LevelCount == 23) pickShip = 5;
-
+        if(LevelCount == 22 || LevelCount == 24) pickShip = 5;
+        
         if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
@@ -443,7 +442,7 @@ public class ControllerGame : MonoBehaviour
         } 
         ControllerMenus[4].CloseMenu();
     }
-    void CheckPlayerHealth()
+    void CheckHealth()
     {
         if (Player != null)
         {
@@ -492,18 +491,13 @@ public class ControllerGame : MonoBehaviour
     {
         if (BossClone != null && Player != null)
         {
-            Player.SetTarget(BossClone.transform);
+            if (BossClone.GetComponent<SpriteRenderer>().color == Color.black)
+                Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+            else if (BossClone.GetComponent<SpriteRenderer>().color == Color.white)
+                Player.SetTarget(BossClone.transform);
             BossHp = BossClone.GetComponent<ColliderBoss>().HealthPoints();
             BossClone.GetComponent<ControllerBoss>().SetTarget(Player.gameObject.transform);
             BossHPBar.transform.position = Camera.main.WorldToScreenPoint(BossClone.transform.position);
-            //SpawnMeteors.FaceingMeteor(clone.GetComponent<ControllerBoss>().PickSpot());
-            //SpawnEnemies.FaceingEnemy(clone.GetComponent<ControllerBoss>().PickSpot());
-            //clone.GetComponent<SpriteRenderer>().color = Color.black;
-            //if(clone.GetComponent<SpriteRenderer>().color == Color.black)
-            //Player.SetTarget(null);
-            //else if(clone.GetComponent<SpriteRenderer>().color == Color.white)
-            //Player.SetTarget(clone.transform);
-            //clone.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
@@ -1568,7 +1562,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 16 start");
 
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset();
 
@@ -1592,20 +1586,20 @@ public class ControllerGame : MonoBehaviour
         }
         if (!FAB)
         {
-            if (XCount < SpawnEnemies.SpawnCounter())
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter())
             {
                 FAB = true;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(7, 6);
             SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
         }
         else
         {
-            if (XCount < SpawnEnemies.SpawnCounter())
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter())
             {
                 FAB = false;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(8, 7);
             SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
@@ -1726,7 +1720,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 18 start");
 
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset(2);
 
@@ -1751,10 +1745,10 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(0);
         if (!FAB)
         {
-            if (XCount < SpawnEnemies.SpawnCounter()) 
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter()) 
             {
                 FAB = true;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(9, 8); 
             if (Player != null)
@@ -1762,10 +1756,10 @@ public class ControllerGame : MonoBehaviour
         }
         if (FAB)
         {
-            if (XCount < SpawnEnemies.SpawnCounter())
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter())
             {
                 FAB = false;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(10, 9);
             if (Player != null)
@@ -1812,7 +1806,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 19 start");
 
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset();
 
@@ -1880,7 +1874,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 20 start");
 
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset();
 
@@ -1948,7 +1942,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 21 start");
 
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset();
 
@@ -1973,19 +1967,19 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
         if (!FAB)
         {
-            if (XCount < SpawnEnemies.SpawnCounter())
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter())
             {
                 FAB = true;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(11, 10);
         }
         else
         {
-            if (XCount < SpawnEnemies.SpawnCounter())
+            if (CountLevelSpawn < SpawnEnemies.SpawnCounter())
             {
                 FAB = false;
-                XCount = SpawnEnemies.SpawnCounter();
+                CountLevelSpawn = SpawnEnemies.SpawnCounter();
             }
             SpawnEnemies.SpawnLevel(12, 11);
         }
@@ -2031,7 +2025,7 @@ public class ControllerGame : MonoBehaviour
         {
             Debug.Log("Level 22 start");
             
-            XCount = 0;
+            CountLevelSpawn = 0;
 
             PlayerReset();
 
@@ -2078,19 +2072,19 @@ public class ControllerGame : MonoBehaviour
 
         if (!FAB)
         {
-            if (XCount < SpawnMeteors.SpawnCounter())
+            if (CountLevelSpawn < SpawnMeteors.SpawnCounter())
             {
                 FAB = true;
-                XCount = SpawnMeteors.SpawnCounter();
+                CountLevelSpawn = SpawnMeteors.SpawnCounter();
             }
             SpawnMeteors.FaceingMeteor(0);
         }
         else
         {
-            if (XCount < SpawnMeteors.SpawnCounter())
+            if (CountLevelSpawn < SpawnMeteors.SpawnCounter())
             {
                 FAB = false;
-                XCount = SpawnMeteors.SpawnCounter();
+                CountLevelSpawn = SpawnMeteors.SpawnCounter();
             }
             SpawnMeteors.FaceingMeteor(4);
         }

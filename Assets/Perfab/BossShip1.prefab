@@ -369,11 +369,14 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 8571681367372386522}
     NextFireTime: 0
+  LaserIndex: -1
   ControllAnima:
     Animators: {fileID: 0}
     AniamName: []
   MoveRateMin: 1
   MoveRateMax: 3
+  InvisibleTime: 0
+  InvisibleTimePause: 0
 --- !u!50 &2817963915746662392
 Rigidbody2D:
   serializedVersion: 4
@@ -410,7 +413,7 @@ MonoBehaviour:
   Score: 10000
   HP: 750
   DP: 1
-  Explosion: {fileID: 7909817640242931865, guid: 99f4c26c7f84fac48a46df87031f6d03,
+  Explosion: {fileID: 6936277213202394815, guid: 64a8b694af3219c49972c12675aabd09,
     type: 3}
 --- !u!61 &2817963915746662397
 BoxCollider2D:

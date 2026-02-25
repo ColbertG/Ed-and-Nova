@@ -27,11 +27,17 @@ public class ControllerBoss : MonoBehaviour
     [SerializeField]
     List<Rockets> Rocket;
     [SerializeField]
+    int LaserIndex = -1;
+    [SerializeField]
     ControllAnimator ControllAnima;
     [SerializeField]
     float MoveRateMin = 0.5f;
     [SerializeField]
     float MoveRateMax = 0.5f;
+    [SerializeField]
+    float InvisibleTime = 0.0f;
+    [SerializeField]
+    float InvisibleTimePause = 0.0f;
     AnimatorStateInfo AnimStateInfo;
     bool SpotsDone = false;
     bool laserDone = true;
@@ -41,10 +47,12 @@ public class ControllerBoss : MonoBehaviour
     Vector3[] SpotsBF = new Vector3[3];
     int pick = 2;
     GameObject clone3;
+    bool InvisibleActive = false;
+    float InvisiblePauseTime = 0.0f;
     void Awake()
     {
         SpotBoss();
-        SpotBossBF();
+        SpotBossSideToSide();
     }
     // Start is called before the first frame update
     void Start()
@@ -55,16 +63,34 @@ public class ControllerBoss : MonoBehaviour
     void Update()
     {
         if(ControllAnima.Animators != null)
-        AnimStateInfo = ControllAnima.Animators.GetCurrentAnimatorStateInfo(0);
+            AnimStateInfo = ControllAnima.Animators.GetCurrentAnimatorStateInfo(0);
         AnimatorControll();
         MovementBoss();
         LookAt();
+        if (!InvisibleActive && InvisibleTime != 0)
+        {
+            if (Time.time > InvisiblePauseTime) 
+            {
+                UnityEngine.Random.Range(5.0f, InvisibleTime);
+                StartCoroutine(InvisibleNow());
+            }
+        }
     }
     void LateUpdate()
     {
         SpotBoss();
     }
-
+    IEnumerator InvisibleNow()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        gameObject.GetComponent<ColliderBoss>().enabled = false;
+        InvisibleActive = true;
+        yield return new WaitForSeconds(InvisibleTime);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        gameObject.GetComponent<ColliderBoss>().enabled = true;
+        InvisiblePauseTime = Time.time + UnityEngine.Random.Range(5.0f, InvisibleTimePause);
+        InvisibleActive = false;
+    }
     void SpotBoss() 
     {
         float width = Screen.width;
@@ -75,7 +101,7 @@ public class ControllerBoss : MonoBehaviour
         Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height - 25, transform.position.z - Camera.main.transform.position.z));
         Spots[4] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height / 2, transform.position.z - Camera.main.transform.position.z));
     }
-    void SpotBossBF()
+    void SpotBossSideToSide()
     {
         float width = Screen.width;
         float height = Screen.height;
@@ -87,19 +113,18 @@ public class ControllerBoss : MonoBehaviour
     }
     void AnimatorControll() 
     {
-        if (Rocket.Count >= 1 && Time.time >= Rocket[0].NextFireTime)
+        for (int i = 0; i < Rocket.Count; i++)
         {
-            GameObject clone1 = Instantiate(Rocket[0].MainRocket, Rocket[0].SpawnPoint.position, Rocket[0].SpawnPoint.rotation) as GameObject;
-            Rocket[0].NextFireTime = Time.time + Rocket[0].FireRate;
-        }
-        if (Rocket.Count >= 2 && Time.time >= Rocket[1].NextFireTime)
-        {
-            GameObject clone2 = Instantiate(Rocket[1].MainRocket, Rocket[1].SpawnPoint.position, Rocket[1].SpawnPoint.rotation) as GameObject;
-            Rocket[1].NextFireTime = Time.time + Rocket[1].FireRate;
+            if (i == LaserIndex) continue;
+            if (Time.time >= Rocket[i].NextFireTime)
+            {
+                GameObject clone = Instantiate(Rocket[i].MainRocket, Rocket[i].SpawnPoint.position, Rocket[i].SpawnPoint.rotation) as GameObject;
+                Rocket[i].NextFireTime = Time.time + Rocket[i].FireRate;
+            }
         }
         if (ControllAnima.Animators != null)
         {
-            if (Rocket.Count >= 3 && Time.time >= (Rocket[2].NextFireTime + Rocket[2].FireRate) && laserDone)
+            if (Time.time >= (Rocket[LaserIndex].NextFireTime + Rocket[LaserIndex].FireRate) && laserDone)
             {
                 ControllAnima.Animators.SetBool(ControllAnima.AniamName[4], false);
                 ControllAnima.Animators.SetBool(ControllAnima.AniamName[0], true);
@@ -108,7 +133,7 @@ public class ControllerBoss : MonoBehaviour
                     laserDone = false;
                     ControllAnima.Animators.SetBool(ControllAnima.AniamName[0], false);
                     ControllAnima.Animators.SetBool(ControllAnima.AniamName[2], true);
-                    clone3 = Instantiate(Rocket[2].MainRocket, Rocket[2].SpawnPoint.position, Rocket[2].SpawnPoint.rotation, transform) as GameObject;
+                    clone3 = Instantiate(Rocket[LaserIndex].MainRocket, Rocket[LaserIndex].SpawnPoint.position, Rocket[LaserIndex].SpawnPoint.rotation, transform) as GameObject;
                 }
             }
             if (AnimStateInfo.normalizedTime >= 30.0f && AnimStateInfo.IsName(ControllAnima.AniamName[3]) && laserDone == false)
@@ -117,7 +142,7 @@ public class ControllerBoss : MonoBehaviour
                 laserDone = true;
                 ControllAnima.Animators.SetBool(ControllAnima.AniamName[2], false);
                 ControllAnima.Animators.SetBool(ControllAnima.AniamName[4], true);
-                Rocket[2].NextFireTime = Time.time + Rocket[2].FireRate;
+                Rocket[LaserIndex].NextFireTime = Time.time + Rocket[LaserIndex].FireRate;
             }
             else
             {
@@ -128,26 +153,12 @@ public class ControllerBoss : MonoBehaviour
                 }
             }
         }
-        else 
-        {
-            if (Rocket.Count >= 3 && Time.time >= Rocket[2].NextFireTime)
-            {
-                GameObject clone3 = Instantiate(Rocket[2].MainRocket, Rocket[2].SpawnPoint.position, Rocket[2].SpawnPoint.rotation) as GameObject;
-                Rocket[2].NextFireTime = Time.time + Rocket[2].FireRate;
-            }
-            if (Rocket.Count >= 4 && Time.time >= Rocket[3].NextFireTime)
-            {
-                GameObject clone4 = Instantiate(Rocket[3].MainRocket, Rocket[3].SpawnPoint.position, Rocket[3].SpawnPoint.rotation) as GameObject;
-                Rocket[3].NextFireTime = Time.time + Rocket[3].FireRate;
-            }
-        }
     }
     void MovementBoss() 
     {
         if ((string.Format("{0:0.00}", transform.position.magnitude) != string.Format("{0:0.00}", Spots[pick].magnitude)) && !SpotsDone)
         {
             transform.position = Vector3.Lerp(transform.position, Spots[pick], Speed * Time.deltaTime);
-            //Debug.Log("moving " + Mathf.Round(transform.position.magnitude) + " --> " + Mathf.Round(Spots[pick].magnitude));
         }
         else
         {
@@ -167,7 +178,7 @@ public class ControllerBoss : MonoBehaviour
                     {
                         transform.position = Vector3.Lerp(transform.position, SpotsBF[0], Speed * Time.deltaTime);
                     }
-                    else SpotBossBF();
+                    else SpotBossSideToSide();
                 }
                 if (pick == 2) 
                 {
@@ -175,7 +186,7 @@ public class ControllerBoss : MonoBehaviour
                     {
                         transform.position = Vector3.Lerp(transform.position, SpotsBF[1], Speed * Time.deltaTime);
                     }
-                    else SpotBossBF();
+                    else SpotBossSideToSide();
                 }
                 if (pick == 4) 
                 {
@@ -183,11 +194,10 @@ public class ControllerBoss : MonoBehaviour
                     {
                         transform.position = Vector3.Lerp(transform.position, SpotsBF[2], Speed * Time.deltaTime);
                     }
-                    else SpotBossBF();
+                    else SpotBossSideToSide();
                 }
 
             }
-            //Debug.Log("pick");
         }
     }
     void LookAt() 

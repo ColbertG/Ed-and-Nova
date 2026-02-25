@@ -22,7 +22,7 @@ public class ControllerPlayer : MonoBehaviour
     [SerializeField]
     ControllAnimator ControllAnima;
     [SerializeField]
-    int LaserIndex = 0;
+    int LaserIndex = -1;
     GameObject clone3;
     bool laserDone = true;
     AnimatorStateInfo AnimStateInfo;
@@ -147,9 +147,9 @@ public class ControllerPlayer : MonoBehaviour
                 }
             }
         }
-        AnimStateInfo = ControllAnima.Animators.GetCurrentAnimatorStateInfo(0);
         if (ControllAnima.Animators != null)
         {
+            AnimStateInfo = ControllAnima.Animators.GetCurrentAnimatorStateInfo(0);
             if (Rocket.Count >= 3 && Time.time >= (Rocket[LaserIndex].NextFireTime + Rocket[LaserIndex].FireRate) && laserDone)
             {
                 ControllAnima.Animators.SetBool(ControllAnima.AniamName[4], false);

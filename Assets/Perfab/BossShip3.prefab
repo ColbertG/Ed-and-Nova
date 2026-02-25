@@ -363,6 +363,7 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 4581042249177545442}
     NextFireTime: 0
+  LaserIndex: 2
   ControllAnima:
     Animators: {fileID: 4581042248794580668}
     AniamName:
@@ -373,6 +374,8 @@ MonoBehaviour:
     - LaserAttackEnd
   MoveRateMin: 1
   MoveRateMax: 2
+  InvisibleTime: 10
+  InvisibleTimePause: 15
 --- !u!50 &4581042248794580643
 Rigidbody2D:
   serializedVersion: 4
@@ -406,8 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3a26d989a15142aea1f829a85dca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  DP: 1
+  Score: 1
+  HP: 20000
+  DP: 20
+  Explosion: {fileID: 6936277213202394815, guid: 64a8b694af3219c49972c12675aabd09,
+    type: 3}
 --- !u!95 &4581042248794580668
 Animator:
   serializedVersion: 3
