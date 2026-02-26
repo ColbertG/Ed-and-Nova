@@ -43,7 +43,7 @@ public class ControllerEnemy : MonoBehaviour
         {
             if (Time.time > InvisiblePauseTime)
             {
-                TimeInvisible = UnityEngine.Random.Range(5.0f, InvisibleTime);
+                TimeInvisible = UnityEngine.Random.Range(2.0f, InvisibleTime);
                 StartCoroutine(InvisibleNow());
             }
         }

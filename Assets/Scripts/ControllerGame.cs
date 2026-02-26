@@ -132,6 +132,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 22 && !LevelComplete) Level22();
                 if (LevelCount == 23 && !LevelComplete) Level23();
                 if (LevelCount == 24 && !LevelComplete) Level24();
+                if (LevelCount == 25 && !LevelComplete) Level25();
                 CheckHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -2244,6 +2245,71 @@ public class ControllerGame : MonoBehaviour
         {
             MenuSetUp();
             Debug.Log("Level 24 Done");
+        }
+    }
+    public void Start25()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 25;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level25()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 25 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(1.00f);
+        }
+        SpawnEnemies.SpawnLevel(13, 12);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.00f, 3.75f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 25 Done");
         }
     }
 }

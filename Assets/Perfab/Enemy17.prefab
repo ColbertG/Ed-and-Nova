@@ -325,6 +325,8 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 3353809602306340502}
     NextFireTime: 0
+  InvisibleTime: 0
+  InvisibleTimePause: 0
 --- !u!114 &8621624572690167906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb25a55360a2994f9232cbecf48f9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 1750
+  Score: 2500
   DP: 1
   HP: 6
   Explosion: {fileID: 0}
