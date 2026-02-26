@@ -49,6 +49,7 @@ public class ControllerBoss : MonoBehaviour
     GameObject clone3;
     bool InvisibleActive = false;
     float InvisiblePauseTime = 0.0f;
+    float TimeInvisible = 0.0f;
     void Awake()
     {
         SpotBoss();
@@ -71,7 +72,7 @@ public class ControllerBoss : MonoBehaviour
         {
             if (Time.time > InvisiblePauseTime) 
             {
-                UnityEngine.Random.Range(5.0f, InvisibleTime);
+                TimeInvisible = UnityEngine.Random.Range(5.0f, InvisibleTime);
                 StartCoroutine(InvisibleNow());
             }
         }
@@ -85,7 +86,7 @@ public class ControllerBoss : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
         gameObject.GetComponent<ColliderBoss>().enabled = false;
         InvisibleActive = true;
-        yield return new WaitForSeconds(InvisibleTime);
+        yield return new WaitForSeconds(TimeInvisible);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         gameObject.GetComponent<ColliderBoss>().enabled = true;
         InvisiblePauseTime = Time.time + UnityEngine.Random.Range(5.0f, InvisibleTimePause);

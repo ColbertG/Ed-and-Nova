@@ -130,6 +130,8 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 20 && !LevelComplete) Level20();
                 if (LevelCount == 21 && !LevelComplete) Level21();
                 if (LevelCount == 22 && !LevelComplete) Level22();
+                if (LevelCount == 23 && !LevelComplete) Level23();
+                if (LevelCount == 24 && !LevelComplete) Level24();
                 CheckHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -401,7 +403,7 @@ public class ControllerGame : MonoBehaviour
         if (ship3) pickShip = 2;
         if (ship4) pickShip = 3;
         if (ship5) pickShip = 4;
-        if(LevelCount == 22 || LevelCount == 24) pickShip = 5;
+        if(LevelCount == 23 || LevelCount == 24) pickShip = 5;
         
         if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
@@ -2124,6 +2126,124 @@ public class ControllerGame : MonoBehaviour
             ControllerMenus[7].CloseMenu();
             MenuSetUp();
             Debug.Log("Level 22 Done");
+        }
+    }
+    public void Start23()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 23;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level23()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 23 start");
+
+            PlayerReset(2);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = false;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(7, 6);
+        SpawnMeteors.FaceingMeteor(0);
+        Player.AngleControll(SpawnMeteors.FaceingMeteor());
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 23 Done");
+        }
+    }
+    public void Start24()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 24;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level24()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 24 start");
+
+            PlayerReset(2);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = true;
+            SpawnEnemies.enabled = false;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+        }
+        SpawnMeteors.SpawnLevel(8, 6);
+        SpawnMeteors.FaceingMeteor(Random.Range(0, 3));
+        Player.AngleControll(-45);
+        if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
+        {
+            SpawnMeteors.SpawnCounter(true);
+            SpawnMeteors.enabled = false;
+            LevelSpawnMeteorsDone = true;
+        }
+        if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 24 Done");
         }
     }
 }

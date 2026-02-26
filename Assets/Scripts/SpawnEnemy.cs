@@ -110,6 +110,7 @@ public class SpawnEnemy : MonoBehaviour
         for(int i = EnemyCount.Count - 1; i >= 0; i--)
         {
             if (EnemyCount[i] == null) continue;
+            if (EnemyCount[i].GetComponent<SpriteRenderer>().color == Color.black) continue;
             float dis = Vector3.Distance(target.position, EnemyCount[i].transform.position);
             if (dis <= closet && dis > 0)
             {

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7796675044550041976}
   - component: {fileID: 3582861223727480123}
-  - component: {fileID: 2440030829977869182}
   - component: {fileID: 8506141183840403202}
+  - component: {fileID: 1592849221}
   m_Layer: 0
   m_Name: MeteorExplosion
   m_TagString: Untagged
@@ -83,25 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2440030829977869182
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6982078223586039960}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 551ab02c261daae4c82e0bba24b41dec, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8506141183840403202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,4 +95,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1687668aee9c71c45a4ffbcc1606f40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animators: {fileID: 2440030829977869182}
+  Animators: {fileID: 1592849221}
+  AnimationsName: Explosion3
+--- !u!95 &1592849221
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982078223586039960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cec87e9ad0cec2f448248b4520815cba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -12,7 +12,14 @@ public class ControllerEnemy : MonoBehaviour
     [SerializeField]
     float Speed = 1;
     [SerializeField]
-    List<Rockets> Rocket; 
+    List<Rockets> Rocket;
+    [SerializeField]
+    float InvisibleTime = 0.0f;
+    [SerializeField]
+    float InvisibleTimePause = 0.0f;
+    bool InvisibleActive = false;
+    float InvisiblePauseTime = 0.0f;
+    float TimeInvisible = 0.0f;
     Transform Target;
     bool TargetDone = false;
     float HoldLookforSec = 1;
@@ -32,6 +39,26 @@ public class ControllerEnemy : MonoBehaviour
             StartCoroutine(PlayerLookHold());
             TargetDone = false;
         }
+        if (!InvisibleActive && InvisibleTime != 0)
+        {
+            if (Time.time > InvisiblePauseTime)
+            {
+                TimeInvisible = UnityEngine.Random.Range(5.0f, InvisibleTime);
+                StartCoroutine(InvisibleNow());
+            }
+        }
+    }
+
+    IEnumerator InvisibleNow()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        gameObject.GetComponent<ColliderEnemy>().enabled = false;
+        InvisibleActive = true;
+        yield return new WaitForSeconds(TimeInvisible);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        gameObject.GetComponent<ColliderEnemy>().enabled = true;
+        InvisiblePauseTime = Time.time + UnityEngine.Random.Range(5.0f, InvisibleTimePause);
+        InvisibleActive = false;
     }
     void OffScreen() 
     {
