@@ -83,7 +83,7 @@ public class ControllerPlayer : MonoBehaviour
     }
     public void SetTarget(Transform Boss) 
     {
-        Target = Boss;
+       Target = Boss;
     }
     public float SetSpeed(int speed) 
     {
@@ -123,6 +123,7 @@ public class ControllerPlayer : MonoBehaviour
         {
             UnityEngine.Vector2 dir = Target.position - transform.position;
             float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+            Angle = angle * -1;
             transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, angle * -1)), Speed * Time.deltaTime);
         }
         else

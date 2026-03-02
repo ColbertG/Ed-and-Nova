@@ -84,11 +84,11 @@ public class ControllerBoss : MonoBehaviour
     IEnumerator InvisibleNow()
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
-        gameObject.GetComponent<ColliderBoss>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         InvisibleActive = true;
         yield return new WaitForSeconds(TimeInvisible);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        gameObject.GetComponent<ColliderBoss>().enabled = true;
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
         InvisiblePauseTime = Time.time + UnityEngine.Random.Range(5.0f, InvisibleTimePause);
         InvisibleActive = false;
     }

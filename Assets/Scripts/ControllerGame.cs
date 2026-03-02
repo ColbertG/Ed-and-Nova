@@ -2362,10 +2362,10 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.0f);
+            SpawnEnemies.SpawnRate(0.8f);
         }
         SpawnEnemies.SpawnLevel(14, 13);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        SpawnEnemies.FaceingEnemy(4);
         if (Player != null)
         {
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
@@ -2427,10 +2427,10 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.9f);
+            SpawnEnemies.SpawnRate(0.7f);
         }
         SpawnEnemies.SpawnLevel(15, 14);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        SpawnEnemies.FaceingEnemy(0);
         if (Player != null)
         {
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(4.5f, 5.25f));
@@ -2495,7 +2495,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnRate(0.9f);
         }
         SpawnEnemies.SpawnLevel(16, 15);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
         if (Player != null)
         {
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
@@ -2560,7 +2560,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnRate(0.8f);
         }
         SpawnEnemies.SpawnLevel(17, 16);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
         if (Player != null)
         {
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
@@ -2625,7 +2625,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnRate(0.8f);
         }
         SpawnEnemies.SpawnLevel(18, 17);
-        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
         if (Player != null)
         {
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));

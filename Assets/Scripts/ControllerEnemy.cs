@@ -52,11 +52,11 @@ public class ControllerEnemy : MonoBehaviour
     IEnumerator InvisibleNow()
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
-        gameObject.GetComponent<ColliderEnemy>().enabled = false;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         InvisibleActive = true;
         yield return new WaitForSeconds(TimeInvisible);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        gameObject.GetComponent<ColliderEnemy>().enabled = true;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
         InvisiblePauseTime = Time.time + UnityEngine.Random.Range(5.0f, InvisibleTimePause);
         InvisibleActive = false;
     }
