@@ -133,6 +133,12 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 23 && !LevelComplete) Level23();
                 if (LevelCount == 24 && !LevelComplete) Level24();
                 if (LevelCount == 25 && !LevelComplete) Level25();
+                if (LevelCount == 26 && !LevelComplete) Level26();
+                if (LevelCount == 27 && !LevelComplete) Level27();
+                if (LevelCount == 28 && !LevelComplete) Level28();
+                if (LevelCount == 29 && !LevelComplete) Level29();
+                if (LevelCount == 30 && !LevelComplete) Level30();
+                if (LevelCount == 31 && !LevelComplete) Level31();
                 CheckHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -2310,6 +2316,433 @@ public class ControllerGame : MonoBehaviour
         {
             MenuSetUp();
             Debug.Log("Level 25 Done");
+        }
+    }
+    public void Start26()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 26;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level26()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 26 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(1.0f);
+        }
+        SpawnEnemies.SpawnLevel(14, 13);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 26 Done");
+        }
+    }
+    public void Start27()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 27;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level27()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 27 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.9f);
+        }
+        SpawnEnemies.SpawnLevel(15, 14);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(4.5f, 5.25f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 27 Done");
+        }
+    }
+    public void Start28()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 28;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level28()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 28 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.9f);
+        }
+        SpawnEnemies.SpawnLevel(16, 15);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 225 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 28 Done");
+        }
+    }
+    public void Start29()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 29;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level29()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 29 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.8f);
+        }
+        SpawnEnemies.SpawnLevel(17, 16);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 29 Done");
+        }
+    }
+    public void Start30()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 30;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level30()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 30 start");
+
+            PlayerReset(1);
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(0.8f);
+        }
+        SpawnEnemies.SpawnLevel(18, 17);
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        if (Player != null)
+        {
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+        }
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 275 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
+        {
+            MenuSetUp();
+            Debug.Log("Level 30 Done");
+        }
+    }
+    public void Start31()
+    {
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 31;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level31()
+    {
+        if (!LevelSetUpDone)
+        {
+            Debug.Log("Level 31 start");
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            BossSpawn(2);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+            LevelBossDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(1.0f);
+
+        }
+
+        CheckBossTarget();
+
+        if (BossHp > BossHPStart / 3)
+        {
+            SpawnEnemies.SpawnLevel(15, 12);
+            if (Player != null)
+            {
+                SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(0.0f, 3.0f));
+            }
+        }
+        else 
+        {
+            SpawnEnemies.SpawnLevel(18, 15);
+            if (Player != null)
+            {
+                SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(0.75f, 3.0f));
+            }
+        }
+
+        SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
+        
+        if (PlayerHP <= 0 || BossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        {
+            SpawnEnemies.SpawnCounter(true);
+            SpawnEnemies.enabled = false;
+            LevelSpawnEnemiesDone = true;
+        }
+
+        if (BossHp <= BossHPStart / 3 && BossHp > 3333)
+        {
+            SpawnEnemies.SpawnRate(0.75f);
+            SpawnEnemies.enabled = true;
+        }
+        else if (LevelSpawnEnemiesDone)
+        {
+            SpawnEnemies.enabled = false;
+        }
+
+        if (BossHp <= 0 || PlayerHP <= 0)
+        {
+            LevelBossDone = true;
+            SpawnEnemies.SpawnRemover();
+        }
+        if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone && LevelBossDone)
+        {
+            Destroy(BossClone);
+            ControllerMenus[7].CloseMenu();
+            MenuSetUp();
+            Debug.Log("Level 31  Done");
         }
     }
 }

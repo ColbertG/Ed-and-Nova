@@ -169,7 +169,7 @@ MonoBehaviour:
   Score: 20000
   HP: 5000
   DP: 10
-  Explosion: {fileID: 6936277213202394815, guid: 64a8b694af3219c49972c12675aabd09,
+  Explosion: {fileID: 7909817640242931865, guid: 99f4c26c7f84fac48a46df87031f6d03,
     type: 3}
 --- !u!95 &8785932895108894795
 Animator:

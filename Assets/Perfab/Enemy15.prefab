@@ -724,32 +724,32 @@ MonoBehaviour:
   MoveTarget: {fileID: 5827389009849686941}
   Speed: 2
   Rocket:
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 6853016367066537945}
     NextFireTime: 0
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 7573366069518066786}
     NextFireTime: 0
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 8841258074780637930}
     NextFireTime: 0
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 8213857513486757080}
     NextFireTime: 0
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 3845602701003735706}
     NextFireTime: 0
-  - FireRate: 0.5
+  - FireRate: 0.8
     MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
       type: 3}
     SpawnPoint: {fileID: 6822547550374446746}
@@ -771,7 +771,8 @@ MonoBehaviour:
   Score: 2200
   DP: 1
   HP: 6
-  Explosion: {fileID: 0}
+  Explosion: {fileID: 4486038038609315083, guid: b684ed6c109f6b7448fe21e141a91c31,
+    type: 3}
   RandomDrops:
   - {fileID: 4508101694679297006, guid: 56926aaf91c5300469096a9c6af214fc, type: 3}
   - {fileID: 2106799606413924780, guid: 31c2410d8944c17419a006524423beb2, type: 3}
