@@ -83,7 +83,7 @@ public class ControllerPlayer : MonoBehaviour
     }
     public void SetTarget(Transform Boss) 
     {
-       Target = Boss;
+        Target = Boss;
     }
     public float SetSpeed(int speed) 
     {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 865168532954509248}
   - component: {fileID: 8856230277252446167}
   - component: {fileID: 9150999800281110759}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrier4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7868020758907901447}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlanetBarrier3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7868020759531635426}
   - component: {fileID: 7868020759531635425}
   - component: {fileID: 7868020759531635436}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

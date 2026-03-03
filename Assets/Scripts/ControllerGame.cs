@@ -82,6 +82,10 @@ public class ControllerGame : MonoBehaviour
         //PlayerPrefs.SetInt("scoreKeeper", 0);
 
         //PlayerPrefs.SetInt("levelCountOn", 1);
+
+        //PlayerPrefs.SetInt("playerKills", 0);
+        
+        //PlayerPrefs.SetInt("highScore", 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -94,15 +98,11 @@ public class ControllerGame : MonoBehaviour
         PointCount[0].text = PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000");
         PointCount[1].text = PlayerPrefs.GetInt("playerRp", 0).ToString("00000000000");
 
-        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000"); 
-        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
-        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
-        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
-
-
         PointCount[6].text = PlayerHP + " / " + PlayerHPStart;
         PointCount[7].text = PlayerRP + " / " + PlayerRPStart;
         PointCount[8].text = BossHp + " / " + BossHPStart;
+
+        PointCount[12].text = "HighScore::" + PlayerPrefs.GetInt("highScore", 0).ToString("00000000000000000");
 
         if (DialogDone) 
         {
@@ -237,6 +237,11 @@ public class ControllerGame : MonoBehaviour
 
     public void UpgradeMenu() 
     {
+        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000");
+        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
+        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
+        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
+
         ControllerMenus[1].CloseMenu();
 
         ControllerMenus[2].CloseMenu();
@@ -366,6 +371,7 @@ public class ControllerGame : MonoBehaviour
         DialogDone = false;
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
+        PlayerPrefs.SetInt("playerKills", 0);
     }
     public void PickLevel() 
     {
@@ -481,6 +487,12 @@ public class ControllerGame : MonoBehaviour
     }
     void EndGame() 
     {
+        PointCount[9].text = "Score::" + PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000000000000");
+        PointCount[10].text = "Kills::" + PlayerPrefs.GetInt("playerKills", 0).ToString("000000000000000000000");
+        int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
+        if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
+        PointCount[11].text = highScore.ToString("00000000000000000000000000");
+
         SpawnMeteors.SpawnRemover();
         SpawnBombs.SpawnRemover();
         SpawnEnemies.SpawnRemover();

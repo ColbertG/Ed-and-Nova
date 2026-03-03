@@ -37,7 +37,11 @@ public class ColliderEnemy : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
             HP = HP - collision.gameObject.GetComponent<ColliderPlayer>().DestructionPoints();
-            if (HP <= 0) Exploed = true;
+            if (HP <= 0)
+            {
+                Exploed = true;
+                PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
+            }
         }
         if (collision.gameObject.GetComponent<ColliderBarrier>() != null)
         {
@@ -55,7 +59,11 @@ public class ColliderEnemy : MonoBehaviour
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
 
                 PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
-                if (HP <= 0) Exploed = true;
+                if (HP <= 0) 
+                {
+                    Exploed = true;
+                    PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
+                }
             }
         }
         if (Exploed)

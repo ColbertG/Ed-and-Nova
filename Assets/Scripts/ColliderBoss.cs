@@ -26,6 +26,7 @@ public class ColliderBoss : MonoBehaviour
         if (HP <= 0)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
+            PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
             Destroy(gameObject);
         }
             
