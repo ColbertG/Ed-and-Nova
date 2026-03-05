@@ -41,6 +41,8 @@ public class ControllerGame : MonoBehaviour
     Sprite LevelIconsPass;
     [SerializeField]
     Sprite LevelIconsOn;
+    [SerializeField]
+    ControllerBackGroundPic BackGroundPics;
     bool StartGameNow = false;
     bool DialogDone = false;
     bool LevelComplete = false;
@@ -90,6 +92,8 @@ public class ControllerGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BackGroundPics.SetBackGround(0);
+        BackGroundPics.MoveToTarget(1, 2);
         ControllerMenus[0].OpenMenu();
     }
     // Update is called once per frame
@@ -389,6 +393,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void MainMenu() 
     {
+        BackGroundPics.SetBackGround(0);
+
         ControllerMenus[0].OpenMenu();
         ControllerMenus[1].CloseMenu();
         ControllerMenus[2].CloseMenu();
@@ -524,6 +530,8 @@ public class ControllerGame : MonoBehaviour
 
     public void Start1()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -581,6 +589,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start2()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -646,8 +656,10 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 2 Done");
         }
     }
-    public void Start3() 
+    public void Start3()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -715,6 +727,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start4()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -782,6 +796,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start5()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -849,6 +865,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start6()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -916,6 +934,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start7()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -992,6 +1012,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start8()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1061,6 +1083,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start9()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1133,6 +1157,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start10()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1203,6 +1229,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start11()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1273,6 +1301,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start12()
     {
+        BackGroundPics.SetBackGround(1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1365,6 +1395,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start13()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1426,6 +1458,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start14()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1487,6 +1521,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start15()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1560,6 +1596,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start16()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1644,6 +1682,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start17()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1718,6 +1758,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start18()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1804,6 +1846,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start19()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1872,6 +1916,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start20()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1940,6 +1986,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start21()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2023,6 +2071,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start22()
     {
+        BackGroundPics.SetBackGround(2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2149,6 +2199,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start23()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2208,6 +2260,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start24()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2267,6 +2321,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start25()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2332,6 +2388,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start26()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2397,6 +2455,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start27()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2462,6 +2522,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start28()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2527,6 +2589,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start29()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2592,6 +2656,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start30()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2657,6 +2723,8 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start31()
     {
+        BackGroundPics.SetBackGround(3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();

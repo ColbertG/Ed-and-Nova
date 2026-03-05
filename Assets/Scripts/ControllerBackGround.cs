@@ -23,7 +23,6 @@ public class ControllerBackGround : MonoBehaviour
         //height = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float tempX = (Cam.transform.position.x * (1 - ParallaxEffect));
