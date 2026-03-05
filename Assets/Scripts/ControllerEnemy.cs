@@ -64,8 +64,8 @@ public class ControllerEnemy : MonoBehaviour
     {
         float width = Screen.width;
         float height = Screen.height;
-        UnityEngine.Vector3 pos = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width, height, transform.position.z - Camera.main.transform.position.z));
-        UnityEngine.Vector3 pos2 = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width / width, height / height, transform.position.z - Camera.main.transform.position.z));
+        UnityEngine.Vector3 pos = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width, height, 1));
+        UnityEngine.Vector3 pos2 = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width / width, height / height, 1));
         if (MoveTarget != null) transform.position = UnityEngine.Vector3.MoveTowards(transform.position, MoveTarget.position, Speed * Time.deltaTime);
         if ((transform.position.x + 1) < pos2.x || (transform.position.x - 1) > pos.x) Destroy(gameObject);
         if ((transform.position.y + 1) < pos2.y || (transform.position.y - 1) > pos.y) Destroy(gameObject);

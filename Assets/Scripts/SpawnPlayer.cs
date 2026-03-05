@@ -65,19 +65,19 @@ public class SpawnPlayer : MonoBehaviour
             if (BottomSpawnSet)
             {
                 BottomSpawnSet = false;
-                Vector3 BottomSpawn = new Vector3(0, -4, 0);
+                Vector3 BottomSpawn = Camera.main.transform.position +  new Vector3(0, -4, 1);
                 clone = Instantiate(PlayerShips[LevelSpawn], BottomSpawn, Quaternion.Euler(0, 0, 0)) as GameObject;
             }
             if (LeftSpawnSet)
             {
                 LeftSpawnSet = false;
-                Vector3 LeftSpawn = new Vector3(-4, 0, 0);
+                Vector3 LeftSpawn = Camera.main.transform.position + new Vector3(-4, 0, 1);
                 clone = Instantiate(PlayerShips[LevelSpawn], LeftSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
             if (RightSpawnSet)
             {
                 RightSpawnSet = false;
-                Vector3 RightSpawn = new Vector3(4, 0, 0);
+                Vector3 RightSpawn = Camera.main.transform.position + new Vector3(4, 0, 1);
                 clone = Instantiate(PlayerShips[LevelSpawn], RightSpawn, Quaternion.Euler(0, 0, -90f)) as GameObject;
             }
             PlayerCount.Add(clone);

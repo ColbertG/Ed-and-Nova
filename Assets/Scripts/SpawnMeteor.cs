@@ -46,17 +46,17 @@ public class SpawnMeteor : MonoBehaviour
             int pickMeteor = Random.Range(LevelSpawnMin, LevelSpawn);
             if (TopSpawnSet) 
             {
-                Vector3 TopSpawn = new Vector3(Random.Range(Spots[0].x, Spots[1].x), Random.Range(Spots[0].y, Spots[1].y), 0);
+                Vector3 TopSpawn = new Vector3(Random.Range(Spots[0].x, Spots[1].x), Random.Range(Spots[0].y, Spots[1].y), 1);
                 clone = Instantiate(Meteor[pickMeteor], TopSpawn, Quaternion.Euler(0, 0, 180f)) as GameObject;
             }
             if (LeftSpawnSet) 
             {
-                Vector3 LeftSpawn = new Vector3(Spots[0].x, Random.Range(Spots[2].y, Spots[1].y), 0);
+                Vector3 LeftSpawn = new Vector3(Spots[0].x, Random.Range(Spots[2].y, Spots[1].y), 1);
                 clone = Instantiate(Meteor[pickMeteor], LeftSpawn, Quaternion.Euler(0, 0, -90f)) as GameObject;
             }
             if (RightSpawnSet) 
             {
-                Vector3 RightSpawn = new Vector3(Spots[3].x, Random.Range(Spots[3].y, Spots[1].y), 0);
+                Vector3 RightSpawn = new Vector3(Spots[3].x, Random.Range(Spots[3].y, Spots[1].y), 1);
                 clone = Instantiate(Meteor[pickMeteor], RightSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
             if (clone != null)

@@ -27,7 +27,6 @@ public class ControllerPlayer : MonoBehaviour
     bool laserDone = true;
     AnimatorStateInfo AnimStateInfo;
 
-
     float Angle;
     bool Cpu1 = false; 
     bool Cpu2 = false;
@@ -94,8 +93,8 @@ public class ControllerPlayer : MonoBehaviour
     {
         float width = Screen.width;
         float height = Screen.height;
-        UnityEngine.Vector3 pos = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width, height, transform.position.z - Camera.main.transform.position.z));
-        UnityEngine.Vector3 pos2 = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width / width, height / height, transform.position.z - Camera.main.transform.position.z));
+        UnityEngine.Vector3 pos = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width, height, 1));
+        UnityEngine.Vector3 pos2 = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(width / width, height / height, 1));
         if (transform.position.x > pos.x) transform.position = UnityEngine.Vector3.Lerp(transform.position, new UnityEngine.Vector3(transform.position.x - 1, transform.position.y, transform.position.z), Speed * Time.deltaTime);
         if (transform.position.y > pos.y) transform.position = UnityEngine.Vector3.Lerp(transform.position, new UnityEngine.Vector3(transform.position.x, transform.position.y - 1, transform.position.z), Speed * Time.deltaTime);
         if (transform.position.x < pos2.x) transform.position = UnityEngine.Vector3.Lerp(transform.position, new UnityEngine.Vector3(transform.position.x + 1, transform.position.y, transform.position.z), Speed * Time.deltaTime);
@@ -105,17 +104,20 @@ public class ControllerPlayer : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
+            transform.parent = null;
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
                 UnityEngine.Vector2 pos = touch.position;
-                UnityEngine.Vector3 position = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(pos.x, pos.y, transform.position.z - Camera.main.transform.position.z));
+                UnityEngine.Vector3 position = Camera.main.ScreenToWorldPoint(new UnityEngine.Vector3(pos.x, pos.y, 1));
 
                 //position the player
                 if (transform.position != position)
                     transform.position = UnityEngine.Vector3.Lerp(transform.position, position, Speed * Time.deltaTime);
             }
         }
+        else
+            transform.parent = Camera.main.transform;
     }
     void PlayerLook()
     {

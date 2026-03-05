@@ -326,6 +326,9 @@ public class ControllerGame : MonoBehaviour
 
     public void StartGame() 
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[0].CloseMenu();
 
         LevelCount = 1;
@@ -394,7 +397,8 @@ public class ControllerGame : MonoBehaviour
     public void MainMenu() 
     {
         BackGroundPics.SetBackGround(0);
-
+        BackGroundPics.MoveToTarget(1, 2);
+        if (Player != null) Player.AngleControll(-90);
         ControllerMenus[0].OpenMenu();
         ControllerMenus[1].CloseMenu();
         ControllerMenus[2].CloseMenu();
@@ -509,8 +513,9 @@ public class ControllerGame : MonoBehaviour
     {
         if (BossClone == null) 
         {
-            BossClone = Instantiate(Bosses[level].gameObject, transform.position, transform.rotation) as GameObject;
+            BossClone = Instantiate(Bosses[level].gameObject, transform.position + new Vector3(0, 0, 1), transform.rotation) as GameObject;
             BossHPStart = BossClone.GetComponent<ColliderBoss>().HealthPoints();
+            BossClone.GetComponent<SpriteRenderer>().color = Color.white;
             ControllerMenus[7].OpenMenu();
         }
     }
@@ -530,8 +535,6 @@ public class ControllerGame : MonoBehaviour
 
     public void Start1()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -554,7 +557,9 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 1 start");
-            
+
+            BackGroundPics.SetBackGround(1);
+
             PlayerReset();
 
             Player.SetTarget(null);
@@ -589,8 +594,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start2()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -613,7 +616,9 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 2 start");
-            
+
+            BackGroundPics.SetBackGround(1);
+
             PlayerReset();
             
             Player.SetTarget(null);
@@ -658,8 +663,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start3()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -682,6 +685,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 3 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset();
 
@@ -727,8 +732,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start4()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -751,6 +754,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 4 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset();
 
@@ -796,8 +801,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start5()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -820,6 +823,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 5 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset(3);
 
@@ -865,8 +870,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start6()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -889,6 +892,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 6 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset(3);
 
@@ -934,8 +939,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start7()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -958,6 +961,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 7 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset(3);
 
@@ -1012,8 +1017,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start8()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1036,6 +1039,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 8 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset(2);
 
@@ -1083,8 +1088,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start9()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1107,6 +1110,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 9 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset(2);
 
@@ -1157,8 +1162,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start10()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1181,6 +1184,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 10 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset();
 
@@ -1229,8 +1234,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start11()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1253,6 +1256,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 11 start");
+
+            BackGroundPics.SetBackGround(1);
 
             PlayerReset();
 
@@ -1301,8 +1306,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start12()
     {
-        BackGroundPics.SetBackGround(1);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1325,6 +1328,9 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 12 start");
+
+            BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset();
 
@@ -1395,8 +1401,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start13()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1419,6 +1423,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 13 start");
+
+            BackGroundPics.SetBackGround(2);
 
             PlayerReset(2);
 
@@ -1458,8 +1464,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start14()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1482,6 +1486,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 14 start");
+
+            BackGroundPics.SetBackGround(2);
 
             PlayerReset(1);
 
@@ -1521,8 +1527,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start15()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1545,6 +1549,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 15 start");
+
+            BackGroundPics.SetBackGround(2);
 
             PlayerReset(1);
 
@@ -1596,8 +1602,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start16()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1620,6 +1624,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 16 start");
+
+            BackGroundPics.SetBackGround(2);
 
             CountLevelSpawn = 0;
 
@@ -1682,8 +1688,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start17()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1706,6 +1710,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 17 start");
+
+            BackGroundPics.SetBackGround(2);
 
             PlayerReset();
 
@@ -1758,8 +1764,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start18()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1782,6 +1786,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 18 start");
+
+            BackGroundPics.SetBackGround(2);
 
             CountLevelSpawn = 0;
 
@@ -1846,8 +1852,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start19()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1870,6 +1874,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 19 start");
+
+            BackGroundPics.SetBackGround(2);
 
             CountLevelSpawn = 0;
 
@@ -1916,8 +1922,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start20()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1940,6 +1944,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 20 start");
+
+            BackGroundPics.SetBackGround(2);
 
             CountLevelSpawn = 0;
 
@@ -1986,8 +1992,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start21()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2010,6 +2014,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 21 start");
+
+            BackGroundPics.SetBackGround(2);
 
             CountLevelSpawn = 0;
 
@@ -2071,8 +2077,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start22()
     {
-        BackGroundPics.SetBackGround(2);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2095,7 +2099,9 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 22 start");
-            
+
+            BackGroundPics.SetBackGround(2);
+
             CountLevelSpawn = 0;
 
             PlayerReset();
@@ -2199,8 +2205,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start23()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2223,6 +2227,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 23 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(2);
 
@@ -2260,8 +2266,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start24()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2284,6 +2288,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 24 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(2);
 
@@ -2321,8 +2327,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start25()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2345,6 +2349,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 25 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2388,8 +2394,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start26()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2412,6 +2416,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 26 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2455,8 +2461,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start27()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2479,6 +2483,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 27 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2522,8 +2528,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start28()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2546,6 +2550,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 28 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2589,8 +2595,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start29()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2613,6 +2617,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 29 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2656,8 +2662,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start30()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2680,6 +2684,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 30 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset(1);
 
@@ -2723,8 +2729,6 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start31()
     {
-        BackGroundPics.SetBackGround(3);
-
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2747,6 +2751,8 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
             Debug.Log("Level 31 start");
+
+            BackGroundPics.SetBackGround(3);
 
             PlayerReset();
 

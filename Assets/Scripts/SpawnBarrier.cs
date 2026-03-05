@@ -28,19 +28,19 @@ public class SpawnBarrier : MonoBehaviour
             if (BottomSpawnSet)
             {
                 BottomSpawnSet = false;
-                Vector3 BottomSpawn = new Vector3(0, 0, 0);
+                Vector3 BottomSpawn = new Vector3(0, 0, 1);
                 clone = Instantiate(Barrier[LevelSpawn], BottomSpawn, Quaternion.Euler(0, 0, 0)) as GameObject;
             }
             if (LeftSpawnSet)
             {
                 LeftSpawnSet = false;
-                Vector3 LeftSpawn = new Vector3(0, 0, 0);
+                Vector3 LeftSpawn = new Vector3(0, 0, 1);
                 clone = Instantiate(Barrier[LevelSpawn], LeftSpawn, Quaternion.Euler(0, 0, -90f)) as GameObject;
             }
             if (RightSpawnSet)
             {
                 RightSpawnSet = false;
-                Vector3 RightSpawn = new Vector3(3, 0, 0);
+                Vector3 RightSpawn = new Vector3(3, 0, 1);
                 clone = Instantiate(Barrier[LevelSpawn], RightSpawn, Quaternion.Euler(0, 0, 90f)) as GameObject;
             }
             BarrierCount.Add(clone);

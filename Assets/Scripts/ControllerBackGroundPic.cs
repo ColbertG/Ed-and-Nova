@@ -22,7 +22,7 @@ public class ControllerBackGroundPic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MoveTarget != null) Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, MoveTarget.position, Speed * Time.deltaTime);
+        if (MoveTarget != null) Camera.main.transform.position = Vector2.MoveTowards(Camera.main.transform.position, MoveTarget.position, Speed * Time.deltaTime);
     }
     public void SetBackGround(int level) 
     {
@@ -41,8 +41,8 @@ public class ControllerBackGroundPic : MonoBehaviour
     {
         Speed = speed;
 
-        if (dir == 1) MoveTarget.position = new Vector3(10, 0, 0);
+        if (dir == 1) MoveTarget.position = Camera.main.transform.position + new Vector3(10, 0, 0);
 
-        if (dir == 2) MoveTarget.position = new Vector3(-10, 0, 0);
+        if (dir == 2) MoveTarget.position = Camera.main.transform.position + new Vector3(-10, 0, 0);
     }
 }

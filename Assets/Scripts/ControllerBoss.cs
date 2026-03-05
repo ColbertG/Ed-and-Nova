@@ -96,20 +96,20 @@ public class ControllerBoss : MonoBehaviour
     {
         float width = Screen.width;
         float height = Screen.height;
-        Spots[0] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height / 2, transform.position.z - Camera.main.transform.position.z));
-        Spots[1] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height - 25, transform.position.z - Camera.main.transform.position.z));
-        Spots[2] = Camera.main.ScreenToWorldPoint(new Vector3(width / 2, height - 25, transform.position.z - Camera.main.transform.position.z));
-        Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height - 25, transform.position.z - Camera.main.transform.position.z));
-        Spots[4] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height / 2, transform.position.z - Camera.main.transform.position.z));
+        Spots[0] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height / 2, 1));
+        Spots[1] = Camera.main.ScreenToWorldPoint(new Vector3(width - 25, height - 25, 1));
+        Spots[2] = Camera.main.ScreenToWorldPoint(new Vector3(width / 2, height - 25, 1));
+        Spots[3] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height - 25, 1));
+        Spots[4] = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, height / 2, 1));
     }
     void SpotBossSideToSide()
     {
         float width = Screen.width;
         float height = Screen.height;
-        Vector3 y = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, (height / height) + 25, transform.position.z - Camera.main.transform.position.z));
-        SpotsBF[0] = new Vector3(Spots[0].x, UnityEngine.Random.Range(y.y, Spots[1].y), 0);
-        SpotsBF[1] = new Vector3(UnityEngine.Random.Range(Spots[3].x, Spots[0].x), Spots[1].y, 0);
-        SpotsBF[2] = new Vector3(Spots[3].x, UnityEngine.Random.Range(y.y, Spots[1].y), 0);
+        Vector3 y = Camera.main.ScreenToWorldPoint(new Vector3((width / width) + 25, (height / height) + 25, 1));
+        SpotsBF[0] = new Vector3(Spots[0].x, UnityEngine.Random.Range(y.y, Spots[1].y), 1);
+        SpotsBF[1] = new Vector3(UnityEngine.Random.Range(Spots[3].x, Spots[0].x), Spots[1].y, 1);
+        SpotsBF[2] = new Vector3(Spots[3].x, UnityEngine.Random.Range(y.y, Spots[1].y), 1);
 
     }
     void AnimatorControll() 
