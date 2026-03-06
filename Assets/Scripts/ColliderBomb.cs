@@ -41,7 +41,11 @@ public class ColliderBomb : MonoBehaviour
             if (collision.gameObject.CompareTag("Player")) 
             {
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-                if (HP <= 0) Exploed = true;
+                if (HP <= 0) 
+                {
+                    Exploed = true;
+                    PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
+                } 
             }
                 
         }

@@ -21,6 +21,7 @@ public class ColliderMeteor : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderPlayerCpu>() != null)
         {
             Exploed = true;
+            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
         }
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
         {
@@ -38,6 +39,7 @@ public class ColliderMeteor : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null) 
         {
             Exploed = true;
+            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
         }
         if (collision.gameObject.GetComponent<ColliderBoss>() != null) 
         {
@@ -46,7 +48,12 @@ public class ColliderMeteor : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
         {
             HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-            if (HP <= 0) Exploed = true;
+            if (HP <= 0) 
+            {
+                Exploed = true; 
+                if (collision.gameObject.CompareTag("Player"))
+                    PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
+            }
         }
         if (Exploed) 
         {

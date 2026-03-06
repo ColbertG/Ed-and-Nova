@@ -357,11 +357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff4df1c12ca50f4a9d7b6777c5a49f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  DP: 1
+  HP: 50
+  DP: 5
   Rewards: 0
   Explosion: {fileID: 5122423325501309189, guid: a82de14bc13a0374d894aa267957e0dc,
     type: 3}
+  Crash: {fileID: 3343407359474021756, guid: 6f1c26bd60b78664fb11dddeb7b31ab7, type: 3}
 --- !u!95 &6584647701944677874
 Animator:
   serializedVersion: 3

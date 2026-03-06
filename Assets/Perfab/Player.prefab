@@ -278,6 +278,7 @@ MonoBehaviour:
   Rewards: 0
   Explosion: {fileID: 6182300570178345827, guid: a81073fa4c1135e488f2754afa3ea0ff,
     type: 3}
+  Crash: {fileID: 3343407359474021756, guid: 6f1c26bd60b78664fb11dddeb7b31ab7, type: 3}
 --- !u!95 &6675790930920799527
 Animator:
   serializedVersion: 3

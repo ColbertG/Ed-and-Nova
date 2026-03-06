@@ -213,11 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff4df1c12ca50f4a9d7b6777c5a49f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  DP: 1
+  HP: 20
+  DP: 2
   Rewards: 0
   Explosion: {fileID: 3038803282254849559, guid: e2205d35a8d62e84598c5d3d9f28331c,
     type: 3}
+  Crash: {fileID: 3343407359474021756, guid: 6f1c26bd60b78664fb11dddeb7b31ab7, type: 3}
 --- !u!95 &6034838361564893567
 Animator:
   serializedVersion: 3

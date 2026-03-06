@@ -12,10 +12,22 @@ public class ColliderPlayer : MonoBehaviour
     int Rewards = 0;
     [SerializeField]
     GameObject Explosion;
+    [SerializeField]
+    GameObject Crash;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ColliderEnemy>() != null)
+        if (collision.gameObject.GetComponent<ColliderEnemy>() != null) 
+        {
             HP = HP - collision.gameObject.GetComponent<ColliderEnemy>().DestructionPoints();
+            GameObject clone = Instantiate(Crash, transform.position, transform.rotation) as GameObject;
+        }
+
+        if (collision.gameObject.GetComponent<ColliderBoss>() != null) 
+        {
+            HP = HP - collision.gameObject.GetComponent<ColliderBoss>().DestructionPoints();
+            GameObject clone = Instantiate(Crash, transform.position, transform.rotation) as GameObject;
+        }
         if (collision.gameObject.GetComponent<ColliderLaser>() != null)
             HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
@@ -24,12 +36,10 @@ public class ColliderPlayer : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderMeteor>() != null) 
         {
             HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
-            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderMeteor>().ScorePoints());
         }
         if (collision.gameObject.GetComponent<ColliderBomb>() != null) 
         {
             HP = HP - collision.gameObject.GetComponent<ColliderBomb>().DestructionPoints();
-            PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderBomb>().ScorePoints());
         }
         if (HP <= 0) 
         {

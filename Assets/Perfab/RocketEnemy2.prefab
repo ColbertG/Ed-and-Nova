@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DP: 1
-  HP: 1
+  HP: 2
   Explosion: {fileID: 7909817640242931865, guid: 99f4c26c7f84fac48a46df87031f6d03,
     type: 3}
 --- !u!95 &8679695976270861122

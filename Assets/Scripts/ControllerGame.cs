@@ -68,26 +68,26 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt("playerHp", 90);
-        //PlayerPrefs.SetInt("playerDp", 8);
-        //PlayerPrefs.SetInt("rocketHp", 16);
-        //PlayerPrefs.SetInt("rocketDp", 16);
-        //PlayerPrefs.SetInt("playerSpeed", 13);
+        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerDp", 0);
+        PlayerPrefs.SetInt("rocketHp", 0);
+        PlayerPrefs.SetInt("rocketDp", 0);
+        PlayerPrefs.SetInt("playerSpeed", 0);
 
-        //PlayerPrefs.SetInt("playerHpLevel", 9);
-        //PlayerPrefs.SetInt("playerDpLevel", 8);
-        //PlayerPrefs.SetInt("rocketLevel", 16);
-        //PlayerPrefs.SetInt("playerSpeedLevel", 13);
+        PlayerPrefs.SetInt("playerHpLevel", 0);
+        PlayerPrefs.SetInt("playerDpLevel", 0);
+        PlayerPrefs.SetInt("rocketLevel", 0);
+        PlayerPrefs.SetInt("playerSpeedLevel", 0);
 
-        //PlayerPrefs.SetInt("playerRp", 0);
+        PlayerPrefs.SetInt("playerRp", 0);
 
-        //PlayerPrefs.SetInt("scoreKeeper", 0);
+        PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        //PlayerPrefs.SetInt("levelCountOn", 1);
+        PlayerPrefs.SetInt("levelCountOn", 1);
 
-        //PlayerPrefs.SetInt("playerKills", 0);
-        
-        //PlayerPrefs.SetInt("highScore", 0);
+        PlayerPrefs.SetInt("playerKills", 0);
+
+        PlayerPrefs.SetInt("highScore", 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -376,9 +376,6 @@ public class ControllerGame : MonoBehaviour
         StartGameNow = true;
         
         DialogDone = false;
-
-        PlayerPrefs.SetInt("scoreKeeper", 0);
-        PlayerPrefs.SetInt("playerKills", 0);
     }
     public void PickLevel() 
     {
@@ -430,6 +427,11 @@ public class ControllerGame : MonoBehaviour
         
         if (PlayerHP <= 0 || pickShipActive != pickShip) 
         {
+            if (PlayerHP <= 0) 
+            {
+                PlayerPrefs.SetInt("scoreKeeper", 0);
+                PlayerPrefs.SetInt("playerKills", 0);
+            }
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
 
@@ -502,6 +504,9 @@ public class ControllerGame : MonoBehaviour
         int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
         if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
         PointCount[11].text = highScore.ToString("00000000000000000000000000");
+        int crystalWon = highScore / 10000;
+        PointCount[13].text = "Crystal::" + crystalWon.ToString("00000000000000000");
+        PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") + crystalWon);
 
         SpawnMeteors.SpawnRemover();
         SpawnBombs.SpawnRemover();
@@ -559,6 +564,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 1 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset();
 
@@ -618,6 +624,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 2 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset();
             
@@ -687,6 +694,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 3 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset();
 
@@ -756,6 +764,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 4 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 2);
 
             PlayerReset();
 
@@ -825,7 +834,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 5 start");
 
             BackGroundPics.SetBackGround(1);
-
+            BackGroundPics.MoveToTarget(1, 1);
             PlayerReset(3);
 
             Player.SetTarget(null);
@@ -894,6 +903,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 6 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 1);
 
             PlayerReset(3);
 
@@ -963,6 +973,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 7 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset(3);
 
@@ -1041,6 +1052,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 8 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(2, 1);
 
             PlayerReset(2);
 
@@ -1112,6 +1124,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 9 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(2, 1);
 
             PlayerReset(2);
 
@@ -1186,6 +1199,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 10 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(2, 1);
 
             PlayerReset();
 
@@ -1258,6 +1272,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 11 start");
 
             BackGroundPics.SetBackGround(1);
+            BackGroundPics.MoveToTarget(2, 0);
 
             PlayerReset();
 

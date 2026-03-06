@@ -38,7 +38,6 @@ public class ColliderRocket : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
-                PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderBoss>().ScorePoints());
                 Exploed = true;
             }
         }
@@ -53,10 +52,6 @@ public class ColliderRocket : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderMeteor>() != null)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
-            if (gameObject.CompareTag("Player")) 
-            {
-                PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + collision.gameObject.GetComponent<ColliderMeteor>().ScorePoints());
-            }
             HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
             if (HP <= 0) Exploed = true;
         }
