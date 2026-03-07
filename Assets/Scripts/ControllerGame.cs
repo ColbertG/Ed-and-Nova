@@ -540,6 +540,9 @@ public class ControllerGame : MonoBehaviour
 
     public void Start1()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -600,6 +603,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start2()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -670,6 +676,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start3()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -740,6 +749,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start4()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -810,6 +822,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start5()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -835,6 +850,7 @@ public class ControllerGame : MonoBehaviour
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 1);
+
             PlayerReset(3);
 
             Player.SetTarget(null);
@@ -879,6 +895,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start6()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -949,6 +968,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start7()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1028,6 +1050,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start8()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(2, 1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1100,6 +1125,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start9()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(2, 1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1175,6 +1203,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start10()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(2, 1);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1248,6 +1279,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start11()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(2, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1321,6 +1355,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start12()
     {
+        BackGroundPics.SetBackGround(1);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1416,6 +1453,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start13()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1440,6 +1480,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 13 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 2);
 
             PlayerReset(2);
 
@@ -1479,6 +1520,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start14()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1503,6 +1547,8 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 14 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 2);
+
 
             PlayerReset(1);
 
@@ -1542,6 +1588,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start15()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1566,6 +1615,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 15 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 2);
 
             PlayerReset(1);
 
@@ -1617,6 +1667,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start16()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1641,6 +1694,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 16 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 0);
 
             CountLevelSpawn = 0;
 
@@ -1703,6 +1757,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start17()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(2, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1727,6 +1784,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 17 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(2, 2);
 
             PlayerReset();
 
@@ -1779,6 +1837,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start18()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1803,6 +1864,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 18 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 2);
 
             CountLevelSpawn = 0;
 
@@ -1867,6 +1929,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start19()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1891,6 +1956,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 19 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(1, 0);
 
             CountLevelSpawn = 0;
 
@@ -1921,7 +1987,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.LookAtPlayer(null, 0.0f);
         if (Player != null)
         {
-            Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
+            Player.AngleControll(0);
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 175 && !LevelSpawnEnemiesDone))
         {
@@ -1937,6 +2003,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start20()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(2, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -1961,6 +2030,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 20 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(2, 2);
 
             CountLevelSpawn = 0;
 
@@ -2007,6 +2077,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start21()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(2, 2);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2031,6 +2104,8 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 21 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(2, 2);
+
 
             CountLevelSpawn = 0;
 
@@ -2092,6 +2167,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start22()
     {
+        BackGroundPics.SetBackGround(2);
+        BackGroundPics.MoveToTarget(2, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2116,6 +2194,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 22 start");
 
             BackGroundPics.SetBackGround(2);
+            BackGroundPics.MoveToTarget(2, 0);
 
             CountLevelSpawn = 0;
 
@@ -2220,6 +2299,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start23()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(1, 3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2244,6 +2326,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 23 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(1, 3);
 
             PlayerReset(2);
 
@@ -2281,6 +2364,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start24()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(1, 3);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2305,6 +2391,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 24 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(1, 3);
 
             PlayerReset(2);
 
@@ -2342,6 +2429,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start25()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(2, 1.5f);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2366,6 +2456,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 25 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(2, 1.5f);
 
             PlayerReset(1);
 
@@ -2409,6 +2500,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start26()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(2, 1.5f);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2433,6 +2527,8 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 26 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(2, 1.5f);
+
 
             PlayerReset(1);
 
@@ -2476,6 +2572,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start27()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(1, 1.5f);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2500,6 +2599,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 27 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(1, 1.5f);
 
             PlayerReset(1);
 
@@ -2543,6 +2643,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start28()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(1, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2567,6 +2670,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 28 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(1, 0);
 
             PlayerReset(1);
 
@@ -2634,6 +2738,8 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 29 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(1, 1.5f);
+
 
             PlayerReset(1);
 
@@ -2677,6 +2783,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start30()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(2, 1.0f);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2701,6 +2810,7 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 30 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(2, 1.0f);
 
             PlayerReset(1);
 
@@ -2744,6 +2854,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start31()
     {
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(2, 0);
+
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2768,6 +2881,8 @@ public class ControllerGame : MonoBehaviour
             Debug.Log("Level 31 start");
 
             BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(2, 0);
+
 
             PlayerReset();
 

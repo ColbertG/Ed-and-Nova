@@ -247,7 +247,7 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 1209790748929389572}
     NextFireTime: 0
-  InvisibleTime: 4
+  InvisibleTime: 3
   InvisibleTimePause: 8
 --- !u!114 &7342087055950508941
 MonoBehaviour:
@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 2050
-  DP: 1
-  HP: 6
+  DP: 4
+  HP: 20
   Explosion: {fileID: 8031029682777709858, guid: b3375fa30006cc84ea2324e179da95d5,
     type: 3}
   RandomDrops:
