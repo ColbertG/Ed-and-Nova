@@ -52,6 +52,17 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnBombsDone = false;
     bool LevelBossDone = false;
     bool FAB = false;
+    
+    bool ScoreDone = false;
+    bool KillsDone = false;
+    bool highScoreDone = false;
+    bool CrystalDone = false;
+
+    int ShowScore = 0;
+    int ShowKills = 0;
+    int ShowHighScore = 0;
+    int ShowCrystal = 0;
+
     public int LevelCount { get; private set; } = 1;
     int BossHp = 0;
     int PlayerHP = 0;
@@ -154,6 +165,7 @@ public class ControllerGame : MonoBehaviour
             }
         }
     }
+
     public void HpUpgrade() 
     {
         if (PlayerRP < 20000) return;
@@ -431,6 +443,15 @@ public class ControllerGame : MonoBehaviour
             {
                 PlayerPrefs.SetInt("scoreKeeper", 0);
                 PlayerPrefs.SetInt("playerKills", 0);
+                ScoreDone = false;
+                KillsDone = false;
+                highScoreDone = false;
+                CrystalDone = false;
+
+                ShowScore = 0;
+                ShowKills = 0;
+                ShowHighScore = 0;
+                ShowCrystal = 0;
             }
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
@@ -499,13 +520,54 @@ public class ControllerGame : MonoBehaviour
     }
     void EndGame() 
     {
-        PointCount[9].text = "Score::" + PlayerPrefs.GetInt("scoreKeeper", 0).ToString("00000000000000000000");
-        PointCount[10].text = "Kills::" + PlayerPrefs.GetInt("playerKills", 0).ToString("000000000000000000000");
+        int score = PlayerPrefs.GetInt("scoreKeeper", 0);
+        if (score > ShowScore && !ScoreDone)
+        {
+            ShowScore += 10000;
+        }
+        else 
+        {
+            ShowScore = score;
+            ScoreDone = true;
+        }
+        PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
+
+        int kills = PlayerPrefs.GetInt("playerKills", 0);
+        if (kills > ShowKills && ScoreDone && !KillsDone)
+        {
+            ShowKills += 100;
+        }
+        else
+        {
+            ShowKills = kills;
+            KillsDone = true;
+        }
+        PointCount[10].text = "Kills::" + ShowKills.ToString("000000000000000000000");
+
         int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
         if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
-        PointCount[11].text = highScore.ToString("00000000000000000000000000");
+        if (highScore > ShowHighScore && KillsDone && !highScoreDone)
+        {
+            ShowHighScore += 100000;
+        }
+        else
+        {
+            ShowHighScore = highScore;
+            highScoreDone = true;
+        }
+        PointCount[11].text = ShowHighScore.ToString("00000000000000000000000000");
+        
         int crystalWon = highScore / 10000;
-        PointCount[13].text = "Crystal::" + crystalWon.ToString("00000000000000000");
+        if (crystalWon > ShowCrystal && highScoreDone && !CrystalDone)
+        {
+            ShowCrystal += 10;
+        }
+        else
+        {
+            ShowCrystal = crystalWon;
+            CrystalDone = true;
+        }
+        PointCount[13].text = "Crystal::" + ShowCrystal.ToString("00000000000000000");
         PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") + crystalWon);
 
         SpawnMeteors.SpawnRemover();
