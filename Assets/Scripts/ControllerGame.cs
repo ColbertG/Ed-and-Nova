@@ -52,11 +52,8 @@ public class ControllerGame : MonoBehaviour
     bool LevelSpawnBombsDone = false;
     bool LevelBossDone = false;
     bool FAB = false;
-    
-    bool ScoreDone = false;
-    bool KillsDone = false;
-    bool highScoreDone = false;
-    bool CrystalDone = false;
+
+    bool GamePointsDone = false;
 
     int ShowScore = 0;
     int ShowKills = 0;
@@ -443,10 +440,6 @@ public class ControllerGame : MonoBehaviour
             {
                 PlayerPrefs.SetInt("scoreKeeper", 0);
                 PlayerPrefs.SetInt("playerKills", 0);
-                ScoreDone = false;
-                KillsDone = false;
-                highScoreDone = false;
-                CrystalDone = false;
 
                 ShowScore = 0;
                 ShowKills = 0;
@@ -521,54 +514,46 @@ public class ControllerGame : MonoBehaviour
     void EndGame() 
     {
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
-        if (score > ShowScore && !ScoreDone)
+        int kills = PlayerPrefs.GetInt("playerKills", 0);
+        int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
+        int crystalWon = highScore / 10000;
+
+        if (score > ShowScore)
         {
-            ShowScore += 10000;
+            ShowScore += (score/200) + 1;
         }
-        else 
+        else if (kills > ShowKills)
         {
             ShowScore = score;
-            ScoreDone = true;
+            ShowKills += (kills/200) + 1;
         }
-        PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
-
-        int kills = PlayerPrefs.GetInt("playerKills", 0);
-        if (kills > ShowKills && ScoreDone && !KillsDone)
-        {
-            ShowKills += 100;
-        }
-        else
+        else if (highScore > ShowHighScore)
         {
             ShowKills = kills;
-            KillsDone = true;
+            ShowHighScore += (highScore/200) + 1;
         }
-        PointCount[10].text = "Kills::" + ShowKills.ToString("000000000000000000000");
-
-        int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
-        if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
-        if (highScore > ShowHighScore && KillsDone && !highScoreDone)
-        {
-            ShowHighScore += 100000;
-        }
-        else
+        else if (crystalWon > ShowCrystal)
         {
             ShowHighScore = highScore;
-            highScoreDone = true;
+            ShowCrystal += (crystalWon/200) + 1;
         }
-        PointCount[11].text = ShowHighScore.ToString("00000000000000000000000000");
-        
-        int crystalWon = highScore / 10000;
-        if (crystalWon > ShowCrystal && highScoreDone && !CrystalDone)
-        {
-            ShowCrystal += 10;
-        }
-        else
+        else if (ShowCrystal != crystalWon)
         {
             ShowCrystal = crystalWon;
-            CrystalDone = true;
+            GamePointsDone = true;
         }
+
+        PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
+        PointCount[10].text = "Kills::" + ShowKills.ToString("000000000000000000000");
+        PointCount[11].text = ShowHighScore.ToString("00000000000000000000000000");
         PointCount[13].text = "Crystal::" + ShowCrystal.ToString("00000000000000000");
-        PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") + crystalWon);
+        
+        if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
+        if (GamePointsDone) 
+        {
+            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") + crystalWon);
+            GamePointsDone = false;
+        } 
 
         SpawnMeteors.SpawnRemover();
         SpawnBombs.SpawnRemover();
