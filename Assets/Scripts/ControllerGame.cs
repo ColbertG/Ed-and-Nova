@@ -41,6 +41,8 @@ public class ControllerGame : MonoBehaviour
     ControllerBackGroundPic BackGroundPics;
     [SerializeField]
     GameObject ShipLevelingUp;
+    [SerializeField]
+    ControllerSound Sound;
 
     bool StartGameNow = false;
     bool DialogDone = false;
@@ -105,6 +107,7 @@ public class ControllerGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(0);
         BackGroundPics.MoveToTarget(1, 2);
         ControllerMenus[0].OpenMenu();
@@ -183,6 +186,7 @@ public class ControllerGame : MonoBehaviour
 
         int level = PlayerPrefs.GetInt("playerHpLevel", 0) + 1;
         PlayerPrefs.SetInt("playerHpLevel", level);
+        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000");
 
         int newHP = PlayerPrefs.GetInt("playerHp", 0) + 10;
         PlayerPrefs.SetInt("playerHp", newHP); 
@@ -204,6 +208,7 @@ public class ControllerGame : MonoBehaviour
 
         int level = PlayerPrefs.GetInt("playerDpLevel", 0) + 1;
         PlayerPrefs.SetInt("playerDpLevel", level);
+        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
 
         int newDP = PlayerPrefs.GetInt("playerDp", 0) + 1;
         PlayerPrefs.SetInt("playerDp", newDP);
@@ -225,6 +230,7 @@ public class ControllerGame : MonoBehaviour
 
         int level = PlayerPrefs.GetInt("rocketLevel", 0) + 1;
         PlayerPrefs.SetInt("rocketLevel", level);
+        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
 
         int newHP = PlayerPrefs.GetInt("rocketHp", 0) + 1;
         int newDP = PlayerPrefs.GetInt("rocketDp", 0) + 1;
@@ -246,6 +252,7 @@ public class ControllerGame : MonoBehaviour
 
         int level = PlayerPrefs.GetInt("playerSpeedLevel", 0) + 1;
         PlayerPrefs.SetInt("playerSpeedLevel", level);
+        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
 
         int newSpeed = PlayerPrefs.GetInt("playerSpeed", 0) + 1;
         PlayerPrefs.SetInt("playerSpeed", newSpeed);
@@ -338,8 +345,9 @@ public class ControllerGame : MonoBehaviour
         ControllerDialogs.ShowDialog();
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -407,6 +415,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void MainMenu() 
     {
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(0);
         BackGroundPics.MoveToTarget(1, 2);
         if (Player != null) Player.AngleControll(-90);
@@ -450,6 +459,8 @@ public class ControllerGame : MonoBehaviour
                 ShowKills = 0;
                 ShowHighScore = 0;
                 ShowCrystal = 0;
+
+                GamePointsDone = false;
             }
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
@@ -563,10 +574,12 @@ public class ControllerGame : MonoBehaviour
             ShowHighScore = highScore;
             ShowCrystal += (crystalWon/200) + 1;
         }
-        else if (ShowCrystal != crystalWon)
+        else if (!GamePointsDone)
         {
             ShowCrystal = crystalWon;
             GamePointsDone = true;
+            PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + ShowCrystal));
+            if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
         }
 
         PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
@@ -574,13 +587,7 @@ public class ControllerGame : MonoBehaviour
         PointCount[11].text = ShowHighScore.ToString("00000000000000000000000000");
         PointCount[13].text = "Crystal::" + ShowCrystal.ToString("00000000000000000");
         
-        if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
-        if (GamePointsDone) 
-        {
-            PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") + crystalWon);
-            GamePointsDone = false;
-        } 
-
+        
         SpawnMeteors.SpawnRemover();
         SpawnBombs.SpawnRemover();
         SpawnEnemies.SpawnRemover();
@@ -613,6 +620,7 @@ public class ControllerGame : MonoBehaviour
 
     public void Start1()
     {
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -637,6 +645,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -1406,6 +1415,7 @@ public class ControllerGame : MonoBehaviour
     public void Start12()
     {
         BackGroundPics.SetBackGround(1);
+        BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
         ControllerMenus[6].CloseMenu();
@@ -1501,6 +1511,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start13()
     {
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -2327,6 +2338,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start23()
     {
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 3);
 
@@ -2351,7 +2363,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 3);
 
