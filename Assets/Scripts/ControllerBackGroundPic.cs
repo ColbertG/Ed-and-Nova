@@ -28,7 +28,6 @@ public class ControllerBackGroundPic : MonoBehaviour
     {
         for (int i = 0; i < BackGroundObjects.Count; i++) 
         {
-            Debug.Log("seting");
             if(i == 0 || i == 3 || i == 6)
                 BackGroundObjects[i].GetComponent<SpriteRenderer>().sprite = backGroundSettings[level].BackGrounds[0];
             if (i == 1 || i == 4 || i == 7)

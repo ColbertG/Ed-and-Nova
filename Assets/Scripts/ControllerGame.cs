@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +39,9 @@ public class ControllerGame : MonoBehaviour
     Sprite LevelIconsOn;
     [SerializeField]
     ControllerBackGroundPic BackGroundPics;
+    [SerializeField]
+    GameObject ShipLevelingUp;
+
     bool StartGameNow = false;
     bool DialogDone = false;
     bool LevelComplete = false;
@@ -96,6 +95,12 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("playerKills", 0);
 
         PlayerPrefs.SetInt("highScore", 0);
+
+        PlayerPrefs.SetInt("Level2Up", 0);
+        PlayerPrefs.SetInt("Level3Up", 0);
+        PlayerPrefs.SetInt("Level4Up", 0);
+        PlayerPrefs.SetInt("Level5Up", 0);
+
     }
     // Start is called before the first frame update
     void Start()
@@ -428,7 +433,7 @@ public class ControllerGame : MonoBehaviour
         bool ship5 = (upgeade1 + upgrade2 + upgrade3 + upgrade4) >= 180;
 
         if (ship1) pickShip = 0;
-        if (ship2) pickShip = 1;
+        if (ship2) pickShip = 1; 
         if (ship3) pickShip = 2;
         if (ship4) pickShip = 3;
         if (ship5) pickShip = 4;
@@ -452,6 +457,27 @@ public class ControllerGame : MonoBehaviour
             SpawnPlayers.SpawnLevel(pickShip, pos);
 
             Player = SpawnPlayers.ActivePlayer().GetComponent<ControllerPlayer>();
+
+            if (PlayerPrefs.GetInt("Level2Up", 0) == 0 && pickShip == 1)
+            {
+                PlayerPrefs.SetInt("Level2Up", 1);
+                GameObject x = Instantiate(ShipLevelingUp, Player.transform.position, Player.transform.rotation) as GameObject;
+            }
+            if (PlayerPrefs.GetInt("Level3Up", 0) == 0 && pickShip == 2)
+            {
+                PlayerPrefs.SetInt("Level3Up", 1);
+                GameObject x = Instantiate(ShipLevelingUp, Player.transform.position, Player.transform.rotation) as GameObject;
+            }
+            if (PlayerPrefs.GetInt("Level4Up", 0) == 0 && pickShip == 3)
+            {
+                PlayerPrefs.SetInt("Level4Up", 1);
+                GameObject x = Instantiate(ShipLevelingUp, Player.transform.position, Player.transform.rotation) as GameObject;
+            }
+            if (PlayerPrefs.GetInt("Level5Up", 0) == 0 && pickShip == 4)
+            {
+                PlayerPrefs.SetInt("Level5Up", 1);
+                GameObject x = Instantiate(ShipLevelingUp, Player.transform.position, Player.transform.rotation) as GameObject;
+            }
 
             Player.gameObject.GetComponent<ColliderPlayer>().HealthPoints(PlayerPrefs.GetInt("playerHp", 0));
             Player.gameObject.GetComponent<ColliderPlayer>().DestructionPoints(PlayerPrefs.GetInt("playerDp", 0));
@@ -611,8 +637,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 1 start");
-
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -645,7 +669,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 1 Done");
         }
     }
     public void Start2()
@@ -674,7 +697,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 2 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
@@ -718,7 +740,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnBombs.BombDone() && LevelSpawnMeteorsDone && LevelSpawnBombsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 2 Done");
         }
     }
     public void Start3()
@@ -747,7 +768,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 3 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
@@ -791,7 +811,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 3 Done");
         }
     }
     public void Start4()
@@ -820,7 +839,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 4 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 2);
@@ -864,7 +882,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 4 Done");
         }
     }
     public void Start5()
@@ -893,7 +910,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 5 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 1);
@@ -937,7 +953,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 5 Done");
         }
     }
     public void Start6()
@@ -966,7 +981,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 6 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 1);
@@ -1010,7 +1024,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 6 Done");
         }
     }
     public void Start7()
@@ -1039,7 +1052,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 7 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
@@ -1092,7 +1104,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && SpawnBombs.BombDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone && LevelSpawnBombsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 7 Done");
         }
     }
     public void Start8()
@@ -1121,7 +1132,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 8 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
@@ -1167,7 +1177,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 8 Done");
         }
     }
     public void Start9()
@@ -1196,7 +1205,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 9 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
@@ -1245,7 +1253,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 9 Done");
         }
     }
     public void Start10()
@@ -1274,7 +1281,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 10 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
@@ -1321,7 +1327,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 10 Done");
         }
     }
     public void Start11()
@@ -1350,7 +1355,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 11 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 0);
@@ -1397,7 +1401,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 11 Done");
         }
     }
     public void Start12()
@@ -1426,7 +1429,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 12 start");
 
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
@@ -1495,7 +1497,6 @@ public class ControllerGame : MonoBehaviour
             Destroy(BossClone);
             ControllerMenus[7].CloseMenu();
             MenuSetUp();
-            Debug.Log("Level 12  Done");
         }
     }
     public void Start13()
@@ -1524,7 +1525,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 13 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
@@ -1562,7 +1562,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 13 Done");
         }
     }
     public void Start14()
@@ -1591,7 +1590,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 14 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
@@ -1630,7 +1628,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 14 Done");
         }
     }
     public void Start15()
@@ -1659,7 +1656,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 15 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
@@ -1709,7 +1705,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && SpawnEnemies.EnemyDone() && LevelSpawnMeteorsDone && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 15 Done");
         }
     }
     public void Start16()
@@ -1738,7 +1733,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 16 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 0);
@@ -1799,7 +1793,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 16 Done");
         }
     }
     public void Start17()
@@ -1828,7 +1821,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 17 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 2);
@@ -1879,7 +1871,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 17 Done");
         }
     }
     public void Start18()
@@ -1908,7 +1899,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 18 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
@@ -1971,7 +1961,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 18 Done");
         }
     }
     public void Start19()
@@ -2000,7 +1989,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 19 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 0);
@@ -2045,7 +2033,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 19 Done");
         }
     }
     public void Start20()
@@ -2074,7 +2061,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 20 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 2);
@@ -2119,7 +2105,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 20 Done");
         }
     }
     public void Start21()
@@ -2148,7 +2133,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 21 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 2);
@@ -2209,7 +2193,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 21 Done");
         }
     }
     public void Start22()
@@ -2238,7 +2221,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 22 start");
 
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 0);
@@ -2341,7 +2323,6 @@ public class ControllerGame : MonoBehaviour
             Destroy(BossClone);
             ControllerMenus[7].CloseMenu();
             MenuSetUp();
-            Debug.Log("Level 22 Done");
         }
     }
     public void Start23()
@@ -2370,7 +2351,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 23 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 3);
@@ -2406,7 +2386,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 23 Done");
         }
     }
     public void Start24()
@@ -2435,7 +2414,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 24 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 3);
@@ -2471,7 +2449,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnMeteors.MeteorDone() && LevelSpawnMeteorsDone)
         {
             MenuSetUp();
-            Debug.Log("Level 24 Done");
         }
     }
     public void Start25()
@@ -2500,7 +2477,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 25 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.5f);
@@ -2542,7 +2518,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 25 Done");
         }
     }
     public void Start26()
@@ -2571,7 +2546,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 26 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.5f);
@@ -2614,7 +2588,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 26 Done");
         }
     }
     public void Start27()
@@ -2643,7 +2616,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 27 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 1.5f);
@@ -2685,7 +2657,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 27 Done");
         }
     }
     public void Start28()
@@ -2714,7 +2685,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 28 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 0);
@@ -2756,7 +2726,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 28 Done");
         }
     }
     public void Start29()
@@ -2782,7 +2751,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 29 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 1.5f);
@@ -2825,7 +2793,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 29 Done");
         }
     }
     public void Start30()
@@ -2854,7 +2821,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 30 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.0f);
@@ -2896,7 +2862,6 @@ public class ControllerGame : MonoBehaviour
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
-            Debug.Log("Level 30 Done");
         }
     }
     public void Start31()
@@ -2925,7 +2890,6 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-            Debug.Log("Level 31 start");
 
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 0);
@@ -3005,7 +2969,6 @@ public class ControllerGame : MonoBehaviour
             Destroy(BossClone);
             ControllerMenus[7].CloseMenu();
             MenuSetUp();
-            Debug.Log("Level 31  Done");
         }
     }
 }
