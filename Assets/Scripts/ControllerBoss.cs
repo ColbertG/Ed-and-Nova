@@ -121,6 +121,8 @@ public class ControllerBoss : MonoBehaviour
             {
                 GameObject clone = Instantiate(Rocket[i].MainRocket, Rocket[i].SpawnPoint.position, Rocket[i].SpawnPoint.rotation) as GameObject;
                 Rocket[i].NextFireTime = Time.time + Rocket[i].FireRate;
+
+                ControllerSound.Instance.RockFire();
             }
         }
         if (ControllAnima.Animators != null)

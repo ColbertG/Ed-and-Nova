@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 1
-  HP: 20000
+  HP: 1
   DP: 20
   Explosion: {fileID: 6936277213202394815, guid: 64a8b694af3219c49972c12675aabd09,
     type: 3}

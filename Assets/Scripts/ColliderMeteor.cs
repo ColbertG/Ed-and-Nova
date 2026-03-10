@@ -60,6 +60,7 @@ public class ColliderMeteor : MonoBehaviour
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             GameObject clone2 = Instantiate(Crystal, transform.position, transform.rotation) as GameObject;
             clone2.GetComponent<ControllerCrystal>().CrystalTarget(Target);
+            ControllerSound.Instance.MeteorExplosion();
             Exploed = false;
             Destroy(gameObject);
         }

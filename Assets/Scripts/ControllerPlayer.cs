@@ -147,6 +147,8 @@ public class ControllerPlayer : MonoBehaviour
                     Rocket[i].NextFireTime = Time.time + Rocket[i].FireRate;
                     clone.GetComponent<ColliderRocket>().DestructionPoints(PlayerPrefs.GetInt("rocketDp", 0));
                     clone.GetComponent<ColliderRocket>().HealthPoints(PlayerPrefs.GetInt("rocketHp", 0));
+
+                    ControllerSound.Instance.RockFire();
                 }
             }
         }

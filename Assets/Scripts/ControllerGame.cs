@@ -77,7 +77,7 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerHp", 1000);
         PlayerPrefs.SetInt("playerDp", 0);
         PlayerPrefs.SetInt("rocketHp", 0);
         PlayerPrefs.SetInt("rocketDp", 0);
@@ -363,7 +363,8 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[3].OpenMenu();
         DialogReset();
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if(PlayerHP <= 0 )
+            PlayerPrefs.SetInt("scoreKeeper", 0);
     }
     public void NextLevel()
     {
@@ -424,6 +425,10 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[2].CloseMenu();
         ControllerMenus[5].CloseMenu();
         ControllerMenus[6].CloseMenu();
+
+        SpawnMeteors.SpawnCounter(true);
+        SpawnEnemies.SpawnCounter(true);
+        SpawnBarriers.SpawnRemover();
     }
 
     void PlayerReset(int pos = 1) 
@@ -508,7 +513,8 @@ public class ControllerGame : MonoBehaviour
             ActiveButton[1].gameObject.SetActive(false);
             ActiveButton[0].gameObject.SetActive(true);
             ControllerMenus[2].OpenMenu();
-            LevelCount++;
+            if(LevelCount > 31) LevelCount++;
+            else LevelCount = 1;
             if (PlayerPrefs.GetInt("levelCountOn", 1) < LevelCount)
                 PlayerPrefs.SetInt("levelCountOn", LevelCount);
         }
@@ -631,7 +637,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 1;
         LevelSetUpDone = false;
@@ -692,7 +699,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 2;
         LevelSetUpDone = false;
@@ -763,7 +771,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 3;
         LevelSetUpDone = false;
@@ -834,7 +843,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 4;
         LevelSetUpDone = false;
@@ -905,7 +915,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 5;
         LevelSetUpDone = false;
@@ -976,7 +987,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 6;
         LevelSetUpDone = false;
@@ -1047,7 +1059,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 7;
         LevelSetUpDone = false;
@@ -1127,7 +1140,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 8;
         LevelSetUpDone = false;
@@ -1200,7 +1214,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 9;
         LevelSetUpDone = false;
@@ -1276,7 +1291,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 10;
         LevelSetUpDone = false;
@@ -1350,7 +1366,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 11;
         LevelSetUpDone = false;
@@ -1425,7 +1442,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 12;
         LevelSetUpDone = false;
@@ -1522,7 +1540,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 13;
         LevelSetUpDone = false;
@@ -1587,7 +1606,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 14;
         LevelSetUpDone = false;
@@ -1653,7 +1673,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 15;
         LevelSetUpDone = false;
@@ -1730,7 +1751,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 16;
         LevelSetUpDone = false;
@@ -1818,7 +1840,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 17;
         LevelSetUpDone = false;
@@ -1896,7 +1919,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 18;
         LevelSetUpDone = false;
@@ -1986,7 +2010,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 19;
         LevelSetUpDone = false;
@@ -2058,7 +2083,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 20;
         LevelSetUpDone = false;
@@ -2130,7 +2156,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 21;
         LevelSetUpDone = false;
@@ -2218,7 +2245,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 22;
         LevelSetUpDone = false;
@@ -2349,7 +2377,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 23;
         LevelSetUpDone = false;
@@ -2412,7 +2441,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 24;
         LevelSetUpDone = false;
@@ -2475,7 +2505,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 25;
         LevelSetUpDone = false;
@@ -2544,7 +2575,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 26;
         LevelSetUpDone = false;
@@ -2614,7 +2646,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 27;
         LevelSetUpDone = false;
@@ -2683,7 +2716,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 28;
         LevelSetUpDone = false;
@@ -2749,7 +2783,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 29;
         LevelSetUpDone = false;
@@ -2819,7 +2854,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 30;
         LevelSetUpDone = false;
@@ -2888,7 +2924,8 @@ public class ControllerGame : MonoBehaviour
 
         StartGameNow = true;
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
 
         LevelCount = 31;
         LevelSetUpDone = false;
