@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ControllerSound : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class ControllerSound : MonoBehaviour
     List<AudioClip> RandomGameClips;
 
     bool gameOverDone = false;
+    bool FireNowEnemy = false;
+    bool FireNow = false;
+    bool BombNow = false;
 
     void Awake()
     {
@@ -51,6 +55,24 @@ public class ControllerSound : MonoBehaviour
 
     }
 
+    IEnumerator EnemyFire()
+    {
+        FireNow = true;
+        yield return new WaitForSeconds(1.0f);
+        FireNow = false;
+    }
+    IEnumerator PlayerFire()
+    {
+        FireNow = true;
+        yield return new WaitForSeconds(0.25f);
+        FireNow = false;
+    }
+    IEnumerator BombFire()
+    {
+        FireNow = true;
+        yield return new WaitForSeconds(1.0f);
+        FireNow = false;
+    }
     public void BackGroundSound(int pick) 
     {
         if (pick == 1) BackGroundAudioSource.clip = BackGroundClips[0];
@@ -62,14 +84,24 @@ public class ControllerSound : MonoBehaviour
             BackGroundAudioSource.volume = 0.25f;
             BackGroundAudioSource.Play();
         }
-            
+
     }
-    public void RockFire() 
+    public void RockFire()
     {
-        if (RandomGameAudioSource != null && RandomGameClips[0] != null) 
+        if (RandomGameAudioSource != null && RandomGameClips[0] != null && !FireNow)
         {
-            RandomGameAudioSource.volume = 0.15f;
-            RandomGameAudioSource.PlayOneShot(RandomGameClips[0], 0.15f);
+            StartCoroutine(PlayerFire());
+            RandomGameAudioSource.volume = 0.25f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[0], 0.25f);
+        }
+    }
+    public void RockFireEnemy() 
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[11] != null && !FireNowEnemy) 
+        {
+            StartCoroutine(EnemyFire());
+            RandomGameAudioSource.volume = 0.25f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[11], 0.25f);
         }
     }
     public void MeteorExplosion() 
@@ -101,8 +133,9 @@ public class ControllerSound : MonoBehaviour
     }
     public void BombExplosion()
     {
-        if (RandomGameAudioSource != null && RandomGameClips[4] != null)
+        if (RandomGameAudioSource != null && RandomGameClips[4] != null && !BombNow)
         {
+            StartCoroutine(BombFire());
             RandomGameAudioSource.volume = 1.0f;
             RandomGameAudioSource.PlayOneShot(RandomGameClips[4], 1.0f);
         }
@@ -131,4 +164,69 @@ public class ControllerSound : MonoBehaviour
             RandomGameAudioSource.PlayOneShot(RandomGameClips[7], 0.5f);
         }
     }
+    public void ButtonPowerUps()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[8] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[8], 0.5f);
+        }
+    }
+    public void PauseResume()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[9] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[9], 0.5f);
+        }
+    }
+    public void Dialog()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[10] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[10], 0.5f);
+        }
+    }
+    public void HpPowerUps()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[12] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[12], 0.5f);
+        }
+    }
+    public void BarrierPowerUps()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[13] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[13], 0.5f);
+        }
+    }
+    public void DestroyPowerUps()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[14] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[14], 0.5f);
+        }
+    }
+    public void SlowDownPowerUps()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[15] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[15], 0.5f);
+        }
+    }
+    public void PlayerSheild()
+    {
+        if (RandomGameAudioSource != null && RandomGameClips[16] != null)
+        {
+            RandomGameAudioSource.volume = 0.5f;
+            RandomGameAudioSource.PlayOneShot(RandomGameClips[16], 0.5f);
+        }
+    }
+
 }

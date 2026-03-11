@@ -10,8 +10,9 @@ public class ColliderPowerUpBarrier : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
-            if (!ControllerGame.PlayerBarrierActive) 
+            if (!ControllerGame.PlayerBarrierActive)
             {
+                ControllerSound.Instance.BarrierPowerUps();
                 ControllerGame.PlayerBarrierActive = true;
                 GameObject clone = Instantiate(PlayerBarrier, transform.position, transform.rotation) as GameObject;
                 if (clone.GetComponent<ControllerPlayerBarrier>() != null)

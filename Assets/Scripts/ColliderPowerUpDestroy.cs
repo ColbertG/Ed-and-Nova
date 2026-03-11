@@ -8,6 +8,7 @@ public class ColliderPowerUpDestroy : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ControllerPlayer>() != null)
         {
+            ControllerSound.Instance.DestroyPowerUps();
             collision.gameObject.GetComponent<ControllerPlayer>().ActiveCpu();
             Destroy(gameObject);
         }

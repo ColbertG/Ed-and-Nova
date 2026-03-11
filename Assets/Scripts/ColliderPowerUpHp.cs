@@ -10,6 +10,7 @@ public class ColliderPowerUpHp : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
+            ControllerSound.Instance.HpPowerUps();
             collision.gameObject.GetComponent<ColliderPlayer>().HealthPoints(Hp);
             Destroy(gameObject);
         }

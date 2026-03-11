@@ -175,7 +175,8 @@ public class ControllerGame : MonoBehaviour
     public void HpUpgrade() 
     {
         if (PlayerRP < 20000) return;
-        else if (PlayerHP > 0)
+        ControllerSound.Instance.ButtonPowerUps();
+        if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-20000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
@@ -197,7 +198,8 @@ public class ControllerGame : MonoBehaviour
     public void DpUpgrade()
     {
         if (PlayerRP < 10000) return;
-        else if (PlayerHP > 0)
+        ControllerSound.Instance.ButtonPowerUps();
+        if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-10000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
@@ -219,7 +221,8 @@ public class ControllerGame : MonoBehaviour
     public void RocketUpgrade()
     {
         if (PlayerRP < 15000) return;
-        else if (PlayerHP > 0)
+        ControllerSound.Instance.ButtonPowerUps();
+        if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-15000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
@@ -241,7 +244,8 @@ public class ControllerGame : MonoBehaviour
     public void SpeedUpgrade()
     {
         if (PlayerRP < 5000) return;
-        else if (PlayerHP > 0)
+        ControllerSound.Instance.ButtonPowerUps();
+        if (PlayerHP > 0)
         {
             PlayerRP = Player.gameObject.GetComponent<ColliderPlayer>().RewardPoints(-5000);
             PlayerPrefs.SetInt("playerRp", PlayerRP);
@@ -278,6 +282,8 @@ public class ControllerGame : MonoBehaviour
 
     public void PauseResumeGame() 
     {
+
+        ControllerSound.Instance.PauseResume();
         Pause = !Pause;
         if (Pause) Time.timeScale = 0.0f;
         else Time.timeScale = 1.0f;
@@ -294,8 +300,10 @@ public class ControllerGame : MonoBehaviour
         if(onCount == 103)
             ControllerDialogs.ShowNextDialog(onCount--);
     }
-    public void NextDialog() 
-    {   int onCount = ControllerDialogs.ShowNextDialog();
+    public void NextDialog()
+    {
+        ControllerSound.Instance.Dialog();
+        int onCount = ControllerDialogs.ShowNextDialog();
         DialogEnd(onCount,6);
         DialogEnd(onCount,10);
         DialogEnd(onCount,15);

@@ -13,14 +13,21 @@ public class ColliderRocket : MonoBehaviour
     bool Exploed = false;
     void Start()
     {
-        ControllerSound.Instance.RockFire();
+        if (gameObject.CompareTag("Enemy"))
+            ControllerSound.Instance.RockFireEnemy();
+
+        if (gameObject.CompareTag("Player"))
+            ControllerSound.Instance.RockFire();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
         {
             if (gameObject.CompareTag("Enemy"))
+            {
+                ControllerSound.Instance.PlayerSheild();
                 Exploed = true;
+            }
         }
         if (collision.gameObject.GetComponent<ColliderBarrier>() != null)
         {

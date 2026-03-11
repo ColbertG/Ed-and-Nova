@@ -21,6 +21,7 @@ public class ColliderBomb : MonoBehaviour
         }
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
         {
+            ControllerSound.Instance.PlayerSheild();
             Exploed = true;
         }
         if (collision.gameObject.GetComponent<ColliderBarrier>() != null)

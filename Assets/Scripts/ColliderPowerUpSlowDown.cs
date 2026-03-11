@@ -8,8 +8,9 @@ public class ColliderPowerUpSlowDown : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ControllerPlayer>() != null)
         {
-            if (!ControllerPlayer.SlowDownActive) 
+            if (!ControllerPlayer.SlowDownActive)
             {
+                ControllerSound.Instance.SlowDownPowerUps();
                 ControllerPlayer.SlowDownActive = true;
                 float speedLast = collision.gameObject.GetComponent<ControllerPlayer>().SetSpeed(0);
                 float speedNow = speedLast - 1;

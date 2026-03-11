@@ -19,7 +19,10 @@ public class ColliderBoss : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
             HP = HP - collision.gameObject.GetComponent<ColliderPlayer>().DestructionPoints();
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
+        {
+            ControllerSound.Instance.PlayerSheild();
             HP = HP - collision.gameObject.GetComponent<ControllerPlayerBarrier>().DestructionPoints();
+        }
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
             if (collision.gameObject.CompareTag("Player"))
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
