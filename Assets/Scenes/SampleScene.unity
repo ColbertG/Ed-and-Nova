@@ -8748,6 +8748,12 @@ MonoBehaviour:
   RandomGameClips:
   - {fileID: 8300000, guid: 60e2d2b90a3ef094cb544fac041c385a, type: 3}
   - {fileID: 8300000, guid: aaca1e9bb476ad943a273e4ad3185850, type: 3}
+  - {fileID: 8300000, guid: e4690abef825d6f4e879eb57cf671578, type: 3}
+  - {fileID: 8300000, guid: 6175dbb4722e1164bb8d1bc023a07d46, type: 3}
+  - {fileID: 8300000, guid: 1413e59284a190442984eee2d6b36a4a, type: 3}
+  - {fileID: 8300000, guid: 4df5746acf067d34bb5629c261121009, type: 3}
+  - {fileID: 8300000, guid: c9d9452d264bb4541a9b2a51f408395c, type: 3}
+  - {fileID: 8300000, guid: 69a31f5aa0f9d5b42aa055612b0b86ac, type: 3}
 --- !u!4 &1068377042
 Transform:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class ColliderBoss : MonoBehaviour
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
             PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
+            ControllerSound.Instance.ShipExplosion();
             Destroy(gameObject);
         }
             

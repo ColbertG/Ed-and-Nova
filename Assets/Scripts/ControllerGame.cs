@@ -55,6 +55,7 @@ public class ControllerGame : MonoBehaviour
     bool FAB = false;
 
     bool GamePointsDone = false;
+    bool GameOverSound = false;
 
     int ShowScore = 0;
     int ShowKills = 0;
@@ -260,8 +261,9 @@ public class ControllerGame : MonoBehaviour
             Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
     }
 
-    public void UpgradeMenu() 
+    public void UpgradeMenu()
     {
+        ControllerSound.Instance.Button();
         PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000");
         PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
         PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
@@ -347,6 +349,7 @@ public class ControllerGame : MonoBehaviour
 
     public void StartGame()
     {
+        ControllerSound.Instance.Button();
         Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
@@ -368,6 +371,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void NextLevel()
     {
+        ControllerSound.Instance.Button();
         LevelSetUpDone = false;
         LevelComplete = false;
 
@@ -384,6 +388,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void ResetLevel()
     {
+        ControllerSound.Instance.Button();
         ActiveButton[1].gameObject.SetActive(false);
 
         ControllerMenus[1].CloseMenu();
@@ -400,8 +405,9 @@ public class ControllerGame : MonoBehaviour
         
         DialogDone = false;
     }
-    public void PickLevel() 
+    public void PickLevel()
     {
+        ControllerSound.Instance.Button();
         ControllerMenus[0].CloseMenu();
 
         ControllerMenus[6].OpenMenu();
@@ -414,8 +420,9 @@ public class ControllerGame : MonoBehaviour
                 LevelIcons[i].image.sprite = LevelIconsOn;
         }
     }
-    public void MainMenu() 
+    public void MainMenu()
     {
+        ControllerSound.Instance.Button();
         Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(0);
         BackGroundPics.MoveToTarget(1, 2);
@@ -466,6 +473,7 @@ public class ControllerGame : MonoBehaviour
                 ShowCrystal = 0;
 
                 GamePointsDone = false;
+                GameOverSound = false;
             }
             if (pickShipActive != pickShip && Player != null) Destroy(Player.gameObject);
             pickShipActive = pickShip;
@@ -513,7 +521,7 @@ public class ControllerGame : MonoBehaviour
             ActiveButton[1].gameObject.SetActive(false);
             ActiveButton[0].gameObject.SetActive(true);
             ControllerMenus[2].OpenMenu();
-            if(LevelCount > 31) LevelCount++;
+            if(LevelCount < 31) LevelCount++;
             else LevelCount = 1;
             if (PlayerPrefs.GetInt("levelCountOn", 1) < LevelCount)
                 PlayerPrefs.SetInt("levelCountOn", LevelCount);
@@ -554,8 +562,13 @@ public class ControllerGame : MonoBehaviour
         }
         else BossHp = 0;
     }
-    void EndGame() 
+    void EndGame()
     {
+        if (!GameOverSound) 
+        {
+            GameOverSound = true;
+            ControllerSound.Instance.GameOver();
+        } 
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
         int kills = PlayerPrefs.GetInt("playerKills", 0);
         int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
@@ -626,6 +639,7 @@ public class ControllerGame : MonoBehaviour
 
     public void Start1()
     {
+        ControllerSound.Instance.Button();
         Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
@@ -689,6 +703,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start2()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -761,6 +776,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start3()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -833,6 +849,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start4()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -905,6 +922,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start5()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 1);
 
@@ -977,6 +995,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start6()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 1);
 
@@ -1049,6 +1068,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start7()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -1130,6 +1150,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start8()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1204,6 +1225,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start9()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1281,6 +1303,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start10()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1356,6 +1379,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start11()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -1431,6 +1455,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start12()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
@@ -1529,6 +1554,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start13()
     {
+        ControllerSound.Instance.Button();
         Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
@@ -1596,6 +1622,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start14()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -1663,6 +1690,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start15()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -1741,6 +1769,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start16()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -1830,6 +1859,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start17()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -1909,6 +1939,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start18()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -2000,6 +2031,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start19()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -2073,6 +2105,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start20()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -2146,6 +2179,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start21()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -2235,6 +2269,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start22()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -2366,6 +2401,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start23()
     {
+        ControllerSound.Instance.Button();
         Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 3);
@@ -2431,6 +2467,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start24()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 3);
 
@@ -2495,6 +2532,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start25()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2565,6 +2603,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start26()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2636,6 +2675,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start27()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 1.5f);
 
@@ -2706,6 +2746,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start28()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -2776,6 +2817,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start29()
     {
+        ControllerSound.Instance.Button();
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2844,6 +2886,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start30()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.0f);
 
@@ -2914,6 +2957,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void Start31()
     {
+        ControllerSound.Instance.Button();
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 0);
 

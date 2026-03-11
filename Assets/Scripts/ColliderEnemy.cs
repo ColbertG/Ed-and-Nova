@@ -80,6 +80,7 @@ public class ColliderEnemy : MonoBehaviour
                     clone2.GetComponent<ControllerCrystal>().CrystalTarget(Target);
             }
             Exploed = false;
+            ControllerSound.Instance.ShipExplosion();
             Destroy(gameObject);
         }
     }

@@ -11,6 +11,10 @@ public class ColliderRocket : MonoBehaviour
     [SerializeField]
     GameObject Explosion;
     bool Exploed = false;
+    void Start()
+    {
+        ControllerSound.Instance.RockFire();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
@@ -67,6 +71,7 @@ public class ColliderRocket : MonoBehaviour
         if (Exploed || HP <= 0)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
+            ControllerSound.Instance.RocketExplosion();
             Exploed = false;
             Destroy(gameObject);
         }

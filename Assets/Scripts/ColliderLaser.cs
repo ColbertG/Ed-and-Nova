@@ -5,6 +5,10 @@ using UnityEngine;
 public class ColliderLaser : MonoBehaviour
 {   [SerializeField]
     int DP = 10;
+    private void Start()
+    {
+        ControllerSound.Instance.Laser();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

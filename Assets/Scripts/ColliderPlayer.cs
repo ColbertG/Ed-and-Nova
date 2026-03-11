@@ -44,6 +44,7 @@ public class ColliderPlayer : MonoBehaviour
         if (HP <= 0) 
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
+            ControllerSound.Instance.ShipExplosion();
             Destroy(gameObject);
         }
     }

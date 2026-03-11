@@ -51,6 +51,7 @@ public class ColliderBomb : MonoBehaviour
         }
         if (Exploed)
         {
+            ControllerSound.Instance.BombExplosion();
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             Exploed = false;
             Destroy(gameObject);
