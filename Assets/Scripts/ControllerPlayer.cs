@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public class ControllerPlayer : MonoBehaviour
 {

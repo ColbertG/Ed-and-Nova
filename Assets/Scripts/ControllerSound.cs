@@ -22,6 +22,7 @@ public class ControllerSound : MonoBehaviour
     bool FireNow = false;
     bool BombNow = false;
 
+
     void Awake()
     {
         if (Instance == null)
@@ -52,14 +53,13 @@ public class ControllerSound : MonoBehaviour
                 BackGroundAudioSource.Play();
             }
         }
-
     }
 
     IEnumerator EnemyFire()
     {
-        FireNow = true;
+        FireNowEnemy = true;
         yield return new WaitForSeconds(1.0f);
-        FireNow = false;
+        FireNowEnemy = false;
     }
     IEnumerator PlayerFire()
     {
@@ -69,10 +69,11 @@ public class ControllerSound : MonoBehaviour
     }
     IEnumerator BombFire()
     {
-        FireNow = true;
+        BombNow = true;
         yield return new WaitForSeconds(1.0f);
-        FireNow = false;
+        BombNow = false;
     }
+
     public void BackGroundSound(int pick) 
     {
         if (pick == 1) BackGroundAudioSource.clip = BackGroundClips[0];
@@ -91,16 +92,16 @@ public class ControllerSound : MonoBehaviour
         if (RandomGameAudioSource != null && RandomGameClips[0] != null && !FireNow)
         {
             StartCoroutine(PlayerFire());
-            RandomGameAudioSource.volume = 0.25f;
+            RandomGameAudioSource.volume = 1.0f;
             RandomGameAudioSource.PlayOneShot(RandomGameClips[0], 0.25f);
         }
     }
     public void RockFireEnemy() 
     {
-        if (RandomGameAudioSource != null && RandomGameClips[11] != null && !FireNowEnemy) 
+        if (RandomGameAudioSource != null && RandomGameClips[11] != null && !FireNowEnemy)
         {
             StartCoroutine(EnemyFire());
-            RandomGameAudioSource.volume = 0.25f;
+            RandomGameAudioSource.volume = 1.0f;
             RandomGameAudioSource.PlayOneShot(RandomGameClips[11], 0.25f);
         }
     }

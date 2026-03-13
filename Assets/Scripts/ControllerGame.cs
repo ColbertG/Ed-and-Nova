@@ -2589,7 +2589,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.00f);
+            SpawnEnemies.SpawnRate(1.50f);
         }
         SpawnEnemies.SpawnLevel(13, 12);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
@@ -2661,7 +2661,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.8f);
+            SpawnEnemies.SpawnRate(1.3f);
         }
         SpawnEnemies.SpawnLevel(14, 13);
         SpawnEnemies.FaceingEnemy(4);
@@ -2732,7 +2732,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.7f);
+            SpawnEnemies.SpawnRate(1.2f);
         }
         SpawnEnemies.SpawnLevel(15, 14);
         SpawnEnemies.FaceingEnemy(0);
@@ -2803,7 +2803,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.9f);
+            SpawnEnemies.SpawnRate(1.4f);
         }
         SpawnEnemies.SpawnLevel(16, 15);
         SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
@@ -2872,7 +2872,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.8f);
+            SpawnEnemies.SpawnRate(1.3f);
         }
         SpawnEnemies.SpawnLevel(17, 16);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
@@ -2943,7 +2943,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(0.8f);
+            SpawnEnemies.SpawnRate(1.3f);
         }
         SpawnEnemies.SpawnLevel(18, 17);
         SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
