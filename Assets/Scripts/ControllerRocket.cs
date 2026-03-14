@@ -11,7 +11,11 @@ public class ControllerRocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (gameObject.CompareTag("Enemy"))
+            ControllerSound.Instance.RockFireEnemy();
+
+        if (gameObject.CompareTag("Player"))
+            ControllerSound.Instance.RockFire();
     }
 
     // Update is called once per frame

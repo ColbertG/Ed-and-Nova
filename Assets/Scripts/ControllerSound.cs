@@ -21,7 +21,8 @@ public class ControllerSound : MonoBehaviour
     bool FireNowEnemy = false;
     bool FireNow = false;
     bool BombNow = false;
-
+    bool RocketExplosionNow = false;
+    bool MeteorExplosionNow = false;
 
     void Awake()
     {
@@ -64,7 +65,7 @@ public class ControllerSound : MonoBehaviour
     IEnumerator PlayerFire()
     {
         FireNow = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1.0f);
         FireNow = false;
     }
     IEnumerator BombFire()
@@ -72,6 +73,18 @@ public class ControllerSound : MonoBehaviour
         BombNow = true;
         yield return new WaitForSeconds(1.0f);
         BombNow = false;
+    }
+    IEnumerator RocketExplosionFire()
+    {
+        RocketExplosionNow = true;
+        yield return new WaitForSeconds(0.5f);
+        RocketExplosionNow = false;
+    }
+    IEnumerator MeteorExplosionFire()
+    {
+        MeteorExplosionNow = true;
+        yield return new WaitForSeconds(0.5f);
+        MeteorExplosionNow = false;
     }
 
     public void BackGroundSound(int pick) 
@@ -107,8 +120,9 @@ public class ControllerSound : MonoBehaviour
     }
     public void MeteorExplosion() 
     {
-        if (RandomGameAudioSource != null && RandomGameClips[1] != null)
+        if (RandomGameAudioSource != null && RandomGameClips[1] != null && !MeteorExplosionNow)
         {
+            StartCoroutine(MeteorExplosionFire());
             RandomGameAudioSource.volume = 0.15f;
             RandomGameAudioSource.PlayOneShot(RandomGameClips[1], 0.15f);
         }
@@ -126,8 +140,9 @@ public class ControllerSound : MonoBehaviour
     }
     public void RocketExplosion()
     {
-        if (RandomGameAudioSource != null && RandomGameClips[3] != null)
+        if (RandomGameAudioSource != null && RandomGameClips[3] != null && !RocketExplosionNow)
         {
+            StartCoroutine(RocketExplosionFire());
             RandomGameAudioSource.volume = 0.25f;
             RandomGameAudioSource.PlayOneShot(RandomGameClips[3], 0.25f);
         }
