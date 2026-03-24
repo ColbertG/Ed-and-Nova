@@ -184,6 +184,7 @@ public class ControllerGame : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 20000);
+            PlayerRP = PlayerPrefs.GetInt("playerRp");
         }
 
         int level = PlayerPrefs.GetInt("playerHpLevel", 0) + 1;
@@ -207,6 +208,7 @@ public class ControllerGame : MonoBehaviour
         else 
         {
             PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 10000);
+            PlayerRP = PlayerPrefs.GetInt("playerRp");
         }
 
         int level = PlayerPrefs.GetInt("playerDpLevel", 0) + 1;
@@ -230,6 +232,7 @@ public class ControllerGame : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 15000);
+            PlayerRP = PlayerPrefs.GetInt("playerRp");
         }
 
         int level = PlayerPrefs.GetInt("rocketLevel", 0) + 1;
@@ -253,6 +256,7 @@ public class ControllerGame : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("playerRp", PlayerPrefs.GetInt("playerRp") - 5000);
+            PlayerRP = PlayerPrefs.GetInt("playerRp");
         }
 
         int level = PlayerPrefs.GetInt("playerSpeedLevel", 0) + 1;
