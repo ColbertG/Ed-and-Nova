@@ -78,32 +78,31 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt("playerHp", 1000);
-        PlayerPrefs.SetInt("playerDp", 0);
-        PlayerPrefs.SetInt("rocketHp", 0);
-        PlayerPrefs.SetInt("rocketDp", 0);
-        PlayerPrefs.SetInt("playerSpeed", 0);
+    //    PlayerPrefs.SetInt("playerHp", 0);
+    //    PlayerPrefs.SetInt("playerDp", 0);
+    //    PlayerPrefs.SetInt("rocketHp", 0);
+    //    PlayerPrefs.SetInt("rocketDp", 0);
+    //    PlayerPrefs.SetInt("playerSpeed", 0);
 
-        PlayerPrefs.SetInt("playerHpLevel", 0);
-        PlayerPrefs.SetInt("playerDpLevel", 0);
-        PlayerPrefs.SetInt("rocketLevel", 0);
-        PlayerPrefs.SetInt("playerSpeedLevel", 0);
+    //    PlayerPrefs.SetInt("playerHpLevel", 0);
+    //    PlayerPrefs.SetInt("playerDpLevel", 0);
+    //    PlayerPrefs.SetInt("rocketLevel", 0);
+    //    PlayerPrefs.SetInt("playerSpeedLevel", 0);
 
-        PlayerPrefs.SetInt("playerRp", 0);
+    //    PlayerPrefs.SetInt("playerRp", 0);
 
-        PlayerPrefs.SetInt("scoreKeeper", 0);
+    //    PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        PlayerPrefs.SetInt("levelCountOn", 1);
+    //    PlayerPrefs.SetInt("levelCountOn", 1);
 
-        PlayerPrefs.SetInt("playerKills", 0);
+    //    PlayerPrefs.SetInt("playerKills", 0);
 
-        PlayerPrefs.SetInt("highScore", 0);
+    //    PlayerPrefs.SetInt("highScore", 0);
 
-        PlayerPrefs.SetInt("Level2Up", 0);
-        PlayerPrefs.SetInt("Level3Up", 0);
-        PlayerPrefs.SetInt("Level4Up", 0);
-        PlayerPrefs.SetInt("Level5Up", 0);
-
+    //    PlayerPrefs.SetInt("Level2Up", 0);
+    //    PlayerPrefs.SetInt("Level3Up", 0);
+    //    PlayerPrefs.SetInt("Level4Up", 0);
+    //    PlayerPrefs.SetInt("Level5Up", 0);
     }
     // Start is called before the first frame update
     void Start()
@@ -160,6 +159,7 @@ public class ControllerGame : MonoBehaviour
                 if (LevelCount == 29 && !LevelComplete) Level29();
                 if (LevelCount == 30 && !LevelComplete) Level30();
                 if (LevelCount == 31 && !LevelComplete) Level31();
+                if (LevelCount == 32 && !LevelComplete) Level32();
                 CheckHealth();
                 if (PlayerHP <= 0) EndGame();
                 if (PlayerHP > 0) 
@@ -296,8 +296,7 @@ public class ControllerGame : MonoBehaviour
             ControllerMenus[3].CloseMenu();
             DialogDone = true;
         }
-        //remove wheen done with all Dialog
-        if(onCount == 103)
+        if(onCount == 157)
             ControllerDialogs.ShowNextDialog(onCount--);
     }
     public void NextDialog()
@@ -326,6 +325,16 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount, 93);
         DialogEnd(onCount, 97);
         DialogEnd(onCount, 103);
+        DialogEnd(onCount, 105);
+        DialogEnd(onCount, 110);
+        DialogEnd(onCount, 129);
+        DialogEnd(onCount, 133);
+        DialogEnd(onCount, 136);
+        DialogEnd(onCount, 140);
+        DialogEnd(onCount, 144);
+        DialogEnd(onCount, 146);
+        DialogEnd(onCount, 148);
+        DialogEnd(onCount, 157);
         ControllerDialogs.ShowDialog();
     }
     void DialogReset() 
@@ -352,6 +361,16 @@ public class ControllerGame : MonoBehaviour
         if (LevelCount == 20) ControllerDialogs.ShowNextDialog(86);
         if (LevelCount == 21) ControllerDialogs.ShowNextDialog(94);
         if (LevelCount == 22) ControllerDialogs.ShowNextDialog(98);
+        if (LevelCount == 23) ControllerDialogs.ShowNextDialog(104);
+        if (LevelCount == 24) ControllerDialogs.ShowNextDialog(106);
+        if (LevelCount == 25) ControllerDialogs.ShowNextDialog(111);
+        if (LevelCount == 26) ControllerDialogs.ShowNextDialog(130);
+        if (LevelCount == 27) ControllerDialogs.ShowNextDialog(134);
+        if (LevelCount == 28) ControllerDialogs.ShowNextDialog(137);
+        if (LevelCount == 29) ControllerDialogs.ShowNextDialog(141);
+        if (LevelCount == 30) ControllerDialogs.ShowNextDialog(145);
+        if (LevelCount == 31) ControllerDialogs.ShowNextDialog(147);
+        if (LevelCount == 32) ControllerDialogs.ShowNextDialog(149);
         ControllerDialogs.ShowDialog();
     }
 
@@ -2526,7 +2545,7 @@ public class ControllerGame : MonoBehaviour
         }
         SpawnMeteors.SpawnLevel(8, 6);
         SpawnMeteors.FaceingMeteor(Random.Range(0, 3));
-        Player.AngleControll(-45);
+        Player.AngleControll(-90);
         if (PlayerHP <= 0 || (SpawnMeteors.SpawnCounter() >= 250 && !LevelSpawnMeteorsDone))
         {
             SpawnMeteors.SpawnCounter(true);
@@ -2991,10 +3010,8 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 0);
-
 
             PlayerReset();
 
@@ -3018,7 +3035,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.0f);
+            SpawnEnemies.SpawnRate(2.0f);
 
         }
 
@@ -3052,7 +3069,7 @@ public class ControllerGame : MonoBehaviour
 
         if (BossHp <= BossHPStart / 3 && BossHp > 3333)
         {
-            SpawnEnemies.SpawnRate(0.75f);
+            SpawnEnemies.SpawnRate(1.5f);
             SpawnEnemies.enabled = true;
         }
         else if (LevelSpawnEnemiesDone)
@@ -3069,6 +3086,63 @@ public class ControllerGame : MonoBehaviour
         {
             Destroy(BossClone);
             ControllerMenus[7].CloseMenu();
+            MenuSetUp();
+        }
+    }
+    public void Start32()
+    {
+        ControllerSound.Instance.Button();
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(2, 0);
+
+        ControllerMenus[6].CloseMenu();
+
+        ControllerMenus[3].OpenMenu();
+        ControllerDialogs.ShowDialog();
+
+        StartGameNow = true;
+
+        if (PlayerHP <= 0)
+            PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        LevelCount = 32;
+        LevelSetUpDone = false;
+        LevelComplete = false;
+
+        DialogDone = false;
+
+        DialogReset();
+    }
+    void Level32()
+    {
+        if (!LevelSetUpDone)
+        {
+            BackGroundPics.SetBackGround(3);
+            BackGroundPics.MoveToTarget(2, 2);
+
+
+            PlayerReset();
+
+            Player.SetTarget(null);
+
+            LevelSetUpDone = true;
+
+            SpawnMeteors.enabled = false;
+            SpawnEnemies.enabled = true;
+            SpawnBombs.enabled = false;
+
+            LevelSpawnMeteorsDone = false;
+            LevelSpawnEnemiesDone = false;
+            LevelSpawnBombsDone = false;
+            LevelBossDone = false;
+
+            SpawnMeteors.SpawnCounter(true);
+            SpawnEnemies.SpawnCounter(true);
+
+            SpawnBarriers.SpawnRemover();
+
+            SpawnEnemies.SpawnRate(1.0f);
+
             MenuSetUp();
         }
     }
