@@ -41,7 +41,6 @@ public class ControllerSound : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -77,13 +76,13 @@ public class ControllerSound : MonoBehaviour
     IEnumerator RocketExplosionFire()
     {
         RocketExplosionNow = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         RocketExplosionNow = false;
     }
     IEnumerator MeteorExplosionFire()
     {
         MeteorExplosionNow = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         MeteorExplosionNow = false;
     }
 

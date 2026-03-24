@@ -590,16 +590,20 @@ public class ControllerGame : MonoBehaviour
         else BossHp = 0;
     }
     void EndGame()
-    {
-        if (!GameOverSound) 
-        {
-            GameOverSound = true;
-            ControllerSound.Instance.GameOver();
-        } 
+    { 
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
         int kills = PlayerPrefs.GetInt("playerKills", 0);
         int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
         int crystalWon = highScore / 10000;
+
+        if (!GameOverSound) 
+        {
+            GameOverSound = true;
+            ControllerSound.Instance.GameOver();
+
+            PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + ShowCrystal));
+            if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
+        }
 
         if (score > ShowScore)
         {
@@ -624,8 +628,6 @@ public class ControllerGame : MonoBehaviour
         {
             ShowCrystal = crystalWon;
             GamePointsDone = true;
-            PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + ShowCrystal));
-            if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
         }
 
         PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
@@ -1914,7 +1916,7 @@ public class ControllerGame : MonoBehaviour
         {
 
             BackGroundPics.SetBackGround(2);
-            BackGroundPics.MoveToTarget(2, 2);
+            BackGroundPics.MoveToTarget(1, 2);
 
             PlayerReset();
 
@@ -2108,7 +2110,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
-            SpawnEnemies.SpawnRate(0.4f);
+            SpawnEnemies.SpawnRate(0.66f);
         }
 
         SpawnEnemies.SpawnLevel(10, 9);
@@ -3128,7 +3130,7 @@ public class ControllerGame : MonoBehaviour
             LevelSetUpDone = true;
 
             SpawnMeteors.enabled = false;
-            SpawnEnemies.enabled = true;
+            SpawnEnemies.enabled = false;
             SpawnBombs.enabled = false;
 
             LevelSpawnMeteorsDone = false;
@@ -3140,8 +3142,6 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.SpawnCounter(true);
 
             SpawnBarriers.SpawnRemover();
-
-            SpawnEnemies.SpawnRate(1.0f);
 
             MenuSetUp();
         }
