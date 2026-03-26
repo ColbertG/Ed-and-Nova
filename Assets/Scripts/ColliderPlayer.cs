@@ -28,8 +28,12 @@ public class ColliderPlayer : MonoBehaviour
             HP = HP - collision.gameObject.GetComponent<ColliderBoss>().DestructionPoints();
             GameObject clone = Instantiate(Crash, transform.position, transform.rotation) as GameObject;
         }
-        if (collision.gameObject.GetComponent<ColliderLaser>() != null)
+        if (collision.gameObject.GetComponent<ColliderLaser>() != null) 
+        { 
             HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
+            Destroy(collision.gameObject);
+        }
+            
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
             if (collision.gameObject.CompareTag("Enemy")) 
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();

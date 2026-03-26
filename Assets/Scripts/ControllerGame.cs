@@ -76,6 +76,8 @@ public class ControllerGame : MonoBehaviour
 
     int CountLevelSpawn = 0;
 
+    float playerHighScoreMul = 1.0f;
+
     private void OnApplicationQuit()
     {
     //    PlayerPrefs.SetInt("playerHp", 0);
@@ -111,6 +113,10 @@ public class ControllerGame : MonoBehaviour
         BackGroundPics.SetBackGround(0);
         BackGroundPics.MoveToTarget(1, 2);
         ControllerMenus[0].OpenMenu();
+
+
+        PointCount[12].text = "HighScore::" + (PlayerPrefs.GetInt("highScore", 0) * PlayerPrefs.GetFloat("playerHighScoreMul", 1)).ToString("00000000000000000");
+
     }
     // Update is called once per frame
     void Update()
@@ -121,8 +127,6 @@ public class ControllerGame : MonoBehaviour
         PointCount[6].text = PlayerHP + " / " + PlayerHPStart;
         PointCount[7].text = PlayerRP + " / " + PlayerRPStart;
         PointCount[8].text = BossHp + " / " + BossHPStart;
-
-        PointCount[12].text = "HighScore::" + PlayerPrefs.GetInt("highScore", 0).ToString("00000000000000000");
 
         if (DialogDone) 
         {
@@ -453,6 +457,9 @@ public class ControllerGame : MonoBehaviour
     }
     public void MainMenu()
     {
+
+        PointCount[12].text = "HighScore::" + (PlayerPrefs.GetInt("highScore", 0) * PlayerPrefs.GetFloat("playerHighScoreMul", 1)).ToString("00000000000000000");
+
         ControllerSound.Instance.Button();
         Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(0);
@@ -604,7 +611,12 @@ public class ControllerGame : MonoBehaviour
     { 
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
         int kills = PlayerPrefs.GetInt("playerKills", 0);
-        int highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
+        int highScore = Mathf.Clamp((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0)), 0, int.MaxValue);
+        if (((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0))/int.MaxValue) > 1.0f) 
+        {
+            playerHighScoreMul = ((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0)) / int.MaxValue);
+            PlayerPrefs.SetFloat("playerHighScoreMul", playerHighScoreMul);
+        }
         int crystalWon = highScore / 10000;
 
         if (!GameOverSound) 
@@ -612,7 +624,7 @@ public class ControllerGame : MonoBehaviour
             GameOverSound = true;
             ControllerSound.Instance.GameOver();
 
-            PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + ShowCrystal));
+            PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + crystalWon));
             if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
         }
 
