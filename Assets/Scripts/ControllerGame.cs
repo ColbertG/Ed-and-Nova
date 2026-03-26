@@ -128,6 +128,8 @@ public class ControllerGame : MonoBehaviour
         PointCount[7].text = PlayerRP + " / " + PlayerRPStart;
         PointCount[8].text = BossHp + " / " + BossHPStart;
 
+        PointCount[14].text = "Level :: " + LevelCount;
+
         if (DialogDone) 
         {
             if (StartGameNow)
@@ -345,7 +347,7 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount, 157);
         ControllerDialogs.ShowDialog();
     }
-    void DialogReset() 
+    void DialogReset()
     {
         if (LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
         if (LevelCount == 2) ControllerDialogs.ShowNextDialog(7);
@@ -608,7 +610,8 @@ public class ControllerGame : MonoBehaviour
         else BossHp = 0;
     }
     void EndGame()
-    { 
+    {
+        playerHighScoreMul = 1.0f;
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
         int kills = PlayerPrefs.GetInt("playerKills", 0);
         int highScore = Mathf.Clamp((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0)), 0, int.MaxValue);
@@ -655,7 +658,7 @@ public class ControllerGame : MonoBehaviour
 
         PointCount[9].text = "Score::" + ShowScore.ToString("00000000000000000000");
         PointCount[10].text = "Kills::" + ShowKills.ToString("000000000000000000000");
-        PointCount[11].text = ShowHighScore.ToString("00000000000000000000000000");
+        PointCount[11].text = (ShowHighScore * playerHighScoreMul).ToString("00000000000000000000000000");
         PointCount[13].text = "Crystal::" + ShowCrystal.ToString("00000000000000000");
         
         
