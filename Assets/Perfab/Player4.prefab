@@ -139,32 +139,32 @@ MonoBehaviour:
   Speed: 5
   Target: {fileID: 0}
   Rocket:
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 266931196495026897}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 266931197134792718}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 7828586641589635628}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 3622850515255459472}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 8845454469669196946}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 7664970627256728528}
@@ -419,6 +419,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 266931196739618422}
     m_Modifications:
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[0].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[1].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[2].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[3].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[4].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[5].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2920971562062646859, guid: 951d541736686274086f6651aca1e2bf,
         type: 3}
       propertyPath: m_Name
@@ -521,6 +551,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 266931196739618422}
     m_Modifications:
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[0].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[1].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[2].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[3].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[4].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 594746312148993770, guid: 951d541736686274086f6651aca1e2bf,
+        type: 3}
+      propertyPath: Rocket.Array.data[5].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2920971562062646859, guid: 951d541736686274086f6651aca1e2bf,
         type: 3}
       propertyPath: m_Name

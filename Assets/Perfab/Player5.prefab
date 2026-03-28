@@ -259,32 +259,32 @@ MonoBehaviour:
   Speed: 4
   Target: {fileID: 0}
   Rocket:
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 6401034200518779406}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 6401034199883731153}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 4018869068971094771}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 7577215577100797519}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 2325088163543736137}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 8840753103099951313}
@@ -479,6 +479,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player5CpuR
       objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[0].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[1].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[2].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[3].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[4].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[5].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5541715559691583025, guid: af063820d71243c4391d03830b9997b5, type: 3}
     - {fileID: 4155310107310983998, guid: af063820d71243c4391d03830b9997b5, type: 3}
@@ -559,6 +589,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player5CpuL
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[0].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[1].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[2].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[3].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[4].FireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 714290550939730749, guid: af063820d71243c4391d03830b9997b5,
+        type: 3}
+      propertyPath: Rocket.Array.data[5].FireRate
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 463516243289663792, guid: af063820d71243c4391d03830b9997b5, type: 3}

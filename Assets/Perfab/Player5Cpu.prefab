@@ -203,32 +203,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rocket:
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 463516244261821422}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 463516243289663793}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 7601604487442500371}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 4007106675200982959}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 9151288587661633193}
     NextFireTime: 0
-  - FireRate: 0.25
+  - FireRate: 0.5
     MainRocket: {fileID: 6958534111853090545, guid: 7499989b315e8f8438be29533464a268,
       type: 3}
     SpawnPoint: {fileID: 2597201748995162417}

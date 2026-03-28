@@ -469,7 +469,7 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 2417744514460878027}
     NextFireTime: 0
-  InvisibleTime: 3
+  InvisibleTime: 2
   InvisibleTimePause: 3
 --- !u!114 &4515157745134710116
 MonoBehaviour:

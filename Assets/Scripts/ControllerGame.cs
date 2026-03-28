@@ -2813,7 +2813,7 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(0);
         if (Player != null)
         {
-            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(4.5f, 5.25f));
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 200 && !LevelSpawnEnemiesDone))
@@ -2885,7 +2885,7 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
         if (Player != null)
         {
-            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.00f, 3.75f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 225 && !LevelSpawnEnemiesDone))
@@ -2894,6 +2894,8 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.enabled = false;
             LevelSpawnEnemiesDone = true;
         }
+        Debug.Log(SpawnEnemies.SpawnCounter());
+        Debug.Log(SpawnEnemies.EnemyDone() + " " + LevelSpawnEnemiesDone);
         if (SpawnEnemies.EnemyDone() && LevelSpawnEnemiesDone)
         {
             MenuSetUp();
@@ -2925,10 +2927,8 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 1.5f);
-
 
             PlayerReset(1);
 
@@ -2955,7 +2955,7 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
         if (Player != null)
         {
-            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone) )
@@ -3027,7 +3027,7 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
         if (Player != null)
         {
-            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
+            SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
         if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 275 && !LevelSpawnEnemiesDone))
