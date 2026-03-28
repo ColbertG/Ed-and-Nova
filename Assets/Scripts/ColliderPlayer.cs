@@ -31,7 +31,6 @@ public class ColliderPlayer : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderLaser>() != null) 
         { 
             HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
-            Destroy(collision.gameObject);
         }
             
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)

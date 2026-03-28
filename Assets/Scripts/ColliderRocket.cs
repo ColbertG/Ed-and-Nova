@@ -31,8 +31,9 @@ public class ColliderRocket : MonoBehaviour
         }
         if (collision.gameObject.GetComponent<ColliderLaser>() != null)
         {
-            HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
-            if (HP <= 0) Exploed = true;
+            //HP = HP - collision.gameObject.GetComponent<ColliderLaser>().DestructionPoints();
+            //if (HP <= 0)
+            Exploed = true;
         }
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
@@ -51,23 +52,26 @@ public class ColliderRocket : MonoBehaviour
         {
             if (!gameObject.CompareTag(collision.gameObject.tag)) 
             {
-                HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-                if (HP <= 0) Exploed = true;
+                //HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
+                //if (HP <= 0)
+                Exploed = true;
             }
         }
         if (collision.gameObject.GetComponent<ColliderMeteor>() != null)
         {
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
-            HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
-            if (HP <= 0) Exploed = true;
+            //HP = HP - collision.gameObject.GetComponent<ColliderMeteor>().DestructionPoints();
+            //if (HP <= 0)
+            Exploed = true;
         }
         if (collision.gameObject.GetComponent<ColliderEnemy>() != null)
         {
             if (gameObject.CompareTag("Player"))
             {
                 GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
-                HP = HP - collision.gameObject.GetComponent<ColliderEnemy>().DestructionPoints();
-                if (HP <= 0) Exploed = true;
+                //HP = HP - collision.gameObject.GetComponent<ColliderEnemy>().DestructionPoints();
+                //if (HP <= 0)
+                Exploed = true;
             }
         }
         if (Exploed || HP <= 0)

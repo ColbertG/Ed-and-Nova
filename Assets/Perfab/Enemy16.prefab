@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 6791730571159854191}
-  Speed: 2
+  Speed: 4
   Rocket:
   - FireRate: 0.8
     MainRocket: {fileID: 2694711580017445922, guid: 149decd3a349f2b4e999578e2c3d6ac7,
@@ -469,8 +469,8 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 2417744514460878027}
     NextFireTime: 0
-  InvisibleTime: 5
-  InvisibleTimePause: 4
+  InvisibleTime: 3
+  InvisibleTimePause: 3
 --- !u!114 &4515157745134710116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 2350
   DP: 6
-  HP: 25
+  HP: 50
   Explosion: {fileID: 9157914839955914776, guid: baeab2950f33d884cac0a8416643bb4f,
     type: 3}
   RandomDrops:

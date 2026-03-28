@@ -628,6 +628,7 @@ public class ControllerGame : MonoBehaviour
             ControllerSound.Instance.GameOver();
 
             PlayerPrefs.SetInt("playerRp", (PlayerPrefs.GetInt("playerRp") + crystalWon));
+            PlayerRP = PlayerPrefs.GetInt("playerRp", 0);
             if (PlayerPrefs.GetInt("highScore", 0) < highScore) PlayerPrefs.SetInt("highScore", highScore);
         }
 
@@ -2661,7 +2662,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.50f);
+            SpawnEnemies.SpawnRate(1.25f);
         }
         SpawnEnemies.SpawnLevel(13, 12);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
@@ -2734,7 +2735,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.3f);
+            SpawnEnemies.SpawnRate(1.05f);
         }
         SpawnEnemies.SpawnLevel(14, 13);
         SpawnEnemies.FaceingEnemy(4);
@@ -2806,7 +2807,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.2f);
+            SpawnEnemies.SpawnRate(0.95f);
         }
         SpawnEnemies.SpawnLevel(15, 14);
         SpawnEnemies.FaceingEnemy(0);
@@ -2878,7 +2879,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.4f);
+            SpawnEnemies.SpawnRate(1.15f);
         }
         SpawnEnemies.SpawnLevel(16, 15);
         SpawnEnemies.FaceingEnemy(Random.Range(1, 4));
@@ -2957,7 +2958,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(5.25f, 6.0f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone) )
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;

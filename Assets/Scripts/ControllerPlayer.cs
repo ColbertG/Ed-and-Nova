@@ -55,7 +55,7 @@ public class ControllerPlayer : MonoBehaviour
     }
     IEnumerator SlowDownNow()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(7.0f);
         SetSpeed((int)SpeedBackUp);
         SlowDownActive = false;
         SpeedBackUp = 0;

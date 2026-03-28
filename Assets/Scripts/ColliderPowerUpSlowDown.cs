@@ -14,7 +14,7 @@ public class ColliderPowerUpSlowDown : MonoBehaviour
                 ControllerPlayer.SlowDownActive = true;
                 float speedLast = collision.gameObject.GetComponent<ControllerPlayer>().SetSpeed(0);
                 float speedNow = speedLast - 1;
-                ControllerPlayer.SpeedBackUp = speedNow;
+                ControllerPlayer.SpeedBackUp = speedNow + 1;
                 collision.gameObject.GetComponent<ControllerPlayer>().SetSpeed(-(int)speedNow);
             }
             Destroy(gameObject);
