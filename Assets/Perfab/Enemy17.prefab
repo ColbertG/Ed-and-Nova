@@ -399,42 +399,42 @@ MonoBehaviour:
   MoveTarget: {fileID: 1679327183568800105}
   Speed: 5
   Rocket:
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 1768769320074988845}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 3353809602306340502}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 1428810633}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 269888251}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 331072363}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 480079464}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 1233761461}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 405259437}

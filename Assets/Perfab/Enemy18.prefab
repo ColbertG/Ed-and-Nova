@@ -336,39 +336,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 1560424555261704784}
-  Speed: 6
+  Speed: 0
   Rocket:
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 1901214637832076820}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 3198319762747573679}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 2957360328580821278}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 3085846694651512158}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 8740347136425049966}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1.5
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 7140407770560104165}
     NextFireTime: 0
-  - FireRate: 0.6
+  - FireRate: 1
     MainRocket: {fileID: 8376232696725287264, guid: 81cd3432643080c4e873ab4f0d65b0fc,
       type: 3}
     SpawnPoint: {fileID: 337766852530206374}

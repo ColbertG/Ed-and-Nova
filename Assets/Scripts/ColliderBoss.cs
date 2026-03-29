@@ -12,6 +12,7 @@ public class ColliderBoss : MonoBehaviour
     int DP = 1;
     [SerializeField]
     GameObject Explosion;
+    bool IsDead = false; 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ColliderPlayerCpu>() != null)
@@ -26,8 +27,9 @@ public class ColliderBoss : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderRocket>() != null)
             if (collision.gameObject.CompareTag("Player"))
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-        if (HP <= 0)
+        if (HP <= 0 && !IsDead)
         {
+            IsDead = true;
             GameObject clone = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
             PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
             PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);

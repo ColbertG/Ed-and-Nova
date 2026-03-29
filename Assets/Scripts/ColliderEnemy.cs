@@ -17,6 +17,7 @@ public class ColliderEnemy : MonoBehaviour
     [SerializeField]
     List<GameObject> RandomDrops;
     bool Exploed = false;
+    bool IsDead = false;
     Transform Target;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,8 +39,9 @@ public class ColliderEnemy : MonoBehaviour
         if (collision.gameObject.GetComponent<ColliderPlayer>() != null)
         {
             HP = HP - collision.gameObject.GetComponent<ColliderPlayer>().DestructionPoints();
-            if (HP <= 0)
+            if (HP <= 0 && !IsDead)
             {
+                IsDead = true;
                 Exploed = true;
                 PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
                 PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());
@@ -59,8 +61,9 @@ public class ColliderEnemy : MonoBehaviour
             if (collision.gameObject.CompareTag("Player")) 
             {
                 HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-                if (HP <= 0) 
+                if (HP <= 0 && !IsDead) 
                 {
+                    IsDead = true;
                     Exploed = true;
                     PlayerPrefs.SetInt("playerKills", PlayerPrefs.GetInt("playerKills", 0) + 1);
                     PlayerPrefs.SetInt("scoreKeeper", PlayerPrefs.GetInt("scoreKeeper", 0) + ScorePoints());

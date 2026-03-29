@@ -439,22 +439,22 @@ MonoBehaviour:
       type: 3}
     SpawnPoint: {fileID: 7459115216792527760}
     NextFireTime: 0
-  - FireRate: 0.8
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 6665833172446949858}
     NextFireTime: 0
-  - FireRate: 0.8
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 3845397463687845565}
     NextFireTime: 0
-  - FireRate: 0.8
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 3028442034880244172}
     NextFireTime: 0
-  - FireRate: 0.8
+  - FireRate: 1
     MainRocket: {fileID: 3849144278705623958, guid: daa3156988dd38c4687c7421abf09b27,
       type: 3}
     SpawnPoint: {fileID: 6953314867869986962}

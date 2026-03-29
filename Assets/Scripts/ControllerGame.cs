@@ -634,22 +634,22 @@ public class ControllerGame : MonoBehaviour
 
         if (score > ShowScore)
         {
-            ShowScore += (score/200) + 1;
+            ShowScore += (score/50) + 1;
         }
         else if (kills > ShowKills)
         {
             ShowScore = score;
-            ShowKills += (kills/200) + 1;
+            ShowKills += (kills/50) + 1;
         }
         else if (highScore > ShowHighScore)
         {
             ShowKills = kills;
-            ShowHighScore += (highScore/200) + 1;
+            ShowHighScore += (highScore/50) + 1;
         }
         else if (crystalWon > ShowCrystal)
         {
             ShowHighScore = highScore;
-            ShowCrystal += (crystalWon/200) + 1;
+            ShowCrystal += (crystalWon/50) + 1;
         }
         else if (!GamePointsDone)
         {
@@ -2949,7 +2949,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.3f);
+            SpawnEnemies.SpawnRate(3.0f);
         }
         SpawnEnemies.SpawnLevel(17, 16);
         SpawnEnemies.FaceingEnemy(Random.Range(0, 2));
@@ -2958,7 +2958,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 250 && !LevelSpawnEnemiesDone) )
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 75 && !LevelSpawnEnemiesDone) )
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -3021,7 +3021,7 @@ public class ControllerGame : MonoBehaviour
 
             SpawnBarriers.SpawnRemover();
 
-            SpawnEnemies.SpawnRate(1.3f);
+            SpawnEnemies.SpawnRate(2.5f);
         }
         SpawnEnemies.SpawnLevel(18, 17);
         SpawnEnemies.FaceingEnemy(Random.Range(3, 5));
@@ -3030,7 +3030,7 @@ public class ControllerGame : MonoBehaviour
             SpawnEnemies.LookAtPlayer(Player.transform, Random.Range(3.75f, 4.5f));
             Player.SetTarget(SpawnEnemies.LookAtCloset(Player.transform));
         }
-        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 275 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || (SpawnEnemies.SpawnCounter() >= 90 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -3120,7 +3120,7 @@ public class ControllerGame : MonoBehaviour
 
         SpawnEnemies.FaceingEnemy(Random.Range(0, 5));
         
-        if (PlayerHP <= 0 || BossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 150 && !LevelSpawnEnemiesDone))
+        if (PlayerHP <= 0 || BossHp <= 0 || (SpawnEnemies.SpawnCounter() >= 75 && !LevelSpawnEnemiesDone))
         {
             SpawnEnemies.SpawnCounter(true);
             SpawnEnemies.enabled = false;
@@ -3129,7 +3129,7 @@ public class ControllerGame : MonoBehaviour
 
         if (BossHp <= BossHPStart / 3 && BossHp > 3333)
         {
-            SpawnEnemies.SpawnRate(1.5f);
+            SpawnEnemies.SpawnRate(2.5f);
             SpawnEnemies.enabled = true;
         }
         else if (LevelSpawnEnemiesDone)
