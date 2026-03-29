@@ -290,8 +290,8 @@ MonoBehaviour:
     SpawnPoint: {fileID: 8840753103099951313}
     NextFireTime: 0
   ShipCpu:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8002544172789449599}
+  - {fileID: 1982036840190421423}
   ControllAnima:
     Animators: {fileID: 0}
     AniamName: []
@@ -517,6 +517,12 @@ PrefabInstance:
     - {fileID: 463516244261821417, guid: af063820d71243c4391d03830b9997b5, type: 3}
     - {fileID: 463516243289663792, guid: af063820d71243c4391d03830b9997b5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af063820d71243c4391d03830b9997b5, type: 3}
+--- !u!1 &1982036840190421423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 463516243970066256, guid: af063820d71243c4391d03830b9997b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2156979650272440063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1982036840190421430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 463516243970066249, guid: af063820d71243c4391d03830b9997b5,
@@ -628,6 +634,12 @@ PrefabInstance:
     - {fileID: 4155310107310983998, guid: af063820d71243c4391d03830b9997b5, type: 3}
     - {fileID: 5541715559691583025, guid: af063820d71243c4391d03830b9997b5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af063820d71243c4391d03830b9997b5, type: 3}
+--- !u!1 &8002544172789449599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 463516243970066256, guid: af063820d71243c4391d03830b9997b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7593071273631630383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8002544172789449574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 463516243970066249, guid: af063820d71243c4391d03830b9997b5,
