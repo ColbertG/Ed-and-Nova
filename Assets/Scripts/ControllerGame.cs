@@ -403,8 +403,12 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[3].OpenMenu();
         DialogReset();
 
-        if(PlayerHP <= 0 )
+        if (PlayerHP <= 0) 
+        {
             PlayerPrefs.SetInt("scoreKeeper", 0);
+            PlayerPrefs.SetInt("playerKills", 0);
+        }
+            
     }
     public void NextLevel()
     {
@@ -568,8 +572,16 @@ public class ControllerGame : MonoBehaviour
             ActiveButton[1].gameObject.SetActive(false);
             ActiveButton[0].gameObject.SetActive(true);
             ControllerMenus[2].OpenMenu();
-            if(LevelCount < 31) LevelCount++;
-            else LevelCount = 1;
+            if (LevelCount < 32) LevelCount++;
+            else 
+            {
+                PlayerPrefs.SetInt("levelCountOn", LevelCount++);
+                Sound.BackGroundSound(1);
+                BackGroundPics.SetBackGround(1);
+                BackGroundPics.MoveToTarget(1, 0);
+                LevelCount = 1;
+                DialogReset();
+            }
             if (PlayerPrefs.GetInt("levelCountOn", 1) < LevelCount)
                 PlayerPrefs.SetInt("levelCountOn", LevelCount);
         }
@@ -3181,7 +3193,6 @@ public class ControllerGame : MonoBehaviour
         {
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 2);
-
 
             PlayerReset();
 
