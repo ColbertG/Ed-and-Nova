@@ -59,7 +59,7 @@ public class ControllerGame : MonoBehaviour
 
     int ShowScore = 0;
     int ShowKills = 0;
-    int ShowHighScore = 0;
+    long ShowHighScore = 0;
     int ShowCrystal = 0;
 
     public int LevelCount { get; private set; } = 1;
@@ -80,31 +80,7 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-    //    PlayerPrefs.SetInt("playerHp", 0);
-    //    PlayerPrefs.SetInt("playerDp", 0);
-    //    PlayerPrefs.SetInt("rocketHp", 0);
-    //    PlayerPrefs.SetInt("rocketDp", 0);
-    //    PlayerPrefs.SetInt("playerSpeed", 0);
-
-    //    PlayerPrefs.SetInt("playerHpLevel", 0);
-    //    PlayerPrefs.SetInt("playerDpLevel", 0);
-    //    PlayerPrefs.SetInt("rocketLevel", 0);
-    //    PlayerPrefs.SetInt("playerSpeedLevel", 0);
-
-    //    PlayerPrefs.SetInt("playerRp", 0);
-
-    //    PlayerPrefs.SetInt("scoreKeeper", 0);
-
-    //    PlayerPrefs.SetInt("levelCountOn", 1);
-
-    //    PlayerPrefs.SetInt("playerKills", 0);
-
-    //    PlayerPrefs.SetInt("highScore", 0);
-
-    //    PlayerPrefs.SetInt("Level2Up", 0);
-    //    PlayerPrefs.SetInt("Level3Up", 0);
-    //    PlayerPrefs.SetInt("Level4Up", 0);
-    //    PlayerPrefs.SetInt("Level5Up", 0);
+        //ResetPlayer();
     }
     // Start is called before the first frame update
     void Start()
@@ -114,9 +90,9 @@ public class ControllerGame : MonoBehaviour
         BackGroundPics.MoveToTarget(1, 2);
         ControllerMenus[0].OpenMenu();
 
-
-        PointCount[12].text = "HighScore::" + (PlayerPrefs.GetInt("highScore", 0) * PlayerPrefs.GetFloat("playerHighScoreMul", 1)).ToString("00000000000000000");
-
+        long HS = (long)PlayerPrefs.GetInt("highScore", 0);
+        long PHSM = (long)PlayerPrefs.GetFloat("playerHighScoreMul", 1);
+        PointCount[12].text = "HighScore::" + ( HS * PHSM ).ToString("00000000000000000");
     }
     // Update is called once per frame
     void Update()
@@ -176,6 +152,36 @@ public class ControllerGame : MonoBehaviour
                 
             }
         }
+    }
+
+    void ResetPlayer() 
+    {
+
+        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerDp", 0);
+        PlayerPrefs.SetInt("rocketHp", 0);
+        PlayerPrefs.SetInt("rocketDp", 0);
+        PlayerPrefs.SetInt("playerSpeed", 0);
+
+        PlayerPrefs.SetInt("playerHpLevel", 0);
+        PlayerPrefs.SetInt("playerDpLevel", 0);
+        PlayerPrefs.SetInt("rocketLevel", 0);
+        PlayerPrefs.SetInt("playerSpeedLevel", 0);
+
+        PlayerPrefs.SetInt("playerRp", 0);
+
+        PlayerPrefs.SetInt("scoreKeeper", 0);
+
+        PlayerPrefs.SetInt("levelCountOn", 1);
+
+        PlayerPrefs.SetInt("playerKills", 0);
+
+        PlayerPrefs.SetInt("highScore", 0);
+
+        PlayerPrefs.SetInt("Level2Up", 0);
+        PlayerPrefs.SetInt("Level3Up", 0);
+        PlayerPrefs.SetInt("Level4Up", 0);
+        PlayerPrefs.SetInt("Level5Up", 0);
     }
 
     public void HpUpgrade() 
@@ -626,12 +632,22 @@ public class ControllerGame : MonoBehaviour
         playerHighScoreMul = 1.0f;
         int score = PlayerPrefs.GetInt("scoreKeeper", 0);
         int kills = PlayerPrefs.GetInt("playerKills", 0);
-        int highScore = Mathf.Clamp((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0)), 0, int.MaxValue);
-        if (((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0))/int.MaxValue) > 1.0f) 
+
+        long SK = (long)PlayerPrefs.GetInt("scoreKeeper", 0);
+        long PK = (long)PlayerPrefs.GetInt("playerKills", 0);
+
+        long HS = SK * PK;
+
+        int highScore = 0;
+
+        if (HS / 2147483647 > 1.0f)
         {
-            playerHighScoreMul = ((PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0)) / int.MaxValue);
+            highScore = 2147483647;
+            playerHighScoreMul = HS / 2147483647;
             PlayerPrefs.SetFloat("playerHighScoreMul", playerHighScoreMul);
         }
+        else highScore = PlayerPrefs.GetInt("scoreKeeper", 0) * PlayerPrefs.GetInt("playerKills", 0);
+
         int crystalWon = highScore / 10000;
 
         if (!GameOverSound) 
