@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Numerics;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class ControllerEnemy : MonoBehaviour
 {
