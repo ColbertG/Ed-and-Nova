@@ -296,14 +296,6 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[5].OpenMenu();
     }
 
-    public void PauseResumeGame() 
-    {
-
-        ControllerSound.Instance.PauseResume();
-        Pause = !Pause;
-        if (Pause) Time.timeScale = 0.0f;
-        else Time.timeScale = 1.0f;
-    }
 
     void DialogEnd(int onCount,int end)
     {
@@ -493,6 +485,26 @@ public class ControllerGame : MonoBehaviour
         ControllerSound.Instance.Button();
         ControllerMenus[0].CloseMenu();
         ControllerMenus[8].OpenMenu();
+    }
+    public void PauseResumeGame() 
+    {
+
+        ControllerSound.Instance.PauseResume();
+        Pause = !Pause;
+        if (Pause)
+        {
+            ControllerMenus[9].OpenMenu();
+            Time.timeScale = 0.0f;
+        }
+        else 
+        {
+            ControllerMenus[9].CloseMenu();
+            Time.timeScale = 1.0f;
+        } 
+    }
+    public void QuitGame() 
+    {
+        Application.Quit();
     }
 
     void PlayerReset(int pos = 1) 
