@@ -51,7 +51,7 @@ TextureImporter:
       213: -8732344136053954753
     second: Power-up sprite shee_15
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -71,6 +71,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -102,10 +104,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -492,6 +498,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Power-up sprite shee_0: 3001256868102064101
+      Power-up sprite shee_1: -4178577301411914245
+      Power-up sprite shee_10: 4367304138940138031
+      Power-up sprite shee_11: 7106022043644114481
+      Power-up sprite shee_12: 3458910280058683449
+      Power-up sprite shee_13: 4987863159110621211
+      Power-up sprite shee_14: -3273151959459025913
+      Power-up sprite shee_15: -8732344136053954753
+      Power-up sprite shee_2: 1091725921297987667
+      Power-up sprite shee_3: -2731957619200171617
+      Power-up sprite shee_4: -6929807872635123940
+      Power-up sprite shee_5: 1789716222776962155
+      Power-up sprite shee_6: -4416318479971700395
+      Power-up sprite shee_7: 2265324638277103114
+      Power-up sprite shee_8: -1742339482530269105
+      Power-up sprite shee_9: 24169783007534082
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
