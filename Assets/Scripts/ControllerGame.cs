@@ -281,21 +281,6 @@ public class ControllerGame : MonoBehaviour
             Player.gameObject.GetComponent<ControllerPlayer>().SetSpeed(1);
     }
 
-    public void UpgradeMenu()
-    {
-        ControllerSound.Instance.Button();
-        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000");
-        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
-        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
-        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
-
-        ControllerMenus[1].CloseMenu();
-
-        ControllerMenus[2].CloseMenu();
-
-        ControllerMenus[5].OpenMenu();
-    }
-
 
     void DialogEnd(int onCount,int end)
     {
@@ -397,7 +382,7 @@ public class ControllerGame : MonoBehaviour
         StartGameNow = true;
 
         DialogDone = false;
-
+        
         ControllerMenus[3].OpenMenu();
         DialogReset();
 
@@ -505,6 +490,20 @@ public class ControllerGame : MonoBehaviour
     public void QuitGame() 
     {
         Application.Quit();
+    }
+    public void UpgradeMenu()
+    {
+        ControllerSound.Instance.Button();
+        PointCount[2].text = PlayerPrefs.GetInt("playerHpLevel", 0).ToString("000");
+        PointCount[3].text = PlayerPrefs.GetInt("playerDpLevel", 0).ToString("000");
+        PointCount[4].text = PlayerPrefs.GetInt("rocketLevel", 0).ToString("000");
+        PointCount[5].text = PlayerPrefs.GetInt("playerSpeedLevel", 0).ToString("000");
+
+        ControllerMenus[1].CloseMenu();
+
+        ControllerMenus[2].CloseMenu();
+
+        ControllerMenus[5].OpenMenu();
     }
 
     void PlayerReset(int pos = 1) 

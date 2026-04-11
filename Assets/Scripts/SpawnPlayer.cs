@@ -12,17 +12,6 @@ public class SpawnPlayer : MonoBehaviour
     bool ActiveSpawnPlayer = false;
     int LevelSpawn = 0;
     GameObject clone = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
     public GameObject ActivePlayer() 
     {
         return clone;

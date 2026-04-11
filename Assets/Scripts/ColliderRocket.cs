@@ -9,9 +9,6 @@ public class ColliderRocket : MonoBehaviour
     [SerializeField]
     GameObject Explosion;
     bool Exploed = false;
-    void Start()
-    {
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ControllerPlayerBarrier>() != null)
