@@ -80,7 +80,8 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        //ResetPlayer();
+        ResetPlayer();
+        EndGame();
     }
     // Start is called before the first frame update
     void Start()
@@ -157,7 +158,7 @@ public class ControllerGame : MonoBehaviour
     void ResetPlayer() 
     {
 
-        PlayerPrefs.SetInt("playerHp", 0);
+        PlayerPrefs.SetInt("playerHp", 1000);
         PlayerPrefs.SetInt("playerDp", 0);
         PlayerPrefs.SetInt("rocketHp", 0);
         PlayerPrefs.SetInt("rocketDp", 0);
@@ -172,7 +173,7 @@ public class ControllerGame : MonoBehaviour
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        PlayerPrefs.SetInt("levelCountOn", 1);
+        PlayerPrefs.SetInt("levelCountOn", 32);
 
         PlayerPrefs.SetInt("playerKills", 0);
 
@@ -457,13 +458,34 @@ public class ControllerGame : MonoBehaviour
         ControllerMenus[0].OpenMenu();
         ControllerMenus[1].CloseMenu();
         ControllerMenus[2].CloseMenu();
+        ControllerMenus[3].CloseMenu();
+        ControllerMenus[4].CloseMenu();
         ControllerMenus[5].CloseMenu();
         ControllerMenus[6].CloseMenu();
+        ControllerMenus[7].CloseMenu();
         ControllerMenus[8].CloseMenu();
+        ControllerMenus[9].CloseMenu();
 
+        SpawnBombs.SpawnRemover();
+        SpawnBombs.SpawnCounter(true);
+        SpawnBombs.enabled = false;
+
+        SpawnMeteors.SpawnRemover();
         SpawnMeteors.SpawnCounter(true);
+        SpawnMeteors.enabled = false;
+        
+        SpawnEnemies.SpawnRemover();
         SpawnEnemies.SpawnCounter(true);
+        SpawnEnemies.enabled = false;
+        
         SpawnBarriers.SpawnRemover();
+        
+        if(Pause) Pause = !Pause;
+        if (!Pause)
+        {
+            ControllerMenus[9].CloseMenu();
+            Time.timeScale = 1.0f;
+        }
     }
     public void GameInfoMenu()
     {
