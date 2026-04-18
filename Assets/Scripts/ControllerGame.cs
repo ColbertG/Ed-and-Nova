@@ -80,7 +80,7 @@ public class ControllerGame : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        ResetPlayer();
+        //ResetPlayer();
         EndGame();
     }
     // Start is called before the first frame update
@@ -158,7 +158,7 @@ public class ControllerGame : MonoBehaviour
     void ResetPlayer() 
     {
 
-        PlayerPrefs.SetInt("playerHp", 1000);
+        PlayerPrefs.SetInt("playerHp", 0);
         PlayerPrefs.SetInt("playerDp", 0);
         PlayerPrefs.SetInt("rocketHp", 0);
         PlayerPrefs.SetInt("rocketDp", 0);
@@ -173,7 +173,7 @@ public class ControllerGame : MonoBehaviour
 
         PlayerPrefs.SetInt("scoreKeeper", 0);
 
-        PlayerPrefs.SetInt("levelCountOn", 32);
+        PlayerPrefs.SetInt("levelCountOn", 1);
 
         PlayerPrefs.SetInt("playerKills", 0);
 
@@ -254,7 +254,8 @@ public class ControllerGame : MonoBehaviour
 
         int newHP = PlayerPrefs.GetInt("rocketHp", 0) + 1;
         int newDP = PlayerPrefs.GetInt("rocketDp", 0) + 1;
-        PlayerPrefs.SetInt("rocketHp", newHP);
+        if(level % 5 == 0 && PlayerPrefs.GetInt("rocketHp", 0) < 10)
+            PlayerPrefs.SetInt("rocketHp", newHP);
         PlayerPrefs.SetInt("rocketDp", newDP);
     }
     public void SpeedUpgrade()
@@ -455,16 +456,6 @@ public class ControllerGame : MonoBehaviour
         BackGroundPics.SetBackGround(0);
         BackGroundPics.MoveToTarget(1, 2);
         if (Player != null) Player.AngleControll(-90);
-        ControllerMenus[0].OpenMenu();
-        ControllerMenus[1].CloseMenu();
-        ControllerMenus[2].CloseMenu();
-        ControllerMenus[3].CloseMenu();
-        ControllerMenus[4].CloseMenu();
-        ControllerMenus[5].CloseMenu();
-        ControllerMenus[6].CloseMenu();
-        ControllerMenus[7].CloseMenu();
-        ControllerMenus[8].CloseMenu();
-        ControllerMenus[9].CloseMenu();
 
         SpawnBombs.SpawnRemover();
         SpawnBombs.SpawnCounter(true);
@@ -479,8 +470,25 @@ public class ControllerGame : MonoBehaviour
         SpawnEnemies.enabled = false;
         
         SpawnBarriers.SpawnRemover();
-        
-        if(Pause) Pause = !Pause;
+
+        DialogDone = false;
+        StartGameNow = false;
+
+        if (BossClone != null) Destroy(BossClone);
+
+        ControllerMenus[0].OpenMenu();
+        ControllerMenus[1].CloseMenu();
+        ControllerMenus[2].CloseMenu();
+        ControllerMenus[3].CloseMenu();
+        ControllerMenus[4].CloseMenu();
+        ControllerMenus[5].CloseMenu();
+        ControllerMenus[6].CloseMenu();
+        ControllerMenus[7].CloseMenu();
+        ControllerMenus[8].CloseMenu();
+        ControllerMenus[9].CloseMenu();
+
+
+        if (Pause) Pause = !Pause;
         if (!Pause)
         {
             ControllerMenus[9].CloseMenu();

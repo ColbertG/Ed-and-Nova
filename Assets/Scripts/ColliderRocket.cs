@@ -47,9 +47,9 @@ public class ColliderRocket : MonoBehaviour
         {
             if (!gameObject.CompareTag(collision.gameObject.tag)) 
             {
-                //HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
-                //if (HP <= 0)
-                Exploed = true;
+                HP = HP - collision.gameObject.GetComponent<ColliderRocket>().DestructionPoints();
+                if (HP <= 0)
+                    Exploed = true;
             }
         }
         if (collision.gameObject.GetComponent<ColliderMeteor>() != null)

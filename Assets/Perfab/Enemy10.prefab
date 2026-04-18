@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveTarget: {fileID: 2781799973241304457}
-  Speed: 2
+  Speed: 3
   Rocket:
   - FireRate: 3
     MainRocket: {fileID: 4332335848949515190, guid: 6bf7cc656c152554cab2e35b8566b3d3,

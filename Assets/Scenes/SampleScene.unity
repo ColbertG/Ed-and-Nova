@@ -907,7 +907,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Upgrade your rockets to give them more explosive power on impact. Upgrade
-    them enough to have them blow through multiple enemies.
+    them enough to have them blow through multiple enemy  rockets.
 --- !u!222 &46655795
 CanvasRenderer:
   m_ObjectHideFlags: 0
