@@ -183,6 +183,8 @@ public class ControllerGame : MonoBehaviour
         PlayerPrefs.SetInt("Level3Up", 0);
         PlayerPrefs.SetInt("Level4Up", 0);
         PlayerPrefs.SetInt("Level5Up", 0);
+
+        PlayerPrefs.SetInt("ContinueLevel", 1);
     }
 
     public void HpUpgrade() 
@@ -332,6 +334,45 @@ public class ControllerGame : MonoBehaviour
         DialogEnd(onCount, 157);
         ControllerDialogs.ShowDialog();
     }
+    public void SkipDialog() 
+    {
+        int onCount = 6;
+        if (LevelCount == 1) onCount = 6;
+        if (LevelCount == 2) onCount = 10;
+        if (LevelCount == 3) onCount = 15;
+        if (LevelCount == 4) onCount = 20;
+        if (LevelCount == 5) onCount = 25;
+        if (LevelCount == 6) onCount = 30;
+        if (LevelCount == 7) onCount = 34;
+        if (LevelCount == 8) onCount = 41;
+        if (LevelCount == 9) onCount = 45;
+        if (LevelCount == 10) onCount = 47;
+        if (LevelCount == 11) onCount = 51;
+        if (LevelCount == 12) onCount = 55;
+        if (LevelCount == 13) onCount = 59;
+        if (LevelCount == 14) onCount = 63;
+        if (LevelCount == 15) onCount = 66;
+        if (LevelCount == 16) onCount = 70;
+        if (LevelCount == 17) onCount = 74;
+        if (LevelCount == 18) onCount = 78;
+        if (LevelCount == 19) onCount = 85;
+        if (LevelCount == 20) onCount = 93;
+        if (LevelCount == 21) onCount = 97;
+        if (LevelCount == 22) onCount = 103;
+        if (LevelCount == 23) onCount = 105;
+        if (LevelCount == 24) onCount = 110;
+        if (LevelCount == 25) onCount = 129;
+        if (LevelCount == 26) onCount = 133;
+        if (LevelCount == 27) onCount = 136;
+        if (LevelCount == 28) onCount = 140;
+        if (LevelCount == 29) onCount = 144;
+        if (LevelCount == 30) onCount = 146;
+        if (LevelCount == 31) onCount = 148;
+        if (LevelCount == 32) onCount = 157;
+        ControllerDialogs.ShowNextDialog(onCount+1);
+        DialogEnd(onCount, onCount);
+        ControllerDialogs.ShowDialog();
+    }
     void DialogReset()
     {
         if (LevelCount == 1) ControllerDialogs.ShowNextDialog(0);
@@ -372,13 +413,9 @@ public class ControllerGame : MonoBehaviour
     public void StartGame()
     {
         ControllerSound.Instance.Button();
-        Sound.BackGroundSound(1);
-        BackGroundPics.SetBackGround(1);
-        BackGroundPics.MoveToTarget(1, 0);
-
         ControllerMenus[0].CloseMenu();
 
-        LevelCount = 1;
+        LevelCount = PlayerPrefs.GetInt("ContinueLevel", 1);
         LevelSetUpDone = false;
         LevelComplete = false;
         StartGameNow = true;
@@ -393,7 +430,40 @@ public class ControllerGame : MonoBehaviour
             PlayerPrefs.SetInt("scoreKeeper", 0);
             PlayerPrefs.SetInt("playerKills", 0);
         }
-            
+
+        if (LevelCount == 1 && !LevelComplete) Start1();
+        if (LevelCount == 2 && !LevelComplete) Start2();
+        if (LevelCount == 3 && !LevelComplete) Start3();
+        if (LevelCount == 4 && !LevelComplete) Start4();
+        if (LevelCount == 5 && !LevelComplete) Start5();
+        if (LevelCount == 6 && !LevelComplete) Start6();
+        if (LevelCount == 7 && !LevelComplete) Start7();
+        if (LevelCount == 8 && !LevelComplete) Start8();
+        if (LevelCount == 9 && !LevelComplete) Start9();
+        if (LevelCount == 10 && !LevelComplete) Start10();
+        if (LevelCount == 11 && !LevelComplete) Start11();
+        if (LevelCount == 12 && !LevelComplete) Start12();
+        if (LevelCount == 13 && !LevelComplete) Start13();
+        if (LevelCount == 14 && !LevelComplete) Start14();
+        if (LevelCount == 15 && !LevelComplete) Start15();
+        if (LevelCount == 16 && !LevelComplete) Start16();
+        if (LevelCount == 17 && !LevelComplete) Start17();
+        if (LevelCount == 18 && !LevelComplete) Start18();
+        if (LevelCount == 19 && !LevelComplete) Start19();
+        if (LevelCount == 20 && !LevelComplete) Start20();
+        if (LevelCount == 21 && !LevelComplete) Start21();
+        if (LevelCount == 22 && !LevelComplete) Start22();
+        if (LevelCount == 23 && !LevelComplete) Start23();
+        if (LevelCount == 24 && !LevelComplete) Start24();
+        if (LevelCount == 25 && !LevelComplete) Start25();
+        if (LevelCount == 26 && !LevelComplete) Start26();
+        if (LevelCount == 27 && !LevelComplete) Start27();
+        if (LevelCount == 28 && !LevelComplete) Start28();
+        if (LevelCount == 29 && !LevelComplete) Start29();
+        if (LevelCount == 30 && !LevelComplete) Start30();
+        if (LevelCount == 31 && !LevelComplete) Start31();
+        if (LevelCount == 32 && !LevelComplete) Start32();
+
     }
     public void NextLevel()
     {
@@ -448,7 +518,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void MainMenu()
     {
-
+        PlayerPrefs.SetInt("ContinueLevel", LevelCount);
         PointCount[12].text = "HighScore::" + (PlayerPrefs.GetInt("highScore", 0) * PlayerPrefs.GetFloat("playerHighScoreMul", 1)).ToString("00000000000000000");
 
         ControllerSound.Instance.Button();
@@ -519,6 +589,7 @@ public class ControllerGame : MonoBehaviour
     }
     public void QuitGame() 
     {
+        PlayerPrefs.SetInt("ContinueLevel", LevelCount);
         Application.Quit();
     }
     public void UpgradeMenu()
@@ -830,6 +901,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 2) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -855,7 +927,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -904,6 +976,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 3) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -929,7 +1002,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -977,7 +1050,8 @@ public class ControllerGame : MonoBehaviour
     public void Start4()
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 4) return;
-        ControllerSound.Instance.Button();
+        ControllerSound.Instance.Button(); 
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -1003,7 +1077,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -1052,6 +1126,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 5) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 1);
 
@@ -1077,7 +1152,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 1);
 
@@ -1126,6 +1201,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 6) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 1);
 
@@ -1151,7 +1227,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 1);
 
@@ -1200,6 +1276,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 7) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -1225,7 +1302,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -1283,6 +1360,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 8) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1308,7 +1386,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
 
@@ -1359,6 +1437,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 9) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1384,7 +1463,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
 
@@ -1438,6 +1517,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 10) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 1);
 
@@ -1463,7 +1543,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 1);
 
@@ -1515,6 +1595,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 11) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -1540,7 +1621,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(2, 0);
 
@@ -1591,8 +1672,8 @@ public class ControllerGame : MonoBehaviour
     public void Start12()
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 12) return;
-        ControllerSound.Instance.Button();
-        BackGroundPics.SetBackGround(1);
+        ControllerSound.Instance.Button(); 
+        Sound.BackGroundSound(1);
         BackGroundPics.SetBackGround(1);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -1618,7 +1699,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
-
+            Sound.BackGroundSound(1);
             BackGroundPics.SetBackGround(1);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -1720,6 +1801,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -1762,6 +1844,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 14) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -1788,6 +1871,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -1831,6 +1915,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 15) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -1857,6 +1942,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -1911,6 +1997,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 16) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -1937,6 +2024,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -2002,6 +2090,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 17) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -2028,6 +2117,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -2083,6 +2173,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 18) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 2);
 
@@ -2109,6 +2200,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 2);
 
@@ -2176,6 +2268,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 19) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -2202,6 +2295,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -2251,6 +2345,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 20) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -2277,6 +2372,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 2);
 
@@ -2326,6 +2422,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 21) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 2);
 
@@ -2352,6 +2449,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 2);
 
@@ -2417,6 +2515,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 22) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(2);
         BackGroundPics.SetBackGround(2);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -2443,6 +2542,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(2);
             BackGroundPics.SetBackGround(2);
             BackGroundPics.MoveToTarget(2, 0);
 
@@ -2617,6 +2717,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 24) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 3);
 
@@ -2643,6 +2744,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 3);
 
@@ -2683,6 +2785,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 25) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2709,6 +2812,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2755,6 +2859,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 26) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2781,6 +2886,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.5f);
 
@@ -2828,6 +2934,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 27) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 1.5f);
 
@@ -2854,6 +2961,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 1.5f);
 
@@ -2900,6 +3008,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 28) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(1, 0);
 
@@ -2926,6 +3035,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 0);
 
@@ -2974,6 +3084,9 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 29) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
+        BackGroundPics.SetBackGround(3);
+        BackGroundPics.MoveToTarget(1, 1.5f);
         ControllerMenus[6].CloseMenu();
 
         ControllerMenus[3].OpenMenu();
@@ -2996,6 +3109,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(1, 1.5f);
 
@@ -3042,6 +3156,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 30) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 1.0f);
 
@@ -3068,6 +3183,7 @@ public class ControllerGame : MonoBehaviour
         if (!LevelSetUpDone)
         {
 
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 1.0f);
 
@@ -3114,6 +3230,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 31) return;
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -3139,6 +3256,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 0);
 
@@ -3223,6 +3341,7 @@ public class ControllerGame : MonoBehaviour
         if (PlayerPrefs.GetInt("levelCountOn", 1) < 32) return;
 
         ControllerSound.Instance.Button();
+        Sound.BackGroundSound(3);
         BackGroundPics.SetBackGround(3);
         BackGroundPics.MoveToTarget(2, 0);
 
@@ -3248,6 +3367,7 @@ public class ControllerGame : MonoBehaviour
     {
         if (!LevelSetUpDone)
         {
+            Sound.BackGroundSound(3);
             BackGroundPics.SetBackGround(3);
             BackGroundPics.MoveToTarget(2, 2);
 
